@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inicio - Fútbol Stats{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Partidos en Vivo</h1>
+
+    {% if partidos is empty %}
+        <div class="alert alert-info">No hay partidos en juego en este momento.</div>
+    {% else %}
+        <div class="row">
+            {% for match in partidos %}
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5>{{ match.league.name }}</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <img src="{{ match.teams.home.logo }}" width="50"><br>
+                                    <strong>{{ match.teams.home.name }}</strong>
+                                </div>
+                                <div class="h2">
+                                    {{ match.goals.home }} - {{ match.goals.away }}
+                                    <br>
+                                    <small class="text-danger fs-6">{{ match.fixture.status.elapsed }}'</small>
+                                </div>
+                                <div>
+                                    <img src="{{ match.teams.away.logo }}" width="50"><br>
+                                    <strong>{{ match.teams.away.name }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
