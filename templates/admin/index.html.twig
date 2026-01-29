@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel de Administración{% endblock %}
+
+{% block body %}
+    <div class="row mb-4">
+        <div class="col">
+            <h1>Panel de Administración</h1>
+        </div>
+        <div class="col-auto">
+            <a href="{{ path('app_admin_category_new') }}" class="btn btn-primary">
+                ➕ Nueva Categoría
+            </a>
+        </div>
+    </div>
+
+    {# Mensajes flash #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Categorías Existentes</h5>
+        </div>
+        <div class="card-body">
+            {% if categories is empty %}
+                <p class="text-muted">No hay categorías creadas aún.</p>
+            {% else %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Elementos</th>
+                            <th>Fecha creación</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td>{{ category.id }}</td>
+                                <td><strong>{{ category.name }}</strong></td>
+                                <td>
+                                    <span class="badge bg-info">{{ category.type }}</span>
+                                </td>
+                                <td>{{ category.categoryItems|length }}</td>
+                                <td>{{ category.createdAt|date('d/m/Y H:i') }}</td>
+                                <td>
+                                    <a href="{{ path('app_admin_category_edit', {id: category.id}) }}"
+                                       class="btn btn-sm btn-warning">
+                                        ✏️ Editar
+                                    </a>
+                                    <form method="post"
+                                          action="{{ path('app_admin_category_delete', {id: category.id}) }}"
+                                          style="display:inline;"
+                                          onsubmit="return confirm('¿Seguro que quieres eliminar esta categoría?');">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            🗑️ Eliminar
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
