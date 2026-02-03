@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Fútbol Stats{% endblock %}</title>
@@ -11,19 +11,63 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container">
         <a class="navbar-brand" href="{{ path('app_home') }}">⚽ Fútbol Stats</a>
-        <div class="collapse navbar-collapse">
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Ligas</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Rankings</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_home') }}">🏠 Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">🏆 Ligas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">📊 Rankings</a>
+                </li>
+
+                {# Menú solo para admins #}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_admin') }}">⚙️ Admin</a>
+                    </li>
+                {% endif %}
             </ul>
+
             <ul class="navbar-nav ms-auto">
                 {% if app.user %}
-                    <li class="nav-item"><span class="nav-link">Hola, {{ app.user.email }}</span></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">Salir</a></li>
-                    {#                 {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_register') }}">Registro</a></li>
-                    #}
+                    {# Usuario autenticado #}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            👤 {{ app.user.name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="#">Mi Perfil</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Mis Rankings</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="{{ path('app_logout') }}">
+                                    🚪 Cerrar Sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    {# Usuario NO autenticado #}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">🔐 Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-success text-white ms-2" href="{{ path('app_register') }}">
+                            ✅ Registro
+                        </a>
+                    </li>
                 {% endif %}
             </ul>
         </div>
@@ -31,10 +75,19 @@
 </nav>
 
 <div class="container">
+    {# Mensajes flash globales #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     {% block body %}{% endblock %}
 </div>
 
-{% block javascripts %}
-{% endblock %}
+{% block javascripts %}{% endblock %}
 </body>
 </html>

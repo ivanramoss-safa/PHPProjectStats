@@ -1,0 +1,4 @@
+*.php filter=borracomentarios
+*.twig filter=borracomentarios
+*.yaml filter=borracomentarios
+*.yml filter=borracomentarios

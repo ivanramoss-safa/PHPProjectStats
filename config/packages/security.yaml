@@ -20,11 +20,22 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
+                default_target_path: app_home  # ← Redirige aquí después del login
+
             logout:
                 path: app_logout
+                target: app_home  # ← Redirige aquí después del logout
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800  # 1 semana en segundos
+                path: /
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }  # ← Proteger rutas /admin
+        - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/ranking, roles: ROLE_USER }
+
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:

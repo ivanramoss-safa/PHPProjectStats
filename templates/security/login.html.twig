@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">⚽ Iniciar Sesión</h4>
+                </div>
+                <div class="card-body">
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="alert alert-info">
+                            Ya estás autenticado como <strong>{{ app.user.userIdentifier }}</strong>
+                            <a href="{{ path('app_home') }}">Ir al inicio</a>
+                        </div>
+                    {% else %}
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="inputEmail" class="form-label">Email</label>
+                                <input type="email"
+                                       value="{{ last_username }}"
+                                       name="_username"
+                                       id="inputEmail"
+                                       class="form-control"
+                                       autocomplete="email"
+                                       required
+                                       autofocus
+                                       placeholder="tu@email.com">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="inputPassword" class="form-label">Contraseña</label>
+                                <input type="password"
+                                       name="_password"
+                                       id="inputPassword"
+                                       class="form-control"
+                                       autocomplete="current-password"
+                                       required
+                                       placeholder="Tu contraseña">
+                            </div>
+
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" type="submit">
+                                    🔐 Iniciar Sesión
+                                </button>
+                            </div>
+
+                            <hr>
+
+                            <div class="text-center">
+                                <p class="mb-0">
+                                    ¿No tienes cuenta?
+                                    <a href="{{ path('app_register') }}" class="text-decoration-none">
+                                        Regístrate aquí
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

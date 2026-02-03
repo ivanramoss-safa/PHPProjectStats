@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white text-center">
+                    <h4 class="mb-0">⚽ Crear Cuenta</h4>
+                </div>
+                <div class="card-body">
+                    {# Mensajes de error #}
+                    {% for message in app.flashes('error') %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+
+                    {# Mensajes de éxito #}
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">{{ message }}</div>
+                    {% endfor %}
+
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="name" class="form-label">Nombre *</label>
+                                <input type="text"
+                                       name="name"
+                                       id="name"
+                                       class="form-control"
+                                       required
+                                       value="{{ name|default('') }}"
+                                       placeholder="Ej: Juan">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="lastname" class="form-label">Apellidos *</label>
+                                <input type="text"
+                                       name="lastname"
+                                       id="lastname"
+                                       class="form-control"
+                                       required
+                                       value="{{ lastname|default('') }}"
+                                       placeholder="Ej: Pérez García">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email"
+                                   name="email"
+                                   id="email"
+                                   class="form-control"
+                                   required
+                                   value="{{ email|default('') }}"
+                                   placeholder="tu@email.com">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña *</label>
+                            <input type="password"
+                                   name="password"
+                                   id="password"
+                                   class="form-control"
+                                   required
+                                   minlength="6"
+                                   placeholder="Mínimo 6 caracteres">
+                            <small class="text-muted">Mínimo 6 caracteres</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password_confirm" class="form-label">Confirmar Contraseña *</label>
+                            <input type="password"
+                                   name="password_confirm"
+                                   id="password_confirm"
+                                   class="form-control"
+                                   required
+                                   minlength="6"
+                                   placeholder="Repite tu contraseña">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success">
+                                ✅ Registrarse
+                            </button>
+                        </div>
+
+                        <hr>
+
+                        <div class="text-center">
+                            <p class="mb-0">
+                                ¿Ya tienes cuenta?
+                                <a href="{{ path('app_login') }}" class="text-decoration-none">
+                                    Inicia sesión aquí
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
