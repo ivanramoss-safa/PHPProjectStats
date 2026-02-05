@@ -18,21 +18,19 @@ class RegistrationController extends AbstractController
         UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface $em
     ): Response {
-        // Si ya está autenticado, redirigir al home
+
         if ($this->getUser()) {
             return $this->redirectToRoute('app_home');
         }
 
-        // Si se envió el formulario
         if ($request->isMethod('POST')) {
-            // Obtener datos del formulario
+
             $email = $request->request->get('email');
             $name = $request->request->get('name');
             $lastname = $request->request->get('lastname');
             $password = $request->request->get('password');
             $passwordConfirm = $request->request->get('password_confirm');
 
-            // Validaciones básicas
             $errors = [];
 
             if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -55,13 +53,11 @@ class RegistrationController extends AbstractController
                 $errors[] = 'Las contraseñas no coinciden.';
             }
 
-            // Verificar si el email ya existe
             $existingUser = $em->getRepository(User::class)->findOneBy(['email' => $email]);
             if ($existingUser) {
                 $errors[] = 'Este email ya está registrado.';
             }
 
-            // Si hay errores, mostrarlos
             if (!empty($errors)) {
                 foreach ($errors as $error) {
                     $this->addFlash('error', $error);
@@ -74,18 +70,15 @@ class RegistrationController extends AbstractController
                 ]);
             }
 
-            // Crear el usuario
             $user = new User();
             $user->setEmail($email);
             $user->setName($name);
             $user->setLastname($lastname);
-            $user->setRoles(['ROLE_USER']); // Rol por defecto
+            $user->setRoles(['ROLE_USER']); 
 
-            // ⚠️ PUNTO CRÍTICO: Hashear la contraseña (como hace el profesor)
             $hashedPassword = $passwordHasher->hashPassword($user, $password);
             $user->setPassword($hashedPassword);
 
-            // Guardar en base de datos
             $em->persist($user);
             $em->flush();
 
@@ -93,7 +86,6 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        // Mostrar formulario de registro
         return $this->render('registration/register.html.twig');
     }
 }

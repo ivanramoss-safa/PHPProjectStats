@@ -21,15 +21,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180)]
     private ?string $email = null;
 
-    /**
-     * @var list<string> The user roles
-     */
+    
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
+    
     #[ORM\Column]
     private ?string $password = null;
 
@@ -39,15 +35,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    /**
-     * @var Collection<int, Review>
-     */
+    
     #[ORM\OneToMany(targetEntity: Review::class, mappedBy: 'user')]
     private Collection $reviews;
 
-    /**
-     * @var Collection<int, Ranking>
-     */
+    
     #[ORM\OneToMany(targetEntity: Ranking::class, mappedBy: 'user')]
     private Collection $rankings;
 
@@ -74,31 +66,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
+    
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
+    
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
 
-    /**
-     * @param list<string> $roles
-     */
+    
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
@@ -106,9 +89,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
+    
     public function getPassword(): ?string
     {
         return $this->password;
@@ -121,9 +102,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * Ensure the session doesn't contain actual password hashes by CRC32C-hashing them, as supported since Symfony 7.3.
-     */
+    
     public function __serialize(): array
     {
         $data = (array) $this;
@@ -156,9 +135,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Review>
-     */
+    
     public function getReviews(): Collection
     {
         return $this->reviews;
@@ -177,7 +154,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeReview(Review $review): static
     {
         if ($this->reviews->removeElement($review)) {
-            // set the owning side to null (unless already changed)
             if ($review->getUser() === $this) {
                 $review->setUser(null);
             }
@@ -186,9 +162,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Ranking>
-     */
+    
     public function getRankings(): Collection
     {
         return $this->rankings;
@@ -207,7 +181,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeRanking(Ranking $ranking): static
     {
         if ($this->rankings->removeElement($ranking)) {
-            // set the owning side to null (unless already changed)
             if ($ranking->getUser() === $this) {
                 $ranking->setUser(null);
             }

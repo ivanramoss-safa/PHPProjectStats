@@ -5,7 +5,7 @@
 {% block body %}
     <h1 class="mb-4">Nueva Categoría</h1>
 
-    {# Mensajes flash #}
+    
     {% for label, messages in app.flashes %}
         {% for message in messages %}
             <div class="alert alert-{{ label }}">{{ message }}</div>
@@ -98,7 +98,7 @@
     </div>
 
     <script>
-        // Función para seleccionar/deseleccionar todos los checkboxes
+
         function toggleAll(source) {
             const checkboxes = document.querySelectorAll('.item-checkbox');
             checkboxes.forEach(checkbox => {

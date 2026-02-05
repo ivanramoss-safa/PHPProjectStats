@@ -10,12 +10,12 @@
                     <h4 class="mb-0">⚽ Crear Cuenta</h4>
                 </div>
                 <div class="card-body">
-                    {# Mensajes de error #}
+                    
                     {% for message in app.flashes('error') %}
                         <div class="alert alert-danger">{{ message }}</div>
                     {% endfor %}
 
-                    {# Mensajes de éxito #}
+                    
                     {% for message in app.flashes('success') %}
                         <div class="alert alert-success">{{ message }}</div>
                     {% endfor %}

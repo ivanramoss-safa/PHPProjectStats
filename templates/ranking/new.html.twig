@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo Ranking{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Crear Nuevo Ranking</h1>
+
+    <p class="lead">Selecciona una categoría para tu Top 10:</p>
+
+    {% if categories is empty %}
+        <div class="alert alert-warning">
+            No hay categorías disponibles aún. Contacta con un administrador.
+        </div>
+    {% else %}
+        <div class="row">
+            {% for category in categories %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ category.name }}</h5>
+                            <p class="mb-2">
+                                <span class="badge bg-info">{{ category.type }}</span>
+                            </p>
+                            <p class="text-muted">
+                                {{ category.description|default('Sin descripción') }}
+                            </p>
+                            <a href="{{ path('app_ranking_create', {id: category.id}) }}"
+                               class="btn btn-primary">
+                                Seleccionar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

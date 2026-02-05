@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mis Rankings{% endblock %}
+
+{% block body %}
+    <div class="row mb-4">
+        <div class="col">
+            <h1>🏆 Mis Rankings Personales</h1>
+        </div>
+        <div class="col-auto">
+            <a href="{{ path('app_ranking_new') }}" class="btn btn-primary">
+                ➕ Crear Nuevo Ranking
+            </a>
+        </div>
+    </div>
+
+    {% if rankings is empty %}
+        <div class="alert alert-info">
+            <h5>No tienes rankings creados aún</h5>
+            <p>Crea tu primer Top 10 y comparte tus favoritos con la comunidad.</p>
+            <a href="{{ path('app_ranking_new') }}" class="btn btn-primary">
+                Crear mi primer ranking
+            </a>
+        </div>
+    {% else %}
+        <div class="row">
+            {% for ranking in rankings %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">{{ ranking.name }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-2">
+                                <span class="badge bg-info">{{ ranking.category.type }}</span>
+                                <strong>{{ ranking.category.name }}</strong>
+                            </p>
+                            <p class="text-muted mb-2">
+                                <small>{{ ranking.rankingItems|length }} elementos</small>
+                            </p>
+                            <p class="text-muted">
+                                <small>Creado: {{ ranking.createdAt|date('d/m/Y H:i') }}</small>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ path('app_ranking_show', {id: ranking.id}) }}" class="btn btn-sm btn-primary">
+                                👁️ Ver Ranking
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

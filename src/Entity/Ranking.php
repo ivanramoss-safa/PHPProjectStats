@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RankingRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Ranking
 {
     #[ORM\Id]
@@ -29,9 +30,7 @@ class Ranking
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    /**
-     * @var Collection<int, RankingItem>
-     */
+    
     #[ORM\OneToMany(targetEntity: RankingItem::class, mappedBy: 'ranking')]
     private Collection $rankingItems;
 
@@ -86,16 +85,13 @@ class Ranking
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        $this->createdAt = new \DateTimeImmutable();
     }
 
-    /**
-     * @return Collection<int, RankingItem>
-     */
+    
     public function getRankingItems(): Collection
     {
         return $this->rankingItems;
@@ -114,7 +110,7 @@ class Ranking
     public function removeRankingItem(RankingItem $rankingItem): static
     {
         if ($this->rankingItems->removeElement($rankingItem)) {
-            // set the owning side to null (unless already changed)
+
             if ($rankingItem->getRanking() === $this) {
                 $rankingItem->setRanking(null);
             }

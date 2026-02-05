@@ -27,29 +27,26 @@ class AdminController extends AbstractController
         ]);
     }
 
-    // ========================================
-    // CREAR NUEVA CATEGORÍA
-    // ========================================
+
+
     #[Route('/category/new', name: 'app_admin_category_new')]
     public function newCategory(
         Request $request,
         EntityManagerInterface $em,
         FootballApiService $apiService
     ): Response {
-        // Si se envió el formulario
+
         if ($request->isMethod('POST')) {
             $name = $request->request->get('name');
             $type = $request->request->get('type');
             $description = $request->request->get('description');
-            $selectedItems = $request->request->all('items'); // ← TRUCO del profesor
+            $selectedItems = $request->request->all('items'); 
 
-            // Validación básica
             if (empty($name) || empty($type)) {
                 $this->addFlash('error', 'El nombre y el tipo son obligatorios.');
                 return $this->redirectToRoute('app_admin_category_new');
             }
 
-            // Crear la categoría
             $category = new Category();
             $category->setName($name);
             $category->setType($type);
@@ -57,7 +54,6 @@ class AdminController extends AbstractController
 
             $em->persist($category);
 
-            // Añadir los elementos seleccionados
             if (!empty($selectedItems)) {
                 foreach ($selectedItems as $externalId) {
                     $item = new CategoryItem();
@@ -73,11 +69,9 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_admin');
         }
 
-        // Obtener datos de la API para mostrar en el formulario
-        // Por defecto mostramos jugadores, pero puedes cambiar según el tipo seleccionado
+
         $availableItems = [];
 
-        // Ejemplo: Obtener top goleadores de LaLiga (liga ID: 140, temporada: 2024)
         $topScorers = $apiService->getTopScorers(140, 2024);
 
         if (!empty($topScorers['response'])) {
@@ -92,14 +86,13 @@ class AdminController extends AbstractController
             }
         }
 
-        return $this->render('admin/category_new.html.twig.twig', [
+        return $this->render('admin/category_new.html.twig', [
             'availableItems' => $availableItems,
         ]);
     }
 
-    // ========================================
-    // EDITAR CATEGORÍA
-    // ========================================
+
+
     #[Route('/category/{id}/edit', name: 'app_admin_category_edit')]
     public function editCategory(
         Category $category,
@@ -115,12 +108,10 @@ class AdminController extends AbstractController
             $category->setName($name);
             $category->setDescription($description);
 
-            // Eliminar items antiguos
             foreach ($category->getCategoryItems() as $item) {
                 $em->remove($item);
             }
 
-            // Añadir nuevos items
             if (!empty($selectedItems)) {
                 foreach ($selectedItems as $externalId) {
                     $item = new CategoryItem();
@@ -136,13 +127,11 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('app_admin');
         }
 
-        // Obtener items actuales de la categoría
         $currentItems = [];
         foreach ($category->getCategoryItems() as $item) {
             $currentItems[] = $item->getExternalId();
         }
 
-        // Obtener items disponibles según el tipo
         $availableItems = [];
 
         if ($category->getType() === 'player') {
@@ -166,9 +155,8 @@ class AdminController extends AbstractController
         ]);
     }
 
-    // ========================================
-    // ELIMINAR CATEGORÍA
-    // ========================================
+
+
     #[Route('/category/{id}/delete', name: 'app_admin_category_delete', methods: ['POST'])]
     public function deleteCategory(
         Category $category,

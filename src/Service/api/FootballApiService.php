@@ -2,6 +2,7 @@
 
 namespace App\Service\api;
 
+use App\Entity\Category;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
@@ -19,19 +20,13 @@ class FootballApiService
         $this->apiKey = $apiKey;
     }
 
-    // Función genérica para hacer peticiones con caché
     public function getCachedData(string $endpoint, array $params = [], int $cacheSeconds = 3600): array
     {
-        // Creamos una clave única para la caché basada en el endpoint y los parámetros
-        // Ejemplo de clave: "api_leagues_2023"
+
         $cacheKey = 'api_' . str_replace('/', '_', $endpoint) . '_' . md5(json_encode($params));
 
         return $this->cache->get($cacheKey, function (ItemInterface $item) use ($endpoint, $params, $cacheSeconds) {
 
-            // Si no está en caché, este código se ejecuta:
-            $item->expiresAfter($cacheSeconds); // Tiempo de vida de la caché
-
-            // Hacemos la petición real a la API
             $response = $this->client->request('GET', 'https://v3.football.api-sports.io/' . $endpoint, [
                 'headers' => [
                     'x-apisports-key' => $this->apiKey,
@@ -39,14 +34,21 @@ class FootballApiService
                 'query' => $params,
             ]);
 
-            // Convertimos la respuesta JSON a un array PHP
-            return $response->toArray();
+            $data = $response->toArray();
+
+            if (!empty($data['errors'])) {
+                $item->expiresAfter(5); 
+            }
+            else {
+                $item->expiresAfter($cacheSeconds); 
+            }
+
+            return $data;
         });
     }
 
-    // ========================================
-    // PARTIDOS (FIXTURES)
-    // ========================================
+
+
 
     public function getLiveFixtures(): array
     {
@@ -67,8 +69,8 @@ class FootballApiService
     {
         $data = $this->getCachedData('fixtures', ['id' => $fixtureId], 300);
 
-        if(!empty($data['response'][0]['fixture']['status']['short'])
-            && in_array($data['response'][0]['fixture']['status']['short'], ['FT', 'AET', 'PEN'])) {
+        if (!empty($data['response'][0]['fixture']['status']['short'])
+        && in_array($data['response'][0]['fixture']['status']['short'], ['FT', 'AET', 'PEN'])) {
             return $this->getCachedData('fixtures', ['id' => $fixtureId], 86400);
         }
 
@@ -90,9 +92,8 @@ class FootballApiService
         return $this->getCachedData('fixtures/events', ['fixture' => $fixtureId], 86400);
     }
 
-    // ========================================
-    // LIGAS
-    // ========================================
+
+
 
     public function getLeagues(): array
     {
@@ -114,9 +115,8 @@ class FootballApiService
         return $this->getCachedData('standings', ['league' => $leagueId, 'season' => $season], 3600);
     }
 
-    // ========================================
-    // EQUIPOS
-    // ========================================
+
+
 
     public function getTeamsByLeague(int $leagueId, int $season): array
     {
@@ -138,9 +138,8 @@ class FootballApiService
         return $this->getCachedData('leagues', ['team' => $teamId], 86400);
     }
 
-    // ========================================
-    // JUGADORES
-    // ========================================
+
+
 
     public function getSquad(int $teamId): array
     {
@@ -172,9 +171,8 @@ class FootballApiService
         return $this->getCachedData('players/topredcards', ['league' => $leagueId, 'season' => $season], 3600);
     }
 
-    // ========================================
-    // LESIONES Y SANCIONES
-    // ========================================
+
+
 
     public function getInjuriesByTeam(int $teamId, int $season): array
     {
@@ -186,9 +184,8 @@ class FootballApiService
         return $this->getCachedData('injuries', ['fixture' => $fixtureId], 86400);
     }
 
-    // ========================================
-    // ENTRENADORES
-    // ========================================
+
+
 
     public function getCoachById(int $coachId): array
     {
@@ -200,9 +197,8 @@ class FootballApiService
         return $this->getCachedData('coachs', ['search' => $name], 2592000);
     }
 
-    // ========================================
-    // ESTADIOS
-    // ========================================
+
+
 
     public function getVenueById(int $venueId): array
     {
@@ -214,9 +210,8 @@ class FootballApiService
         return $this->getCachedData('venues', ['search' => $name], 2592000);
     }
 
-    // ========================================
-    // PALMARÉS
-    // ========================================
+
+
 
     public function getPlayerTrophies(int $playerId): array
     {
@@ -228,9 +223,8 @@ class FootballApiService
         return $this->getCachedData('trophies', ['coach' => $coachId], 604800);
     }
 
-    // ========================================
-    // FICHAJES
-    // ========================================
+
+
 
     public function getPlayerTransfers(int $playerId): array
     {
@@ -242,47 +236,168 @@ class FootballApiService
         return $this->getCachedData('transfers', ['team' => $teamId], 86400);
     }
 
-    // ========================================
-    // 🔍 BUSCADORES (¡NUEVO E IMPRESCINDIBLE!)
-    // ========================================
 
-    // Para la barra de búsqueda: "Buscar equipo..."
-    public function searchTeam(string $name): array
-    {
-        // Cacheamos 1 mes, los equipos no cambian de nombre a menudo
-        return $this->getCachedData('teams', ['search' => $name], 2592000);
-    }
 
-    // Para la barra de búsqueda: "Buscar jugador..."
-    public function searchPlayer(string $name, int $teamId = null): array
+
+    public function searchPlayerV2(string $name, ?int $teamId = null): array
     {
         $params = ['search' => $name];
         if ($teamId) {
-            $params['team'] = $teamId; // Buscar jugador dentro de un equipo concreto
+            $params['team'] = $teamId; 
         }
-        // OJO: La búsqueda de jugadores requiere al menos la liga o el equipo obligatoriamente en la versión gratuita a veces,
-        // pero probaremos la búsqueda global. Si falla, limitaremos por liga.
+
+
         return $this->getCachedData('players', $params, 86400);
     }
 
-    // Para la barra de búsqueda: "Buscar liga..."
-    public function searchLeague(string $name): array
+    
+    public function searchPlayers(string $query, int $page = 1): array
+    {
+
+
+        $currentSeason = 2024;
+
+        return $this->getCachedData('players', [
+            'search' => $query,
+            'season' => $currentSeason,
+            'page' => $page
+        ], 3600);
+    }
+
+    
+    public function searchTeams(string $query, int $page = 1): array
+    {
+        return $this->getCachedData('teams', [
+            'search' => $query,
+            'page' => $page
+        ], 86400);
+    }
+
+    public function searchLeagues(string $name): array
     {
         return $this->getCachedData('leagues', ['search' => $name], 2592000);
     }
 
-    // ========================================
-    // UTILIDADES
-    // ========================================
+    
+    public function searchVenues(string $query): array
+    {
+        return $this->getCachedData('venues', [
+            'search' => $query
+        ], 604800);
+    }
+
+    
+    public function searchCoaches(string $query): array
+    {
+        return $this->getCachedData('coachs', [
+            'search' => $query
+        ], 604800);
+    }
+
+
+
 
     public function getCountries(): array
     {
-        return $this->getCachedData('countries', [], 2592000); // Rara vez cambian
+        return $this->getCachedData('countries', [], 2592000); 
     }
 
     public function getSeasons(): array
     {
-        // Devuelve los años de temporadas disponibles
+
         return $this->getCachedData('leagues/seasons', [], 2592000);
+    }
+
+    
+    public function getItemsFromCategory(Category $category, string $query = '', int $page = 1): array
+    {
+        $type = $category->getType();
+
+        $categoryItems = $category->getCategoryItems();
+
+        if ($categoryItems->count() > 0) {
+
+            $externalIds = [];
+            foreach ($categoryItems as $item) {
+                $externalIds[] = $item->getExternalId();
+            }
+
+            switch ($type) {
+                case 'player':
+
+
+                    $currentSeason = 2024;
+                    $results = [];
+                    foreach ($externalIds as $id) {
+                        $playerData = $this->getPlayerStatistics($id, $currentSeason);
+                        if (!empty($playerData['response'])) {
+                            $results[] = $playerData['response'][0];
+                        }
+                    }
+                    return ['response' => $results, 'paging' => ['current' => 1, 'total' => 1]];
+
+                case 'team':
+
+                    $results = [];
+                    foreach ($externalIds as $id) {
+                        $teamData = $this->getTeamById($id);
+                        if (!empty($teamData['response'])) {
+                            $results[] = $teamData['response'][0];
+                        }
+                    }
+                    return ['response' => $results, 'paging' => ['current' => 1, 'total' => 1]];
+
+                case 'league':
+
+                    $results = [];
+                    foreach ($externalIds as $id) {
+                        $leagueData = $this->getLeagueById($id);
+                        if (!empty($leagueData['response'])) {
+                            $results[] = $leagueData['response'][0];
+                        }
+                    }
+                    return ['response' => $results, 'paging' => ['current' => 1, 'total' => 1]];
+
+                case 'stadium':
+
+                    $results = [];
+                    foreach ($externalIds as $id) {
+                        $venueData = $this->getVenueById($id);
+                        if (!empty($venueData['response'])) {
+                            $results[] = $venueData['response'][0];
+                        }
+                    }
+                    return ['response' => $results, 'paging' => ['current' => 1, 'total' => 1]];
+
+                case 'coach':
+
+                    $results = [];
+                    foreach ($externalIds as $id) {
+                        $coachData = $this->getCoachById($id);
+                        if (!empty($coachData['response'])) {
+                            $results[] = $coachData['response'][0];
+                        }
+                    }
+                    return ['response' => $results, 'paging' => ['current' => 1, 'total' => 1]];
+
+                default:
+                    return ['response' => [], 'paging' => ['current' => 1, 'total' => 1]];
+            }
+        }
+
+        switch ($type) {
+            case 'player':
+                return !empty($query) ? $this->searchPlayers($query, $page) : ['response' => [], 'paging' => ['current' => 1, 'total' => 1]];
+            case 'team':
+                return !empty($query) ? $this->searchTeams($query, $page) : ['response' => [], 'paging' => ['current' => 1, 'total' => 1]];
+            case 'league':
+                return !empty($query) ? $this->searchLeagues($query) : ['response' => [], 'paging' => ['current' => 1, 'total' => 1]];
+            case 'stadium':
+                return !empty($query) ? $this->searchVenues($query) : ['response' => [], 'paging' => ['current' => 1, 'total' => 1]];
+            case 'coach':
+                return !empty($query) ? $this->searchCoaches($query) : ['response' => [], 'paging' => ['current' => 1, 'total' => 1]];
+            default:
+                return ['response' => [], 'paging' => ['current' => 1, 'total' => 1]];
+        }
     }
 }

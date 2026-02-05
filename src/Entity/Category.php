@@ -9,6 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Category
 {
     #[ORM\Id]
@@ -28,15 +29,11 @@ class Category
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    /**
-     * @var Collection<int, CategoryItem>
-     */
+    
     #[ORM\OneToMany(targetEntity: CategoryItem::class, mappedBy: 'category')]
     private Collection $categoryItems;
 
-    /**
-     * @var Collection<int, Ranking>
-     */
+    
     #[ORM\OneToMany(targetEntity: Ranking::class, mappedBy: 'category')]
     private Collection $rankings;
 
@@ -92,16 +89,13 @@ class Category
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
+        $this->createdAt = new \DateTimeImmutable();
     }
 
-    /**
-     * @return Collection<int, CategoryItem>
-     */
+    
     public function getCategoryItems(): Collection
     {
         return $this->categoryItems;
@@ -120,7 +114,7 @@ class Category
     public function removeCategoryItem(CategoryItem $categoryItem): static
     {
         if ($this->categoryItems->removeElement($categoryItem)) {
-            // set the owning side to null (unless already changed)
+
             if ($categoryItem->getCategory() === $this) {
                 $categoryItem->setCategory(null);
             }
@@ -129,9 +123,7 @@ class Category
         return $this;
     }
 
-    /**
-     * @return Collection<int, Ranking>
-     */
+    
     public function getRankings(): Collection
     {
         return $this->rankings;
@@ -150,7 +142,7 @@ class Category
     public function removeRanking(Ranking $ranking): static
     {
         if ($this->rankings->removeElement($ranking)) {
-            // set the owning side to null (unless already changed)
+
             if ($ranking->getCategory() === $this) {
                 $ranking->setCategory(null);
             }

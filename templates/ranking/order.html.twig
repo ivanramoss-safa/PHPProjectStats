@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ordenar Ranking{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Ordena tu Top 10</h1>
+    <p class="lead">Arrastra los elementos para ordenarlos de la posición 1 a la {{ items|length }}.</p>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <form method="post" action="{{ path('app_ranking_save') }}" id="rankingForm">
+                <input type="hidden" name="category_id" value="{{ category.id }}">
+
+                <div class="mb-4">
+                    <label for="ranking_name" class="form-label">Nombre de tu ranking *</label>
+                    <input type="text"
+                           name="ranking_name"
+                           id="ranking_name"
+                           class="form-control"
+                           placeholder="Ej: Mis delanteros favoritos"
+                           required>
+                </div>
+
+                <div id="sortable-list" class="list-group mb-4">
+                    {% for item in items %}
+                        <div class="list-group-item d-flex align-items-center draggable-item"
+                             draggable="true"
+                             style="cursor: grab;">
+
+                            
+                            <input type="hidden" name="ordered_items[]" value="{{ item.id }}">
+
+                            <span class="badge bg-primary me-3 position-number rounded-circle"
+                                  style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                                {{ loop.index }}
+                            </span>
+
+                            {% if item.photo %}
+                                <img src="{{ item.photo }}" width="50" class="rounded-circle me-3">
+                            {% endif %}
+
+                            <div class="flex-grow-1">
+                                <strong>{{ item.name }}</strong>
+                                <br>
+                                <small class="text-muted">{{ item.extra }}</small>
+                            </div>
+
+                            <span class="ms-auto text-muted" style="font-size: 1.5rem;">☰</span>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        💾 Guardar Ranking
+                    </button>
+                    <a href="{{ path('app_ranking_create', {id: category.id}) }}" class="btn btn-secondary btn-lg">
+                        Volver
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const sortableList = document.getElementById('sortable-list');
+        let draggedElement = null;
+
+        sortableList.addEventListener('dragstart', function(e) {
+            draggedElement = e.target.closest('.draggable-item');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', draggedElement.innerHTML);
+            draggedElement.style.opacity = '0.5';
+        });
+
+        sortableList.addEventListener('dragend', function(e) {
+            e.target.closest('.draggable-item').style.opacity = '';
+            draggedElement = null;
+            updatePositions(); 
+        });
+
+        sortableList.addEventListener('dragover', function(e) {
+            e.preventDefault(); 
+            const afterElement = getDragAfterElement(sortableList, e.clientY);
+            const currentDraggable = document.querySelector('.draggable-item[style*="opacity: 0.5"]');
+
+            if (afterElement == null) {
+                sortableList.appendChild(currentDraggable);
+            } else {
+                sortableList.insertBefore(currentDraggable, afterElement);
+            }
+        });
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.draggable-item:not([style*="opacity: 0.5"])')];
+
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        function updatePositions() {
+            const items = sortableList.querySelectorAll('.draggable-item');
+            items.forEach((item, index) => {
+                item.querySelector('.position-number').textContent = index + 1;
+            });
+        }
+    </script>
+{% endblock %}
