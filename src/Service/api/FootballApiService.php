@@ -49,6 +49,25 @@ class FootballApiService
 
 
 
+    public function getApiStatus(): array
+    {
+
+        try {
+            $response = $this->client->request('GET', 'https://v3.football.api-sports.io/status', [
+                'headers' => [
+                    'x-apisports-key' => $this->apiKey,
+                ]
+            ]);
+
+            return $response->toArray();
+        }
+        catch (\Exception $e) {
+            return ['errors' => ['msg' => $e->getMessage()]];
+        }
+    }
+
+
+
 
     public function getLiveFixtures(): array
     {
@@ -57,7 +76,7 @@ class FootballApiService
 
     public function getFixturesByDate(string $date): array
     {
-        return $this->getCachedData('fixtures', ['date' => $date], 3600);
+        return $this->getCachedData('fixtures', ['date' => $date], 120); 
     }
 
     public function getFixturesByLeague(int $leagueId, int $season): array
@@ -234,6 +253,117 @@ class FootballApiService
     public function getTeamTransfers(int $teamId): array
     {
         return $this->getCachedData('transfers', ['team' => $teamId], 86400);
+    }
+
+    
+    public function getTransfersByLeague(int $leagueId = 140, int $season = 2024, int $limit = 10): array
+    {
+        $cacheKey = 'transfers_league_v9_' . $leagueId . '_' . $season;
+
+        return $this->cache->get($cacheKey, function (ItemInterface $item) use ($leagueId, $season, $limit) {
+            $item->expiresAfter(86400); 
+
+            $teamsData = $this->getTeamsByLeague($leagueId, $season);
+            $teams = $teamsData['response'] ?? [];
+
+            if (empty($teams)) {
+                $teamsData = $this->getTeamsByLeague($leagueId, $season - 1);
+                $teams = $teamsData['response'] ?? [];
+            }
+
+            $allTransfers = [];
+
+            $oneYearAgo = strtotime('-12 months');
+
+            $parseDate = function ($dateStr) {
+
+                    if (preg_match('/^\\d{4}-\\d{2}-\\d{2}$/', $dateStr)) {
+                        return strtotime($dateStr);
+                    }
+
+                    if (preg_match('/^(\\d{2})(\\d{2})(\\d{2})$/', $dateStr, $m)) {
+                        $yy = (int)$m[1];
+                        if ($yy > (int)date('y'))
+                            return false;
+                        $year = $yy + 2000;
+                        return strtotime("$year-{$m[2]}-{$m[3]}");
+                    }
+                    return false;
+                }
+                    ;
+
+                foreach ($teams as $teamData) {
+                    $teamId = $teamData['team']['id'];
+                    $transfersData = $this->getTeamTransfers($teamId);
+
+                    foreach ($transfersData['response'] ?? [] as $playerTransfers) {
+                        foreach ($playerTransfers['transfers'] ?? [] as $transfer) {
+                            $transferDate = $transfer['date'] ?? '';
+                            $transferTimestamp = $parseDate($transferDate);
+
+                            if ($transferTimestamp && $transferTimestamp > $oneYearAgo) {
+                                $allTransfers[] = [
+                                    'player' => $playerTransfers['player'] ?? [],
+                                    'transfer' => $transfer,
+                                    'date' => $transferDate,
+                                    'timestamp' => $transferTimestamp, 
+                                ];
+                            }
+                        }
+                    }
+                }
+
+                usort($allTransfers, function ($a, $b) {
+                    return ($b['timestamp'] ?? 0) - ($a['timestamp'] ?? 0);
+                }
+                );
+
+                $seenPlayers = [];
+                $uniqueTransfers = [];
+                foreach ($allTransfers as $transfer) {
+                    $playerId = $transfer['player']['id'] ?? 0;
+                    if (!isset($seenPlayers[$playerId])) {
+                        $seenPlayers[$playerId] = true;
+                        $uniqueTransfers[] = $transfer;
+                    }
+                }
+
+                return array_slice($uniqueTransfers, 0, $limit);
+            });
+    }
+
+    
+    public function getInjuriesByLeague(int $leagueId = 140, int $season = 2024, int $limit = 10): array
+    {
+        $cacheKey = 'injuries_league_v3_' . $leagueId . '_' . $season;
+
+        return $this->cache->get($cacheKey, function (ItemInterface $item) use ($leagueId, $season, $limit) {
+            $item->expiresAfter(86400); 
+
+            $injuriesData = $this->getCachedData('injuries', [
+                'league' => $leagueId,
+                'season' => $season,
+            ], 86400);
+
+            $allInjuries = $injuriesData['response'] ?? [];
+
+            if (empty($allInjuries)) {
+                $injuriesData = $this->getCachedData('injuries', [
+                    'date' => date('Y-m-d'),
+                    'league' => $leagueId,
+                ], 3600);
+                $allInjuries = $injuriesData['response'] ?? [];
+            }
+
+            usort($allInjuries, function ($a, $b) {
+                    $dateA = $a['fixture']['date'] ?? '1970-01-01';
+                    $dateB = $b['fixture']['date'] ?? '1970-01-01';
+                    return strtotime($dateB) - strtotime($dateA);
+                }
+                );
+
+                return array_slice($allInjuries, 0, $limit);
+            });
     }
 
 

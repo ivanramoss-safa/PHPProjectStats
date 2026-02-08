@@ -8,3 +8,7 @@ services:
             $apiKey: '%env(FOOTBALL_API_KEY)%'
     App\:
         resource: '../src/'
+    
+    App\DataCollector\ApiStatusCollector:
+        tags:
+            - { name: 'data_collector', template: 'data_collector/api_status.html.twig', id: 'app.api_status_collector' }

@@ -3,36 +3,274 @@
 {% block title %}Inicio - Fútbol Stats{% endblock %}
 
 {% block body %}
-    <h1 class="mb-4">Partidos en Vivo</h1>
+<div class="container mt-4">
 
-    {% if partidos is empty %}
-        <div class="alert alert-info">No hay partidos en juego en este momento.</div>
-    {% else %}
-        <div class="row">
-            {% for match in partidos %}
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h5>{{ match.league.name }}</h5>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <img src="{{ match.teams.home.logo }}" width="50"><br>
-                                    <strong>{{ match.teams.home.name }}</strong>
-                                </div>
-                                <div class="h2">
-                                    {{ match.goals.home }} - {{ match.goals.away }}
-                                    <br>
-                                    <small class="text-danger fs-6">{{ match.fixture.status.elapsed }}'</small>
-                                </div>
-                                <div>
-                                    <img src="{{ match.teams.away.logo }}" width="50"><br>
-                                    <strong>{{ match.teams.away.name }}</strong>
+    
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1>📅 Partidos del {{ fechaActual }}</h1>
+        </div>
+        <div class="col-md-6 text-end">
+            <form method="get" class="d-inline">
+                <input type="date" name="date" value="{{ fechaActual }}" class="form-control d-inline w-auto" onchange="this.form.submit()">
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        
+        <div class="col-md-4">
+            <h4>📰 Noticias LaLiga</h4>
+            
+            
+            <ul class="nav nav-tabs mb-2" id="noticiasTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="fichajes-tab" data-bs-toggle="tab" data-bs-target="#fichajes" type="button" role="tab">
+                        💰 Fichajes
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="lesiones-tab" data-bs-toggle="tab" data-bs-target="#lesiones" type="button" role="tab">
+                        🏥 Lesiones
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="noticias-tab" data-bs-toggle="tab" data-bs-target="#noticias" type="button" role="tab">
+                        📢 Noticias
+                    </button>
+                </li>
+            </ul>
+            
+            <div class="tab-content" id="noticiasTabContent">
+                
+                <div class="tab-pane fade show active" id="fichajes" role="tabpanel">
+                    {% if fichajes is empty %}
+                        <div class="alert alert-secondary">No hay fichajes recientes.</div>
+                    {% else %}
+                        {% for fichaje in fichajes %}
+                            <div class="card mb-2">
+                                <div class="card-body p-2">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ fichaje.player.photo ?? '' }}" width="40" class="rounded-circle me-2" alt="">
+                                        <div class="flex-grow-1">
+                                            <strong class="d-block" style="font-size: 0.85rem">{{ fichaje.player.name }}</strong>
+                                            <small class="text-muted">
+                                                {{ fichaje.transfer.teams.out.name ?? '?' }} 
+                                                ➡️ 
+                                                {{ fichaje.transfer.teams.in.name ?? '?' }}
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="text-end">
+                                        <small class="text-muted">{{ fichaje.date }}</small>
+                                        {% if fichaje.transfer.type %}
+                                            <span class="badge bg-info ms-1">{{ fichaje.transfer.type }}</span>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
-            {% endfor %}
+                
+                
+                <div class="tab-pane fade" id="lesiones" role="tabpanel">
+                    {% if lesiones is empty %}
+                        <div class="alert alert-secondary">No hay lesiones recientes.</div>
+                    {% else %}
+                        {% for lesion in lesiones %}
+                            <div class="card mb-2">
+                                <div class="card-body p-2">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ lesion.player.photo ?? '' }}" width="40" class="rounded-circle me-2" alt="">
+                                        <div class="flex-grow-1">
+                                            <strong class="d-block" style="font-size: 0.85rem">{{ lesion.player.name }}</strong>
+                                            <small class="text-muted">{{ lesion.team.name ?? '' }}</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="badge bg-danger">{{ lesion.player.reason ?? 'Lesión' }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                
+                
+                <div class="tab-pane fade" id="noticias" role="tabpanel">
+                    {% if noticias is empty %}
+                        <div class="alert alert-secondary">No hay noticias destacadas.</div>
+                    {% else %}
+                        {% for noticia in noticias %}
+                            <div class="card mb-2">
+                                <div class="card-body p-2">
+                                    <div class="d-flex align-items-start">
+                                        {% if noticia.image %}
+                                            <img src="{{ noticia.image }}" width="60" class="rounded me-2" alt="">
+                                        {% endif %}
+                                        <div class="flex-grow-1">
+                                            <strong class="d-block" style="font-size: 0.9rem">{{ noticia.title }}</strong>
+                                            <small class="text-muted d-block">{{ noticia.content|slice(0, 80) }}...</small>
+                                            <div class="mt-1">
+                                                {% if noticia.category %}
+                                                    <span class="badge {% if noticia.category == 'fichaje' %}bg-success{% elseif noticia.category == 'lesion' %}bg-danger{% elseif noticia.category == 'sancion' %}bg-warning{% else %}bg-secondary{% endif %}">
+                                                        {{ noticia.category|capitalize }}
+                                                    </span>
+                                                {% endif %}
+                                                <small class="text-muted ms-2">{{ noticia.createdAt|date('d/m/Y') }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    {% endif %}
+
+        
+        <div class="col-md-8">
+            
+            <div class="mb-3">
+                <div class="btn-group" role="group">
+                    <a href="?date={{ fechaActual }}&orden=tops" 
+                    class="btn btn-sm {{ ordenActual == 'tops' ? 'btn-primary' : 'btn-outline-primary' }}">
+                        🏆 Por ligas tops
+                    </a>
+                    <a href="?date={{ fechaActual }}&orden=pais" 
+                    class="btn btn-sm {{ ordenActual == 'pais' ? 'btn-primary' : 'btn-outline-primary' }}">
+                        🌍 Por país
+                    </a>
+                </div>
+            </div>
+            {% if partidosPorLiga is empty %}
+                <div class="alert alert-info">No hay partidos para esta fecha.</div>
+            {% else %}
+                
+                {% if ordenActual == 'pais' %}
+                    <div class="accordion" id="accordionPaises">
+                        {% for pais, dataPais in partidosPorPais %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ loop.index }}">
+                                    <button class="accordion-button {{ loop.first ? '' : 'collapsed' }}" type="button" 
+                                            data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" 
+                                            aria-expanded="{{ loop.first ? 'true' : 'false' }}" aria-controls="collapse{{ loop.index }}">
+                                        <strong>🌍 {{ dataPais.pais }}</strong>
+                                        <span class="badge bg-secondary ms-2">{{ dataPais.ligas|length }} ligas</span>
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ loop.index }}" class="accordion-collapse collapse {{ loop.first ? 'show' : '' }}" 
+                                     aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionPaises">
+                                    <div class="accordion-body p-2">
+                                        {% for dataLiga in dataPais.ligas %}
+                                            <div class="card mb-2">
+                                                <div class="card-header bg-dark text-white d-flex align-items-center py-1">
+                                                    {% if dataLiga.logo %}
+                                                        <img src="{{ dataLiga.logo }}" width="20" class="me-2">
+                                                    {% endif %}
+                                                    <strong>{{ dataLiga.nombre }}</strong>
+                                                </div>
+                                                <div class="card-body p-1">
+                                                    {% for match in dataLiga.partidos %}
+                                                        <div class="d-flex justify-content-between align-items-center border-bottom py-1">
+                                                            <div class="text-center" style="width: 35%">
+                                                                <img src="{{ match.teams.home.logo }}" width="25">
+                                                                <small class="d-block" style="font-size: 0.75rem">{{ match.teams.home.name }}</small>
+                                                            </div>
+                                                            <div class="text-center" style="width: 30%">
+                                                                {% if match.fixture.status.short == 'FT' %}
+                                                                    <span class="badge bg-secondary" style="font-size: 0.65rem">FIN</span><br>
+                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                {% elseif match.fixture.status.short == 'HT' %}
+                                                                    <span class="badge bg-warning text-dark" style="font-size: 0.65rem">⏸️ DESCANSO</span><br>
+                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                {% elseif match.fixture.status.short in ['1H', '2H', 'ET', 'P', 'BT', 'LIVE'] %}
+                                                                    <span class="badge bg-danger" style="font-size: 0.65rem">🔴 {{ match.fixture.status.elapsed }}'</span><br>
+                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                {% elseif match.fixture.status.short == 'PST' %}
+                                                                    <span class="badge bg-dark" style="font-size: 0.65rem">⚠️ APLAZADO</span>
+                                                                {% elseif match.fixture.status.short in ['CANC', 'ABD', 'AWD', 'WO', 'INT', 'SUSP'] %}
+                                                                    <span class="badge bg-dark" style="font-size: 0.65rem">❌ {{ match.fixture.status.long }}</span>
+                                                                {% elseif match.fixture.status.short == 'AET' %}
+                                                                    <span class="badge bg-secondary" style="font-size: 0.65rem">FIN (Prórroga)</span><br>
+                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                {% elseif match.fixture.status.short == 'PEN' %}
+                                                                    <span class="badge bg-secondary" style="font-size: 0.65rem">FIN (Penaltis)</span><br>
+                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                {% else %}
+                                                                    <span class="badge bg-primary" style="font-size: 0.65rem">{{ match.fixture.date|date_modify('+1 hour')|date('H:i') }}</span>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="text-center" style="width: 35%">
+                                                                <img src="{{ match.teams.away.logo }}" width="25">
+                                                                <small class="d-block" style="font-size: 0.75rem">{{ match.teams.away.name }}</small>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    
+                    {% for nombreLiga, dataLiga in partidosPorLiga %}
+                        <div class="card mb-3">
+                            <div class="card-header bg-dark text-white d-flex align-items-center">
+                                {% if dataLiga.logo %}
+                                    <img src="{{ dataLiga.logo }}" width="25" class="me-2">
+                                {% endif %}
+                                <strong>{{ dataLiga.nombre }}</strong>
+                                <small class="ms-2 text-muted">{{ dataLiga.country }}</small>
+                            </div>
+                            <div class="card-body p-2">
+                                {% for match in dataLiga.partidos %}
+                                    <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                                        <div class="text-center" style="width: 35%">
+                                            <img src="{{ match.teams.home.logo }}" width="30">
+                                            <small class="d-block">{{ match.teams.home.name }}</small>
+                                        </div>
+                                        <div class="text-center" style="width: 30%">
+                                            {% if match.fixture.status.short == 'FT' %}
+                                                <span class="badge bg-secondary">FIN</span><br>
+                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                            {% elseif match.fixture.status.short == 'HT' %}
+                                                <span class="badge bg-warning text-dark">⏸️ DESCANSO</span><br>
+                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                            {% elseif match.fixture.status.short in ['1H', '2H', 'ET', 'P', 'BT', 'LIVE'] %}
+                                                <span class="badge bg-danger">🔴 {{ match.fixture.status.elapsed }}'</span><br>
+                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                            {% elseif match.fixture.status.short == 'PST' %}
+                                                <span class="badge bg-dark">⚠️ APLAZADO</span>
+                                            {% elseif match.fixture.status.short in ['CANC', 'ABD', 'AWD', 'WO', 'INT', 'SUSP'] %}
+                                                <span class="badge bg-dark">❌ {{ match.fixture.status.long }}</span>
+                                            {% elseif match.fixture.status.short == 'AET' %}
+                                                <span class="badge bg-secondary">FIN (Prórroga)</span><br>
+                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                            {% elseif match.fixture.status.short == 'PEN' %}
+                                                <span class="badge bg-secondary">FIN (Penaltis)</span><br>
+                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                            {% else %}
+                                                <span class="badge bg-primary">{{ match.fixture.date|date_modify('+1 hour')|date('H:i') }}</span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="text-center" style="width: 35%">
+                                            <img src="{{ match.teams.away.logo }}" width="30">
+                                            <small class="d-block">{{ match.teams.away.name }}</small>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
