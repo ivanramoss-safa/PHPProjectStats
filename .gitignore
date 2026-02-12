@@ -23,3 +23,7 @@ API-FOOTBALL (3.9.3).txt
 src/DataCollector/ApiStatusCollector.php
 templates/data_collector/api_status.html.twig
 /migrations
+start_server.bat
+debug_2025.php
+debug_seasons.php
+verify_usage.php

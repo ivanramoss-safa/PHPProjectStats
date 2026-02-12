@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Próximamente{% endblock %}
+
+{% block body %}
+<div class="container mt-5 text-center">
+    <div class="display-1">🚧</div>
+    <h1 class="mt-3">En Construcción</h1>
+    <p class="lead">Esta sección ({{ section_name|default('Detalle') }}) estará disponible pronto.</p>
+    <p class="text-muted">ID del elemento: {{ item_id|default('N/A') }}</p>
+    <a href="{{ path('app_home') }}" class="btn btn-primary mt-3">Volver al Inicio</a>
+</div>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ coach.name }} - Detalle del Entrenador{% endblock %}
+
+{% block body %}
+<div class="row">
+    
+    <div class="col-lg-3 mb-4">
+        <div class="card border-0 shadow-sm text-center p-4 mb-4">
+            <img src="{{ coach.photo }}" alt="{{ coach.name }}" class="rounded-circle mx-auto mb-3 shadow-sm" style="width: 120px; height: 120px; object-fit: cover;">
+            <h3 class="fw-bold mb-1">{{ coach.name }}</h3>
+            <p class="text-muted mb-3">{{ coach.firstname }} {{ coach.lastname }}</p>
+            
+            <div class="d-flex justify-content-center gap-2 mb-3">
+                 <span class="badge bg-primary align-self-center fs-6">{{ coach.age }} años</span>
+            </div>
+
+            <hr>
+
+            <ul class="list-group list-group-flush text-start small">
+                <li class="list-group-item d-flex justify-content-between px-0">
+                    <span class="text-muted">Nacionalidad</span>
+                    <span class="fw-bold">{{ coach.nationality }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between px-0">
+                    <span class="text-muted">Nacimiento</span>
+                    <span class="fw-bold">{{ coach.birth.date|date('d M Y') }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between px-0">
+                    <span class="text-muted">Lugar</span>
+                    <span class="fw-bold">{{ coach.birth.place }}, {{ coach.birth.country }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <div class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom-0 pb-0">
+                <ul class="nav nav-tabs border-bottom-0" id="coachTab" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#career">
+                            💼 Trayectoria
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#trophies">
+                            🏆 Palmarés
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#news">
+                            📰 Noticias
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold text-primary" data-bs-toggle="tab" data-bs-target="#forum">
+                            💬 Foro / Reseñas
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="card-body">
+                <div class="tab-content" id="coachTabContent">
+                    
+                    
+                    <div class="tab-pane fade show active" id="career">
+                        {% if coach.career is empty %}
+                            <p class="text-muted text-center py-4">Sin información de trayectoria.</p>
+                        {% else %}
+                             <div class="timeline position-relative ps-4 border-start ms-2">
+                                {% for job in coach.career %}
+                                    <div class="mb-4 position-relative">
+                                        <div class="position-absolute start-0 top-0 translate-middle-x bg-white border border-primary rounded-circle" style="width: 12px; height: 12px; left: -1px;"></div>
+                                        <div class="h6 mb-1 text-primary">{{ job.start|date('M Y') }} - {{ job.end ? job.end|date('M Y') : 'Actualidad' }}</div>
+                                        <div class="d-flex align-items-center bg-light p-3 rounded">
+                                            <img src="{{ job.team.logo }}" width="40" class="me-3 rounded bg-white p-1 border">
+                                            <div>
+                                                <div class="fw-bold">{{ job.team.name }}</div>
+                                                 <div class="small text-muted">Entrenador</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="trophies">
+                        {% if trophies is empty %}
+                            <p class="text-muted text-center py-4">Sin títulos registrados.</p>
+                        {% else %}
+                            <div class="row row-cols-1 row-cols-md-2 g-3">
+                                {% for trophy in trophies %}
+                                    <div class="col">
+                                        <div class="d-flex align-items-center p-3 border rounded">
+                                            <i class="fas fa-trophy text-warning fs-3 me-3"></i>
+                                            <div>
+                                                <div class="fw-bold">{{ trophy.league }}</div>
+                                                <div class="text-muted small">{{ trophy.season }} - {{ trophy.place }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                     
+                    <div class="tab-pane fade" id="news">
+                        {% if relatedNews is empty %}
+                            <p class="text-muted text-center py-4">No hay noticias relacionadas con este entrenador.</p>
+                        {% else %}
+                            <div class="row row-cols-1 row-cols-md-2 g-3">
+                                {% for item in relatedNews %}
+                                    <div class="col">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            {% if item.image %}
+                                                <img src="{{ item.image }}" class="card-img-top" style="height: 150px; object-fit: cover;">
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <h6 class="card-title fw-bold">{{ item.title }}</h6>
+                                                <p class="card-text small text-muted">{{ item.content|slice(0, 80) }}...</p>
+                                                <button class="btn btn-sm btn-outline-primary" 
+                                                    data-bs-toggle="modal" data-bs-target="#newsDetailModal"
+                                                    data-news-id="{{ item.id }}"
+                                                    data-news-title="{{ item.title }}"
+                                                    data-news-content="{{ item.content }}"
+                                                    data-news-image="{{ item.image }}"
+                                                    data-news-date="{{ item.createdAt|date('d M, Y') }}">
+                                                    Leer más
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="forum">
+                        <div class="alert alert-info border-0 d-flex align-items-center">
+                            <i class="fas fa-info-circle me-2 fs-4"></i>
+                            <div>
+                                <strong>Foro de Discusión</strong>
+                                <div class="small">Comparte tu opinión sobre {{ coach.name }}. Tácticas, cambios, liderazgo...</div>
+                            </div>
+                        </div>
+
+                        
+                        {% include 'review/_form.html.twig' with {'type': 'coach', 'externalId': coach.id} %}
+                        {% include 'review/_list.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

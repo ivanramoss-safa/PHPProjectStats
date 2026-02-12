@@ -221,13 +221,15 @@ final class HomeController extends AbstractController
                 return $prioridadA - $prioridadB;
             });
         }
-
-        $noticias = $newsRepository->findBy([], ['createdAt' => 'DESC'], 5);
+        $noticias = $newsRepository->findNewsByDateOrLatest($dateString);
         $currentYear = (int)date('Y');
         $currentMonth = (int)date('n');
-        $currentSeason = ($currentMonth < 8) ? $currentYear - 1 : $currentYear;
+        $currentSeason = ($currentMonth < 7) ? $currentYear - 1 : $currentYear;
         $fichajes = $apiService->getTransfersByLeague(140, $currentSeason, 10);
         $lesiones = $apiService->getInjuriesByLeague(140, $currentSeason, 10);
+        if (empty($lesiones)) {
+             $lesiones = $apiService->getInjuriesByLeague(140, $currentSeason - 1, 10);
+        }
 
         return $this->render('home/index.html.twig', [
             'partidosPorLiga' => $partidosPorLiga,

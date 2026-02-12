@@ -1,0 +1,134 @@
+
+<div class="card shadow-sm border-0 mb-4 bg-light">
+    <div class="card-body p-4">
+        <h5 class="card-title mb-3">
+            <i class="fas fa-pen-nib me-2 text-primary"></i>Dejar una valoración
+        </h5>
+        
+        {% if app.user %}
+            {{ form_start(reviewForm, {'action': path('review_add', {'type': type, 'externalId': externalId})}) }}
+                
+                <div class="mb-3">
+                    {{ form_label(reviewForm.rating, null, {'label_attr': {'class': 'fw-bold mb-2'}}) }}
+                    
+                    
+                    <div class="star-rating-container d-flex align-items-center gap-2 mb-2">
+                        <div class="stars d-flex gap-1" id="star-interact">
+                            {% for i in 1..5 %}
+                                <i class="fas fa-star text-muted opacity-25 star-icon fs-2 transition-transform" 
+                                   data-value="{{ i }}" 
+                                   style="cursor: pointer; transition: all 0.2s;"></i>
+                            {% endfor %}
+                        </div>
+                        <div class="fw-bold text-primary ms-2" id="rating-label" style="min-width: 100px;">Excelente</div>
+                    </div>
+                    
+                    
+                    <div class="d-none">
+                        {{ form_widget(reviewForm.rating, {'attr': {'id': 'real_rating_input'}}) }}
+                    </div>
+                    {{ form_errors(reviewForm.rating) }}
+
+                    <script>
+                        function initStarRating() {
+                            const container = document.getElementById('star-interact');
+                            if (!container) return; 
+
+                            if (container.dataset.init === 'true') return;
+                            container.dataset.init = 'true';
+
+
+
+                            const radios = document.querySelectorAll('input[type="radio"][name*="[rating]"]');
+                            const stars = container.querySelectorAll('.star-icon');
+                            const label = document.getElementById('rating-label');
+                            const texts = {
+                                1: 'Malo 😡', 2: 'Regular 😕', 3: 'Bueno 🙂', 4: 'Muy bueno 😃', 5: 'Excelente 🤩'
+                            };
+
+                            function updateStars(value) {
+                                stars.forEach(star => {
+                                    const starVal = parseInt(star.dataset.value);
+                                    if (starVal <= value) {
+                                        star.classList.remove('text-muted', 'opacity-25');
+                                        star.classList.add('text-warning');
+                                    } else {
+                                        star.classList.add('text-muted', 'opacity-25');
+                                        star.classList.remove('text-warning');
+                                    }
+                                });
+
+                                if (texts[value] && label) label.textContent = texts[value];
+                            }
+
+                            let currentVal = 5;
+                            radios.forEach(r => { if(r.checked) currentVal = parseInt(r.value); });
+                            updateStars(currentVal);
+
+                            stars.forEach(star => {
+                                star.addEventListener('mouseenter', function() {
+                                    const val = parseInt(this.dataset.value);
+                                    updateStars(val);
+                                    this.style.transform = 'scale(1.2)';
+                                });
+                                star.addEventListener('mouseleave', function() {
+                                    this.style.transform = 'scale(1)';
+                                });
+
+                                star.addEventListener('click', function() {
+                                    const val = this.dataset.value;
+                                    currentVal = parseInt(val);
+
+                                    radios.forEach(r => {
+                                        if(r.value == val) r.checked = true;
+                                    });
+
+                                    this.style.transform = 'scale(1.4)';
+                                    setTimeout(() => this.style.transform = 'scale(1.2)', 150);
+                                });
+                            });
+
+                            container.addEventListener('mouseleave', function() {
+                                updateStars(currentVal);
+                            });
+                        }
+
+                        document.addEventListener('DOMContentLoaded', initStarRating);
+                        document.addEventListener('turbo:load', initStarRating);
+                        document.addEventListener('turbo:render', initStarRating);
+                    </script>
+                </div>
+
+                <div class="mb-3">
+                    {{ form_label(reviewForm.comment) }}
+                    {{ form_widget(reviewForm.comment, {'attr': {'class': 'form-control', 'rows': 3, 'placeholder': 'Escribe tu opinión aqui...'}}) }}
+                    {{ form_errors(reviewForm.comment) }}
+                </div>
+
+                
+                {% if reviewForm.season is defined %}
+                    {% set form_season_val = season is defined ? season : (currentSeason is defined ? currentSeason : null) %}
+                    {% if form_season_val %}
+                        {{ form_widget(reviewForm.season, {'value': form_season_val}) }}
+                    {% else %}
+                        {{ form_widget(reviewForm.season) }}
+                    {% endif %}
+                {% endif %}
+
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="fas fa-paper-plane me-2"></i>Enviar Valoración
+                </button>
+            {{ form_end(reviewForm) }}
+        {% else %}
+            <div class="text-center py-3">
+                <p class="mb-3 text-muted">Debes iniciar sesión para dejar un comentario.</p>
+                <a href="{{ path('app_login') }}" class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-sign-in-alt me-1"></i>Iniciar Sesión
+                </a>
+                <a href="{{ path('app_register') }}" class="btn btn-link btn-sm text-decoration-none">
+                    Registrarse
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>

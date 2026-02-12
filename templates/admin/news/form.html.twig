@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ editing ? 'Editar' : 'Nueva' }} Noticia{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>{{ editing ? 'Editar' : 'Nueva' }} Noticia</h1>
+
+    {{ form_start(form) }}
+        <div class="mb-3">
+            {{ form_row(form.title) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(form.content) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(form.image) }}
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form_row(form.category) }}
+            </div>
+            <div class="col-md-6 mb-3 mt-4">
+                {{ form_row(form.featured) }}
+            </div>
+        </div>
+
+        <hr>
+        <h4>🔗 Asociaciones</h4>
+        <p class="text-muted small">Asocia esta noticia con elementos de la API. Haz clic en "Buscar" para añadir.</p>
+        
+        
+        <div class="row">
+            
+            <div class="col-md-4 mb-3">
+                <label class="form-label">👤 Jugadores</label>
+                <div class="d-flex mb-2">
+                    <button type="button" class="btn btn-outline-primary btn-sm btn-open-search-modal" data-type="players">
+                        🔍 Buscar
+                    </button>
+                </div>
+                <div id="playersIds-chips" class="p-2 border rounded bg-light" style="min-height: 40px;">
+                    <span class="text-muted">Ninguno seleccionado</span>
+                </div>
+                
+                {{ form_widget(form.playerIds, {'id': 'playersIds-hidden'}) }}
+            </div>
+
+            
+            <div class="col-md-4 mb-3">
+                <label class="form-label">⚽ Equipos</label>
+                <div class="d-flex mb-2">
+                    <button type="button" class="btn btn-outline-primary btn-sm btn-open-search-modal" data-type="teams">
+                        🔍 Buscar
+                    </button>
+                </div>
+                <div id="teamsIds-chips" class="p-2 border rounded bg-light" style="min-height: 40px;">
+                    <span class="text-muted">Ninguno seleccionado</span>
+                </div>
+                {{ form_widget(form.teamIds, {'id': 'teamsIds-hidden'}) }}
+            </div>
+
+            
+            <div class="col-md-4 mb-3">
+                <label class="form-label">🏆 Ligas</label>
+                <div class="d-flex mb-2">
+                    <button type="button" class="btn btn-outline-primary btn-sm btn-open-search-modal" data-type="leagues">
+                        🔍 Buscar
+                    </button>
+                </div>
+                <div id="leaguesIds-chips" class="p-2 border rounded bg-light" style="min-height: 40px;">
+                    <span class="text-muted">Ninguno seleccionado</span>
+                </div>
+                {{ form_widget(form.leagueIds, {'id': 'leaguesIds-hidden'}) }}
+            </div>
+        </div>
+
+        
+        <div class="row">
+            
+            <div class="col-md-4 mb-3">
+                <label class="form-label">🧑‍🏫 Entrenadores</label>
+                <div class="d-flex mb-2">
+                    <button type="button" class="btn btn-outline-primary btn-sm btn-open-search-modal" data-type="coaches">
+                        🔍 Buscar
+                    </button>
+                </div>
+                <div id="coachesIds-chips" class="p-2 border rounded bg-light" style="min-height: 40px;">
+                    <span class="text-muted">Ninguno seleccionado</span>
+                </div>
+                {{ form_widget(form.coachIds, {'id': 'coachesIds-hidden'}) }}
+            </div>
+
+            
+            <div class="col-md-4 mb-3">
+                <label class="form-label">🏟️ Estadios</label>
+                <div class="d-flex mb-2">
+                    <button type="button" class="btn btn-outline-primary btn-sm btn-open-search-modal" data-type="venues">
+                        🔍 Buscar
+                    </button>
+                </div>
+                <div id="venuesIds-chips" class="p-2 border rounded bg-light" style="min-height: 40px;">
+                    <span class="text-muted">Ninguno seleccionado</span>
+                </div>
+                {{ form_widget(form.venueIds, {'id': 'venuesIds-hidden'}) }}
+            </div>
+
+            
+            <div class="col-md-4 mb-3">
+                <label class="form-label">📅 Partidos</label>
+                <div id="fixturesIds-chips" class="p-2 border rounded bg-light mb-2" style="min-height: 40px;">
+                    {% if prefilledFixtureId is defined and prefilledFixtureId %}
+                        <span class="badge bg-primary">
+                            Partido #{{ prefilledFixtureId }}
+                            <button type="button" class="btn-close btn-close-white ms-1" style="font-size: 0.6rem" 
+                                    onclick="document.getElementById('fixturesIds-hidden').value=''; this.parentElement.remove();"></button>
+                        </span>
+                    {% else %}
+                        <span class="text-muted">Ninguno seleccionado</span>
+                    {% endif %}
+                </div>
+                {{ form_widget(form.fixtureIds, {'id': 'fixturesIds-hidden', 'value': form.fixtureIds.vars.value ?: (prefilledFixtureId|default('')) }) }}
+                <small class="text-muted">Los partidos se añaden desde la página de inicio (botón "Crear Noticia")</small>
+            </div>
+        </div>
+
+        <hr>
+        <button type="submit" class="btn btn-primary btn-lg">💾 Guardar Noticia</button>
+        <a href="{{ path('admin_news_index') }}" class="btn btn-secondary btn-lg">Cancelar</a>
+    {{ form_end(form) }}
+</div>
+
+
+{% include 'admin/news/_search_modal.html.twig' %}
+
+
+<script src="{{ asset('js/news-associations.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,348 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ league.name }} - Detalle{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    
+    <div class="d-flex align-items-center mb-4 border-bottom pb-3">
+        <img src="{{ league.logo }}" alt="{{ league.name }}" width="80" height="80" class="me-3">
+        <div>
+            <h1 class="mb-0">{{ league.name }}</h1>
+            <p class="text-muted mb-0">{{ country.name }}</p>
+        </div>
+        <div class="ms-auto">
+            <form action="{{ path('league_show', {id: league.id}) }}" method="get" class="d-flex align-items-center">
+                <label for="seasonSelect" class="me-2 fw-bold">Temporada:</label>
+                <select name="season" id="seasonSelect" class="form-select form-select-sm" onchange="this.form.submit()">
+                    {% for seasonInfo in seasons|reverse %}
+                        <option value="{{ seasonInfo.year }}" {{ seasonInfo.year == currentSeason ? 'selected' : '' }}>
+                            {{ seasonInfo.year }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+    </div>
+
+    
+    <ul class="nav nav-tabs mb-4" id="leagueTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="matches-tab" data-bs-toggle="tab" data-bs-target="#matches" type="button" role="tab">📅 Partidos</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="standings-tab" data-bs-toggle="tab" data-bs-target="#standings" type="button" role="tab">📊 Clasificación</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="rankings-tab" data-bs-toggle="tab" data-bs-target="#rankings" type="button" role="tab">🏆 Rankings</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news" type="button" role="tab">📰 Noticias</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="forum-tab" data-bs-toggle="tab" data-bs-target="#forum" type="button" role="tab">💬 Foro</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="leagueTabsContent">
+        
+        <div class="tab-pane fade show active" id="matches" role="tabpanel">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <div class="list-group sticky-top" style="top: 20px; max-height: 80vh; overflow-y: auto;">
+                        <h5 class="list-group-item bg-light fw-bold">Jornadas</h5>
+                        {% set rounds = [] %}
+                        {% for match in fixtures %}
+                            {% if match.league.round not in rounds %}
+                                {% set rounds = rounds|merge([match.league.round]) %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% for round in rounds %}
+                            <a href="#round-{{ loop.index }}" class="list-group-item list-group-item-action small py-1" onclick="document.getElementById('display-round-{{ loop.index }}').scrollIntoView({behavior: 'smooth'}); return false;">
+                                {{ round }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    {% set currentRound = null %}
+                    {% set roundCounter = 0 %}
+                    
+                    {% for match in fixtures %}
+                        {% if match.league.round != currentRound %}
+                            {% set currentRound = match.league.round %}
+                            {% set roundCounter = roundCounter + 1 %}
+                            <div id="display-round-{{ roundCounter }}" class="card mb-3 shadow-sm">
+                                <div class="card-header bg-dark text-white py-1">
+                                    <h6 class="mb-0">{{ currentRound }}</h6>
+                                </div>
+                                <div class="card-body p-0">
+                        {% endif %}
+                        
+                        <div class="d-flex justify-content-between align-items-center border-bottom p-2 bg-white">
+                            <div class="text-center" style="width: 15%">
+                                <small class="d-block text-muted">{{ match.fixture.date|date('d/m/Y') }}</small>
+                                <small class="fw-bold">{{ match.fixture.date|date('H:i') }}</small>
+                            </div>
+                            <div class="text-end" style="width: 30%">
+                                <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-flex align-items-center justify-content-end">
+                                    <span class="me-2 d-none d-md-inline">{{ match.teams.home.name }}</span>
+                                    <img src="{{ match.teams.home.logo }}" width="25" height="25" alt="{{ match.teams.home.name }}">
+                                </a>
+                            </div>
+                            <div class="text-center px-2 d-flex flex-column align-items-center" style="width: 10%">
+                                <a href="{{ path('match_show', {id: match.fixture.id}) }}" class="btn btn-sm {{ match.fixture.status.short in ['FT', 'AET', 'PEN'] ? 'btn-outline-dark' : 'btn-primary' }} fw-bold mb-1" style="min-width: 60px;">
+                                    {% if match.fixture.status.short in ['FT', 'AET', 'PEN'] %}
+                                        {{ match.goals.home }} - {{ match.goals.away }}
+                                    {% elseif match.fixture.status.short in ['1H', '2H', 'HT', 'ET', 'P', 'LIVE'] %}
+                                        <span class="text-danger live-blink">{{ match.goals.home }} - {{ match.goals.away }}</span>
+                                    {% else %}
+                                        VS
+                                    {% endif %}
+                                </a>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('admin_news_new', {fixtureId: match.fixture.id}) }}" class="badge bg-warning text-dark text-decoration-none" title="Crear Noticia para este partido">
+                                        📰 Crear Noticia
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="text-start" style="width: 30%">
+                                <a href="{{ path('team_show', {id: match.teams.away.id}) }}" class="text-decoration-none text-dark d-flex align-items-center">
+                                    <img src="{{ match.teams.away.logo }}" width="25" height="25" alt="{{ match.teams.away.name }}" class="me-2">
+                                    <span class="d-none d-md-inline">{{ match.teams.away.name }}</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        {% if loop.last or fixtures[loop.index0 + 1].league.round != currentRound %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="alert alert-info">No hay partidos disponibles para esta temporada.</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="tab-pane fade" id="standings" role="tabpanel">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped mb-0 align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Equipo</th>
+                                    <th class="text-center">PJ</th>
+                                    <th class="text-center">PG</th>
+                                    <th class="text-center">PE</th>
+                                    <th class="text-center">PP</th>
+                                    <th class="text-center">GF</th>
+                                    <th class="text-center">GC</th>
+                                    <th class="text-center">DG</th>
+                                    <th class="text-center fw-bold">Pts</th>
+                                    <th class="text-center">Forma</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for team in standings %}
+                                    <tr class="{{ team.rank <= 4 ? 'table-success-light' : '' }}">
+                                        <td class="text-center fw-bold">{{ team.rank }}</td>
+                                        <td>
+                                            <a href="{{ path('team_show', {id: team.team.id}) }}" class="text-decoration-none text-dark d-flex align-items-center">
+                                                <img src="{{ team.team.logo }}" width="30" height="30" class="me-2 rounded-circle border p-1 bg-white">
+                                                {{ team.team.name }}
+                                            </a>
+                                        </td>
+                                        <td class="text-center">{{ team.all.played }}</td>
+                                        <td class="text-center">{{ team.all.win }}</td>
+                                        <td class="text-center">{{ team.all.draw }}</td>
+                                        <td class="text-center">{{ team.all.lose }}</td>
+                                        <td class="text-center">{{ team.all.goals.for }}</td>
+                                        <td class="text-center">{{ team.all.goals.against }}</td>
+                                        <td class="text-center">{{ team.goalsDiff }}</td>
+                                        <td class="text-center fw-bold fs-5">{{ team.points }}</td>
+                                        <td class="text-center">
+                                            {% for char in team.form|split('')|slice(0, 5) %}
+                                                <span class="badge rounded-pill {{ char == 'W' ? 'bg-success' : (char == 'D' ? 'bg-warning text-dark' : 'bg-danger') }}" style="width: 20px; height: 20px; padding: 0; line-height: 20px; text-align: center;">{{ char }}</span>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr><td colspan="11" class="text-center p-4">Datos no disponibles</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="tab-pane fade" id="rankings" role="tabpanel">
+            <div class="row">
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0">⚽ Máximos Goleadores</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topScorers|slice(0, 10) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="40" height="40" class="rounded-circle me-2">
+                                        <div>
+                                            <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark fw-bold d-block">{{ player.player.name }}</a>
+                                            <small class="text-muted">
+                                                <img src="{{ player.statistics[0].team.logo }}" width="15" class="me-1">
+                                                {{ player.statistics[0].team.name }}
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill fs-6">{{ player.statistics[0].goals.total }}</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item">Sin datos</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="mb-0">🎯 Máximos Asistentes</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topAssists|slice(0, 10) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="40" height="40" class="rounded-circle me-2">
+                                        <div>
+                                            <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark fw-bold d-block">{{ player.player.name }}</a>
+                                            <small class="text-muted">
+                                                <img src="{{ player.statistics[0].team.logo }}" width="15" class="me-1">
+                                                {{ player.statistics[0].team.name }}
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-info rounded-pill fs-6">{{ player.statistics[0].goals.assists|default(0) }}</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item">Sin datos</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                
+                 <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0">🟨 Tarjetas Amarillas</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topYellow|slice(0, 5) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ player.player.photo }}" width="30" height="30" class="rounded-circle me-2">
+                                        <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark">{{ player.player.name }}</a>
+                                    </div>
+                                    <span class="badge bg-warning text-dark rounded-pill">{{ player.statistics[0].cards.yellow }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                 <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">🟥 Tarjetas Rojas</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topRed|slice(0, 5) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ player.player.photo }}" width="30" height="30" class="rounded-circle me-2">
+                                        <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark">{{ player.player.name }}</a>
+                                    </div>
+                                    <span class="badge bg-danger rounded-pill">{{ player.statistics[0].cards.red }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="tab-pane fade" id="news" role="tabpanel">
+            <div class="row">
+                {% for noticia in news %}
+                    <div class="col-md-4 mb-3">
+                        {% set plainContent = noticia.content|striptags %}
+                        <div class="card h-100 news-card {{ noticia.featured ? 'border-warning' : '' }}" style="cursor: pointer; {{ noticia.featured ? 'background-color: #fffbf0;' : '' }}"
+                             data-bs-toggle="modal" data-bs-target="#newsDetailModal"
+                             data-news-title="{{ noticia.title|e('html_attr') }}"
+                             data-news-content="{{ noticia.content|e('html_attr') }}"
+                             data-news-image="{{ noticia.image|default('')|e('html_attr') }}"
+                             data-news-date="{{ noticia.createdAt|date('d/m/Y') }}"
+                             data-news-category="{{ noticia.category|default('')|e('html_attr') }}">
+                            {% if noticia.image %}
+                                <img src="{{ noticia.image }}" class="card-img-top object-fit-cover" height="200" alt="{{ noticia.title }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 1rem;">
+                                    {% if noticia.featured %}
+                                        <span class="badge bg-warning text-dark me-1" style="font-size: 0.6rem">⭐</span>
+                                    {% endif %}
+                                    {{ noticia.title }}
+                                </h5>
+                                <p class="card-text small text-muted">
+                                    {{ plainContent|length > 100 ? plainContent|slice(0, 100) ~ '...' : plainContent }}
+                                </p>
+                            </div>
+                            <div class="card-footer bg-transparent border-top-0 pt-0">
+                                <small class="text-muted">{{ noticia.createdAt|date('d/m/Y') }}</small>
+                                {% if noticia.category %}
+                                    <span class="badge float-end {% if noticia.category == 'fichaje' %}bg-success{% elseif noticia.category == 'lesion' %}bg-danger{% elseif noticia.category == 'sancion' %}bg-warning{% else %}bg-secondary{% endif %}">
+                                        {{ noticia.category|capitalize }}
+                                    </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-12">
+                        <div class="alert alert-info text-center">
+                            No hay noticias relacionadas con esta liga.
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        
+        <div class="tab-pane fade" id="forum" role="tabpanel">
+             <div class="row">
+                <div class="col-md-8 mx-auto mt-4">
+                    <h3 class="mb-4 text-center">Foro de {{ league.name }}</h3>
+                    
+                    
+                    {% include 'review/_form.html.twig' with {'type': 'league', 'externalId': league.id} %}
+                    
+                    
+                    {% include 'review/_list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

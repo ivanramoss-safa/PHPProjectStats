@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Competiciones - Fútbol Stats{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold">🏆 Competiciones</h1>
+        <form method="get" class="d-flex">
+            <input type="text" name="q" class="form-control me-2" placeholder="Buscar liga o copa..." value="{{ searchQuery }}">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+
+    {% if searchQuery %}
+        <h4 class="mb-3">Resultados de búsqueda: "{{ searchQuery }}"</h4>
+        {% if leagues is empty %}
+            <div class="alert alert-info">No se encontraron competiciones.</div>
+        {% else %}
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                {% for item in leagues %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body text-center">
+                                <img src="{{ item.league.logo }}" class="mb-3" width="80" height="80" style="object-fit: contain;">
+                                <h5 class="card-title fw-bold text-truncate">{{ item.league.name }}</h5>
+                                <p class="text-muted small mb-2">{{ item.country.name ?? 'Mundo' }}</p>
+                                <a href="{{ path('league_show', {id: item.league.id}) }}" class="btn btn-outline-primary btn-sm stretched-link">Ver Competición</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% else %}
+        <h4 class="mb-3 text-warning"><i class="fas fa-star me-2"></i>Mejor Valoradas</h4>
+        {% if topRated is empty %}
+            <div class="alert alert-light border">Aún no hay valoraciones suficientes para mostrar el ranking.</div>
+        {% else %}
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                {% for item in topRated %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 position-relative animate-hover">
+                            <span class="position-absolute top-0 end-0 badge bg-warning text-dark m-2 shadow-sm">
+                                <i class="fas fa-star me-1"></i>{{ item.average_rating|number_format(1) }}
+                            </span>
+                            <div class="card-body text-center">
+                                <img src="{{ item.league.logo }}" class="mb-3" width="80" height="80" style="object-fit: contain;">
+                                <h5 class="card-title fw-bold text-truncate">{{ item.league.name }}</h5>
+                                <p class="text-muted small mb-2">{{ item.country.name ?? 'Mundo' }}</p>
+                                <a href="{{ path('league_show', {id: item.league.id}) }}" class="btn btn-primary btn-sm stretched-link rounded-pill px-4">Ver Competición</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

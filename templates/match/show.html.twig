@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ fixture.teams.home.name }} vs {{ fixture.teams.away.name }} - Post-Match{% endblock %}
+
+{% block body %}
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body text-center p-4">
+        <div class="row align-items-center">
+            
+            <div class="col-4">
+                <img src="{{ fixture.teams.home.logo }}" alt="{{ fixture.teams.home.name }}" class="mb-2" style="height: 80px;">
+                <h4 class="fw-bold">{{ fixture.teams.home.name }}</h4>
+            </div>
+            
+            
+            <div class="col-4">
+                {% if fixture.fixture.status.short == 'FT' or fixture.fixture.status.short == 'AET' or fixture.fixture.status.short == 'PEN' %}
+                    <div class="display-4 fw-bold">{{ fixture.goals.home }} - {{ fixture.goals.away }}</div>
+                    <div class="text-muted small">{{ fixture.fixture.status.long }}</div>
+                {% elseif fixture.fixture.status.short == 'NS' %}
+                    <div class="display-6 fw-bold">VS</div>
+                    <div class="text-muted">{{ fixture.fixture.date|date('H:i') }}</div>
+                {% else %}
+                     <div class="display-4 fw-bold text-danger">{{ fixture.goals.home }} - {{ fixture.goals.away }}</div>
+                     <span class="badge bg-danger animate-pulse">EN JUEGO - {{ fixture.fixture.status.elapsed }}'</span>
+                {% endif %}
+                <div class="small text-muted mt-2">
+                    {{ fixture.league.name }} - {{ fixture.league.round }}
+                </div>
+            </div>
+            
+            
+            <div class="col-4">
+                <img src="{{ fixture.teams.away.logo }}" alt="{{ fixture.teams.away.name }}" class="mb-2" style="height: 80px;">
+                <h4 class="fw-bold">{{ fixture.teams.away.name }}</h4>
+            </div>
+        </div>
+        
+        <hr>
+        
+        <div class="text-muted small">
+            <i class="fas fa-calendar-alt me-1"></i> {{ fixture.fixture.date|date('d M Y') }} &nbsp;|&nbsp;
+            <i class="fas fa-map-marker-alt me-1"></i> {{ fixture.fixture.venue.name }}, {{ fixture.fixture.venue.city }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    
+    <div class="col-lg-8">
+        
+        {% if relatedNews is not empty %}
+            <h5 class="fw-bold mb-3"><i class="fas fa-newspaper me-2"></i>Noticias Relacionadas</h5>
+            <div class="row row-cols-1 row-cols-md-2 g-3 mb-4">
+                {% for item in relatedNews %}
+                    <div class="col">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <h6 class="card-title fw-bold">{{ item.title }}</h6>
+                                <p class="card-text small text-muted">{{ item.content|slice(0, 60) }}...</p>
+                                <button class="btn btn-sm btn-link p-0 text-decoration-none" 
+                                        data-bs-toggle="modal" data-bs-target="#newsDetailModal"
+                                        data-news-id="{{ item.id }}"
+                                        data-news-title="{{ item.title }}"
+                                        data-news-content="{{ item.content }}"
+                                        data-news-image="{{ item.image }}">
+                                    Leer más
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        
+        <div class="alert alert-secondary text-center">
+            Próximamente: Alineaciones y estadísticas detalladas del partido.
+        </div>
+    </div>
+
+    
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-primary text-white fw-bold">
+                <i class="fas fa-comments me-2"></i>Post-Match Thread
+            </div>
+            <div class="card-body">
+                <p class="small text-muted">Debate sobre las jugadas polémicas, el MVP y el resultado.</p>
+                
+                
+                {% include 'review/_form.html.twig' with {'type': 'fixture', 'externalId': fixture.fixture.id} %}
+                
+                <hr>
+                
+                <div class="reviews-list">
+                    {% include 'review/_list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

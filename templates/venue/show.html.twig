@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ venue.name }} - Detalle del Estadio{% endblock %}
+
+{% block body %}
+<div class="row">
+    
+    <div class="col-lg-4 mb-4">
+        <div class="card border-0 shadow-sm mb-4">
+            <img src="{{ venue.image }}" class="card-img-top p-2" alt="{{ venue.name }}" style="height: 250px; object-fit: cover; border-radius: 0.5rem;">
+            <div class="card-body">
+                <h3 class="fw-bold mb-1">{{ venue.name }}</h3>
+                <p class="text-muted mb-3"><i class="fas fa-map-marker-alt me-1"></i> {{ venue.address }}, {{ venue.city }}, {{ venue.country }}</p>
+                
+                <hr>
+
+                <ul class="list-group list-group-flush small">
+                    <li class="list-group-item d-flex justify-content-between px-0">
+                        <span class="text-muted">Capacidad</span>
+                        <span class="fw-bold">{{ venue.capacity|number_format(0, ',', '.') }} espectadores</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between px-0">
+                        <span class="text-muted">Superficie</span>
+                        <span class="fw-bold">{{ venue.surface|capitalize }}</span>
+                    </li>
+                     <li class="list-group-item d-flex justify-content-between px-0">
+                        <span class="text-muted">ID Estadio</span>
+                        <span class="fw-bold">#{{ venue.id }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom-0 pb-0">
+                <ul class="nav nav-tabs border-bottom-0" id="venueTab" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#news">
+                            📰 Noticias
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold text-primary" data-bs-toggle="tab" data-bs-target="#forum">
+                            💬 Foro / Reseñas
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="card-body">
+                <div class="tab-content" id="venueTabContent">
+                    
+                    
+                    <div class="tab-pane fade show active" id="news">
+                        {% if relatedNews is empty %}
+                            <p class="text-muted text-center py-4">No hay noticias relacionadas con este estadio.</p>
+                        {% else %}
+                            <div class="row row-cols-1 row-cols-md-2 g-3">
+                                {% for item in relatedNews %}
+                                    <div class="col">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            {% if item.image %}
+                                                <img src="{{ item.image }}" class="card-img-top" style="height: 150px; object-fit: cover;">
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <h6 class="card-title fw-bold">{{ item.title }}</h6>
+                                                <p class="card-text small text-muted">{{ item.content|slice(0, 80) }}...</p>
+                                                <button class="btn btn-sm btn-outline-primary" 
+                                                    data-bs-toggle="modal" data-bs-target="#newsDetailModal"
+                                                    data-news-id="{{ item.id }}"
+                                                    data-news-title="{{ item.title }}"
+                                                    data-news-content="{{ item.content }}"
+                                                    data-news-image="{{ item.image }}"
+                                                    data-news-date="{{ item.createdAt|date('d M, Y') }}">
+                                                    Leer más
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="forum">
+                        <div class="alert alert-info border-0 d-flex align-items-center">
+                            <i class="fas fa-info-circle me-2 fs-4"></i>
+                            <div>
+                                <strong>Foro del Estadio</strong>
+                                <div class="small">Comparte tu experiencia en {{ venue.name }}. Visibilidad, ambiente, accesos...</div>
+                            </div>
+                        </div>
+
+                        
+                        {% include 'review/_form.html.twig' with {'type': 'venue', 'externalId': venue.id} %}
+                        {% include 'review/_list.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

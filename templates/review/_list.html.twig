@@ -1,0 +1,82 @@
+<div class="reviews-list mt-5">
+    <div class="d-flex align-items-center mb-4 border-bottom pb-2">
+        <h4 class="mb-0 fw-bold border-start border-4 border-primary ps-3">
+            Comentarios <span class="text-muted ms-2 fs-6 fw-normal">({{ reviews|length }})</span>
+        </h4>
+    </div>
+
+    {% if reviews is empty %}
+        <div class="text-center py-5 text-muted opacity-50 bg-light rounded-3 mt-3">
+            <i class="far fa-comment-dots display-1 mb-3 text-secondary"></i>
+            <p class="lead mb-0">Aún no hay valoraciones.</p>
+            <p class="small">¡Sé el primero en compartir tu opinión!</p>
+        </div>
+    {% else %}
+        <div class="d-flex flex-column gap-3">
+            {% for review in reviews %}
+                <div class="card border-0 shadow-sm rounded-3 overflow-hidden transition-hover bg-white mb-2">
+                    <div class="card-body p-4">
+                        <div class="row g-3">
+                            
+                            <div class="col-auto">
+                                <div class="avatar-circle bg-light border d-flex align-items-center justify-content-center text-primary fw-bold rounded-circle shadow-sm" style="width: 50px; height: 50px; font-size: 1.2rem;">
+                                    {{ review.user.name|first|upper }}
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <div>
+                                        <h6 class="mb-0 fw-bold text-dark">{{ review.user.name }}</h6>
+                                        <small class="text-muted" style="font-size: 0.8rem;">
+                                            <i class="far fa-clock me-1"></i> {{ review.createdAt|date('d M Y, H:i') }}
+                                        </small>
+                                    </div>
+                                    
+                                    
+                                    <div class="text-warning h5 mb-0" title="{{ review.rating }}/5 estrellas">
+                                        {% for i in 1..5 %}
+                                            {% if i <= review.rating %}
+                                                <i class="fas fa-star"></i>
+                                            {% else %}
+                                                <i class="far fa-star text-muted opacity-25" style="font-size: 0.9em;"></i>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+
+                                
+                                {% if review.comment %}
+                                    <div class="text-secondary" style="font-size: 0.95rem; line-height: 1.6;">
+                                        {{ review.comment|nl2br }}
+                                    </div>
+                                {% else %}
+                                    <em class="text-muted small fst-italic">Sin comentario escrito.</em>
+                                {% endif %}
+                            </div>
+                            
+                            
+                            {% if app.user and (app.user == review.user or is_granted('ROLE_ADMIN')) %}
+                                <div class="col-auto">
+                                    <form method="post" action="{{ path('review_delete', {'id': review.id}) }}" onsubmit="return confirm('¿Estás seguro de querer borrar este comentario?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ review.id) }}">
+                                        <button class="btn btn-sm btn-outline-danger border-0 opacity-50 hover-opacity-100" title="Eliminar reseña">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+        <style>
+            .hover-opacity-100:hover { opacity: 1 !important; background-color: #fee2e2; }
+            .transition-hover { transition: transform 0.2s, box-shadow 0.2s; }
+            .transition-hover:hover { transform: translateY(-3px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.1) !important; }
+        </style>
+    {% endif %}
+</div>

@@ -1,0 +1,27 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        
+        <span class="sf-toolbar-value">API</span>
+        <span class="sf-toolbar-label">{{ collector.used }}</span>
+        <span class="sf-toolbar-value">/{{ collector.limit }}</span>
+    {% endset %}
+
+    {% set text %}
+        <div class="sf-toolbar-info-piece">
+            <b>API Calls Today</b>
+            <span>{{ collector.used }} / {{ collector.limit }}</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b>Remaining</b>
+            <span>{{ collector.remaining }}</span>
+        </div>
+        <div class="sf-toolbar-info-piece">
+            <b>Last Updated</b>
+            <span>{{ collector.updatedAt }}</span>
+        </div>
+    {% endset %}
+
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { 'link': false }) }}
+{% endblock %}

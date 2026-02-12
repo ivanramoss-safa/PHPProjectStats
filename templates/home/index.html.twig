@@ -100,32 +100,49 @@
                 
                 <div class="tab-pane fade" id="noticias" role="tabpanel">
                     {% if noticias is empty %}
-                        <div class="alert alert-secondary">No hay noticias destacadas.</div>
-                    {% else %}
-                        {% for noticia in noticias %}
-                            <div class="card mb-2">
-                                <div class="card-body p-2">
-                                    <div class="d-flex align-items-start">
-                                        {% if noticia.image %}
-                                            <img src="{{ noticia.image }}" width="60" class="rounded me-2" alt="">
-                                        {% endif %}
-                                        <div class="flex-grow-1">
-                                            <strong class="d-block" style="font-size: 0.9rem">{{ noticia.title }}</strong>
-                                            <small class="text-muted d-block">{{ noticia.content|slice(0, 80) }}...</small>
-                                            <div class="mt-1">
-                                                {% if noticia.category %}
-                                                    <span class="badge {% if noticia.category == 'fichaje' %}bg-success{% elseif noticia.category == 'lesion' %}bg-danger{% elseif noticia.category == 'sancion' %}bg-warning{% else %}bg-secondary{% endif %}">
-                                                        {{ noticia.category|capitalize }}
-                                                    </span>
+                        <div class="alert alert-secondary">No hay noticias para esta fecha. Mostrando las últimas 10.</div>
+                    {% endif %}
+                    
+                    {% for noticia in noticias %}
+                        {% set plainContent = noticia.content|striptags %}
+                        <div class="card mb-2 news-card {{ noticia.featured ? 'border-warning' : '' }}" style="cursor: pointer; {{ noticia.featured ? 'background-color: #fffbf0;' : '' }}" 
+                             data-bs-toggle="modal" data-bs-target="#newsDetailModal"
+                             data-news-id="{{ noticia.id }}"
+                             data-news-title="{{ noticia.title|e('html_attr') }}"
+                             data-news-content="{{ noticia.content|e('html_attr') }}"
+                             data-news-image="{{ noticia.image|default('')|e('html_attr') }}"
+                             data-news-date="{{ noticia.createdAt|date('d/m/Y') }}"
+                             data-news-category="{{ noticia.category|default('')|e('html_attr') }}">
+                            <div class="card-body p-2">
+                                <div class="d-flex align-items-start">
+                                    {% if noticia.image %}
+                                        <img src="{{ noticia.image }}" width="60" height="60" class="rounded me-2 object-fit-cover" alt="">
+                                    {% endif %}
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between">
+                                            <strong class="d-block" style="font-size: 0.9rem">
+                                                {% if noticia.featured %}
+                                                    <span class="badge bg-warning text-dark me-1" style="font-size: 0.6rem">⭐ Destacado</span>
                                                 {% endif %}
-                                                <small class="text-muted ms-2">{{ noticia.createdAt|date('d/m/Y') }}</small>
-                                            </div>
+                                                {{ noticia.title }}
+                                            </strong>
+                                        </div>
+                                        <small class="text-muted d-block">
+                                            {{ plainContent|length > 80 ? plainContent|slice(0, 80) ~ '...' : plainContent }}
+                                        </small>
+                                        <div class="mt-1">
+                                            {% if noticia.category %}
+                                                <span class="badge {% if noticia.category == 'fichaje' %}bg-success{% elseif noticia.category == 'lesion' %}bg-danger{% elseif noticia.category == 'sancion' %}bg-warning{% else %}bg-secondary{% endif %}">
+                                                    {{ noticia.category|capitalize }}
+                                                </span>
+                                            {% endif %}
+                                            <small class="text-muted ms-2">{{ noticia.createdAt|date('d/m/Y') }}</small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        {% endfor %}
-                    {% endif %}
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -173,40 +190,60 @@
                                                     <strong>{{ dataLiga.nombre }}</strong>
                                                 </div>
                                                 <div class="card-body p-1">
+
                                                     {% for match in dataLiga.partidos %}
                                                         <div class="d-flex justify-content-between align-items-center border-bottom py-1">
+                                                            
                                                             <div class="text-center" style="width: 35%">
-                                                                <img src="{{ match.teams.home.logo }}" width="25">
-                                                                <small class="d-block" style="font-size: 0.75rem">{{ match.teams.home.name }}</small>
+                                                                <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-block p-1 hover-effect">
+                                                                    <img src="{{ match.teams.home.logo }}" width="25">
+                                                                    <small class="d-block" style="font-size: 0.75rem">{{ match.teams.home.name }}</small>
+                                                                </a>
                                                             </div>
+
+                                                            
                                                             <div class="text-center" style="width: 30%">
-                                                                {% if match.fixture.status.short == 'FT' %}
-                                                                    <span class="badge bg-secondary" style="font-size: 0.65rem">FIN</span><br>
-                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                                                {% elseif match.fixture.status.short == 'HT' %}
-                                                                    <span class="badge bg-warning text-dark" style="font-size: 0.65rem">⏸️ DESCANSO</span><br>
-                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                                                {% elseif match.fixture.status.short in ['1H', '2H', 'ET', 'P', 'BT', 'LIVE'] %}
-                                                                    <span class="badge bg-danger" style="font-size: 0.65rem">🔴 {{ match.fixture.status.elapsed }}'</span><br>
-                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                                                {% elseif match.fixture.status.short == 'PST' %}
-                                                                    <span class="badge bg-dark" style="font-size: 0.65rem">⚠️ APLAZADO</span>
-                                                                {% elseif match.fixture.status.short in ['CANC', 'ABD', 'AWD', 'WO', 'INT', 'SUSP'] %}
-                                                                    <span class="badge bg-dark" style="font-size: 0.65rem">❌ {{ match.fixture.status.long }}</span>
-                                                                {% elseif match.fixture.status.short == 'AET' %}
-                                                                    <span class="badge bg-secondary" style="font-size: 0.65rem">FIN (Prórroga)</span><br>
-                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                                                {% elseif match.fixture.status.short == 'PEN' %}
-                                                                    <span class="badge bg-secondary" style="font-size: 0.65rem">FIN (Penaltis)</span><br>
-                                                                    <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                                                {% else %}
-                                                                    <span class="badge bg-primary" style="font-size: 0.65rem">{{ match.fixture.date|date_modify('+1 hour')|date('H:i') }}</span>
-                                                                {% endif %}
+                                                                <a href="{{ path('match_show', {id: match.fixture.id}) }}" class="text-decoration-none text-dark d-block p-1 hover-impact">
+                                                                    {% if match.fixture.status.short == 'FT' %}
+                                                                        <span class="badge bg-secondary" style="font-size: 0.65rem">FIN</span><br>
+                                                                        <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                    {% elseif match.fixture.status.short == 'HT' %}
+                                                                        <span class="badge bg-warning text-dark" style="font-size: 0.65rem">⏸️ DESCANSO</span><br>
+                                                                        <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                    {% elseif match.fixture.status.short in ['1H', '2H', 'ET', 'P', 'BT', 'LIVE'] %}
+                                                                        <span class="badge bg-danger" style="font-size: 0.65rem">🔴 {{ match.fixture.status.elapsed }}'</span><br>
+                                                                        <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                    {% elseif match.fixture.status.short == 'PST' %}
+                                                                        <span class="badge bg-dark" style="font-size: 0.65rem">⚠️ APLAZADO</span>
+                                                                    {% elseif match.fixture.status.short in ['CANC', 'ABD', 'AWD', 'WO', 'INT', 'SUSP'] %}
+                                                                        <span class="badge bg-dark" style="font-size: 0.65rem">❌ {{ match.fixture.status.long }}</span>
+                                                                    {% elseif match.fixture.status.short == 'AET' %}
+                                                                        <span class="badge bg-secondary" style="font-size: 0.65rem">FIN (Prórroga)</span><br>
+                                                                        <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                    {% elseif match.fixture.status.short == 'PEN' %}
+                                                                        <span class="badge bg-secondary" style="font-size: 0.65rem">FIN (Penaltis)</span><br>
+                                                                        <strong style="font-size: 0.85rem">{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                                    {% else %}
+                                                                        <span class="badge bg-primary" style="font-size: 0.65rem">{{ match.fixture.date|date_modify('+1 hour')|date('H:i') }}</span>
+                                                                    {% endif %}
+                                                                </a>
                                                             </div>
+
+                                                            
                                                             <div class="text-center" style="width: 35%">
-                                                                <img src="{{ match.teams.away.logo }}" width="25">
-                                                                <small class="d-block" style="font-size: 0.75rem">{{ match.teams.away.name }}</small>
+                                                                <a href="{{ path('team_show', {id: match.teams.away.id}) }}" class="text-decoration-none text-dark d-block p-1 hover-effect">
+                                                                    <img src="{{ match.teams.away.logo }}" width="25">
+                                                                    <small class="d-block" style="font-size: 0.75rem">{{ match.teams.away.name }}</small>
+                                                                </a>
                                                             </div>
+                                                            {% if is_granted('ROLE_ADMIN') %}
+                                                                <a href="{{ path('admin_news_new', {fixtureId: match.fixture.id}) }}" 
+                                                                   class="btn btn-warning btn-sm ms-1" 
+                                                                   style="font-size: 0.6rem; padding: 2px 4px;" 
+                                                                   title="Crear noticia sobre este partido">
+                                                                    📰
+                                                                </a>
+                                                            {% endif %}
                                                         </div>
                                                     {% endfor %}
                                                 </div>
@@ -232,37 +269,51 @@
                                 {% for match in dataLiga.partidos %}
                                     <div class="d-flex justify-content-between align-items-center border-bottom py-2">
                                         <div class="text-center" style="width: 35%">
-                                            <img src="{{ match.teams.home.logo }}" width="30">
-                                            <small class="d-block">{{ match.teams.home.name }}</small>
+                                            <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-block p-1 hover-effect">
+                                                <img src="{{ match.teams.home.logo }}" width="30">
+                                                <small class="d-block">{{ match.teams.home.name }}</small>
+                                            </a>
                                         </div>
                                         <div class="text-center" style="width: 30%">
-                                            {% if match.fixture.status.short == 'FT' %}
-                                                <span class="badge bg-secondary">FIN</span><br>
-                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                            {% elseif match.fixture.status.short == 'HT' %}
-                                                <span class="badge bg-warning text-dark">⏸️ DESCANSO</span><br>
-                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                            {% elseif match.fixture.status.short in ['1H', '2H', 'ET', 'P', 'BT', 'LIVE'] %}
-                                                <span class="badge bg-danger">🔴 {{ match.fixture.status.elapsed }}'</span><br>
-                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                            {% elseif match.fixture.status.short == 'PST' %}
-                                                <span class="badge bg-dark">⚠️ APLAZADO</span>
-                                            {% elseif match.fixture.status.short in ['CANC', 'ABD', 'AWD', 'WO', 'INT', 'SUSP'] %}
-                                                <span class="badge bg-dark">❌ {{ match.fixture.status.long }}</span>
-                                            {% elseif match.fixture.status.short == 'AET' %}
-                                                <span class="badge bg-secondary">FIN (Prórroga)</span><br>
-                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                            {% elseif match.fixture.status.short == 'PEN' %}
-                                                <span class="badge bg-secondary">FIN (Penaltis)</span><br>
-                                                <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
-                                            {% else %}
-                                                <span class="badge bg-primary">{{ match.fixture.date|date_modify('+1 hour')|date('H:i') }}</span>
-                                            {% endif %}
+                                            <a href="{{ path('match_show', {id: match.fixture.id}) }}" class="text-decoration-none text-dark d-block p-1 hover-impact">
+                                                {% if match.fixture.status.short == 'FT' %}
+                                                    <span class="badge bg-secondary">FIN</span><br>
+                                                    <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                {% elseif match.fixture.status.short == 'HT' %}
+                                                    <span class="badge bg-warning text-dark">⏸️ DESCANSO</span><br>
+                                                    <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                {% elseif match.fixture.status.short in ['1H', '2H', 'ET', 'P', 'BT', 'LIVE'] %}
+                                                    <span class="badge bg-danger">🔴 {{ match.fixture.status.elapsed }}'</span><br>
+                                                    <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                {% elseif match.fixture.status.short == 'PST' %}
+                                                    <span class="badge bg-dark">⚠️ APLAZADO</span>
+                                                {% elseif match.fixture.status.short in ['CANC', 'ABD', 'AWD', 'WO', 'INT', 'SUSP'] %}
+                                                    <span class="badge bg-dark">❌ {{ match.fixture.status.long }}</span>
+                                                {% elseif match.fixture.status.short == 'AET' %}
+                                                    <span class="badge bg-secondary">FIN (Prórroga)</span><br>
+                                                    <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                {% elseif match.fixture.status.short == 'PEN' %}
+                                                    <span class="badge bg-secondary">FIN (Penaltis)</span><br>
+                                                    <strong>{{ match.goals.home }} - {{ match.goals.away }}</strong>
+                                                {% else %}
+                                                    <span class="badge bg-primary">{{ match.fixture.date|date_modify('+1 hour')|date('H:i') }}</span>
+                                                {% endif %}
+                                            </a>
                                         </div>
                                         <div class="text-center" style="width: 35%">
-                                            <img src="{{ match.teams.away.logo }}" width="30">
-                                            <small class="d-block">{{ match.teams.away.name }}</small>
+                                            <a href="{{ path('team_show', {id: match.teams.away.id}) }}" class="text-decoration-none text-dark d-block p-1 hover-effect">
+                                                <img src="{{ match.teams.away.logo }}" width="30">
+                                                <small class="d-block">{{ match.teams.away.name }}</small>
+                                            </a>
                                         </div>
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <a href="{{ path('admin_news_new', {fixtureId: match.fixture.id}) }}" 
+                                               class="btn btn-warning btn-sm ms-2" 
+                                               style="font-size: 0.7rem;" 
+                                               title="Crear noticia sobre este partido">
+                                                📰 Noticia
+                                            </a>
+                                        {% endif %}
                                     </div>
                                 {% endfor %}
                             </div>
@@ -273,4 +324,6 @@
         </div>
     </div>
 </div>
+
+
 {% endblock %}

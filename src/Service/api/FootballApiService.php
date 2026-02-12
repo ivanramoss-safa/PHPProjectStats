@@ -32,9 +32,32 @@ class FootballApiService
                     'x-apisports-key' => $this->apiKey,
                 ],
                 'query' => $params,
+                'timeout' => 5, 
             ]);
 
             $data = $response->toArray();
+
+            try {
+                $headers = $response->getHeaders(false);
+                $remaining = $headers['x-ratelimit-requests-remaining'][0] ?? null;
+                $limit = $headers['x-ratelimit-requests-limit'][0] ?? null;
+
+                if ($remaining !== null && $limit !== null) {
+                    $used = $limit - $remaining;
+                    $usageData = [
+                        'used' => $used,
+                        'limit' => $limit,
+                        'remaining' => $remaining,
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ];
+
+                    $projectDir = dirname(__DIR__, 3); 
+                    file_put_contents($projectDir . '/var/api_usage.json', json_encode($usageData));
+                }
+            }
+            catch (\Exception $e) {
+
+            }
 
             if (!empty($data['errors'])) {
                 $item->expiresAfter(5); 
@@ -227,6 +250,56 @@ class FootballApiService
     public function searchVenue(string $name): array
     {
         return $this->getCachedData('venues', ['search' => $name], 2592000);
+    }
+
+    
+    public function searchWithVariations(string $endpoint, string $query, int $cacheSeconds = 3600): array
+    {
+        if (strlen($query) < 2) {
+            return [];
+        }
+
+        $variations = [$query];
+
+        $variations[] = str_replace(' ', '', $query);
+
+        $variations[] = preg_replace('/([a-z])([A-Z])/', '$1 $2', $query);
+
+        if (stripos($query, 'laliga') !== false) {
+            $variations[] = str_ireplace('laliga', 'La Liga', $query);
+        }
+
+        if (stripos($query, 'seriea') !== false) {
+            $variations[] = str_ireplace('seriea', 'Serie A', $query);
+        }
+
+        $variations = array_unique($variations);
+        $results = [];
+
+        foreach ($variations as $term) {
+            $data = $this->getCachedData($endpoint, ['search' => $term], $cacheSeconds);
+
+            foreach ($data['response'] ?? [] as $item) {
+
+                $id = null;
+                if ($endpoint === 'leagues')
+                    $id = $item['league']['id'];
+                elseif ($endpoint === 'teams')
+                    $id = $item['team']['id'];
+                elseif ($endpoint === 'players')
+                    $id = $item['player']['id']; 
+                elseif ($endpoint === 'venues')
+                    $id = $item['id'];
+                elseif ($endpoint === 'coachs')
+                    $id = $item['id'];
+
+                if ($id && !isset($results[$id])) {
+                    $results[$id] = $item;
+                }
+            }
+        }
+
+        return array_values($results);
     }
 
 
@@ -529,5 +602,59 @@ class FootballApiService
             default:
                 return ['response' => [], 'paging' => ['current' => 1, 'total' => 1]];
         }
+    }
+    public function getPlayerSeasons(int $playerId): array
+    {
+
+        $data = $this->getCachedData('players/seasons', ['player' => $playerId], 86400);
+        return $data['response'] ?? [];
+    }
+
+    public function getTeamSeasons(int $teamId): array
+    {
+
+        $data = $this->getCachedData('teams/seasons', ['team' => $teamId], 86400);
+        return $data['response'] ?? [];
+    }
+
+
+    
+    public function filterSeasonsByPlan(array $seasons): array
+    {
+
+        $minYear = 2022;
+
+        return array_values(array_filter($seasons, function ($year) use ($minYear) {
+
+            $y = is_array($year) ? ($year['year'] ?? 0) : $year;
+
+
+            if ($y == 2025)
+                return false;
+
+            return $y >= $minYear;
+        }));
+    }
+
+    
+    public function getApiUsage(): array
+    {
+        $projectDir = dirname(__DIR__, 3);
+        $file = $projectDir . '/var/api_usage.json';
+
+        if (!file_exists($file)) {
+            return ['used' => 0, 'limit' => 100, 'remaining' => 100]; 
+        }
+
+        $data = json_decode(file_get_contents($file), true);
+
+        $today = date('Y-m-d');
+        $fileDate = isset($data['updated_at']) ? substr($data['updated_at'], 0, 10) : '';
+
+        if ($fileDate !== $today) {
+            return ['used' => 0, 'limit' => ($data['limit'] ?? 100), 'remaining' => ($data['limit'] ?? 100)];
+        }
+
+        return $data;
     }
 }

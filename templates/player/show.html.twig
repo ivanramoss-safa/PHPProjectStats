@@ -1,0 +1,264 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ player.player.name }} - Perfil{% endblock %}
+
+{% block body %}
+<div class="row">
+    
+    <div class="col-lg-3 mb-4">
+        <div class="card border-0 shadow-sm text-center p-4 mb-4">
+            <img src="{{ player.player.photo }}" alt="{{ player.player.name }}" class="rounded-circle mx-auto mb-3 shadow-sm" style="width: 120px; height: 120px; object-fit: cover;">
+            <h3 class="fw-bold mb-1">{{ player.player.name }}</h3>
+            <p class="text-muted mb-3">{{ player.player.firstname }} {{ player.player.lastname }}</p>
+            
+            <div class="d-flex justify-content-center gap-2 mb-3 align-items-center">
+                {% if currentTeam.logo is defined %}
+                    <img src="{{ currentTeam.logo }}" class="rounded-circle bg-white shadow-sm p-1" width="50" height="50" title="{{ currentTeam.name }}">
+                {% endif %}
+                <span class="badge bg-primary align-self-center fs-6 ms-2">{{ player.player.age }} años</span>
+                
+                {% if averageRating is defined and averageRating > 0 %}
+                    <div class="d-flex align-items-center ms-2" title="Valoración media: {{ averageRating|number_format(1) }}">
+                        <span class="text-warning me-1">
+                            {% for i in 1..5 %}
+                                {% if i <= averageRating|round(0, 'floor') %}
+                                    <i class="fas fa-star"></i>
+                                {% elseif i - averageRating < 0.5 %}
+                                    <i class="fas fa-star-half-alt"></i>
+                                {% else %}
+                                    <i class="far fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </span>
+                        <span class="fw-bold small">({{ averageRating|number_format(1) }})</span>
+                    </div>
+                {% endif %}
+            </div>
+
+            <hr>
+
+            <ul class="list-group list-group-flush text-start small">
+                
+                <li class="list-group-item d-flex justify-content-between px-0">
+                    <span class="text-muted">Nacionalidad</span>
+                    <span class="fw-bold">{{ player.player.nationality }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between px-0">
+                    <span class="text-muted">Altura</span>
+                    <span class="fw-bold">{{ player.player.height }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between px-0">
+                    <span class="text-muted">Peso</span>
+                    <span class="fw-bold">{{ player.player.weight }}</span>
+                </li>
+            </ul>
+        </div>
+
+        
+        <div class="card border-0 shadow-sm p-3 mb-4">
+            <label class="form-label fw-bold small text-muted text-uppercase">Temporada</label>
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary w-100 dropdown-toggle d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown">
+                    Start {{ season }} - End {{ season + 1 }}
+                </button>
+                <ul class="dropdown-menu w-100" style="max-height: 300px; overflow-y: auto;">
+                    {% for s in seasons %}
+                        <li><a class="dropdown-item {% if s == season %}active{% endif %}" href="{{ path('player_show', {'id': player.player.id, 'season': s}) }}">
+                            {{ s }} / {{ s + 1 }}
+                        </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom-0 pb-0">
+                <ul class="nav nav-tabs border-bottom-0" id="playerTab" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#stats">
+                            📊 Estadísticas {{ season }}
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#trophies">
+                            🏆 Palmarés
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#transfers">
+                            ✈️ Fichajes
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold" data-bs-toggle="tab" data-bs-target="#news">
+                            📰 Noticias
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold text-primary" data-bs-toggle="tab" data-bs-target="#forum">
+                            💬 Foro
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="card-body">
+                <div class="tab-content" id="playerTabContent">
+                    
+                    
+                    <div class="tab-pane fade show active" id="stats">
+                        
+                        <h5 class="fw-bold mb-3">Rendimiento Temporada {{ season }}</h5>
+                        {% for stat in player.statistics %}
+                            <div class="card bg-light border-0 mb-3">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3 border-bottom pb-2">
+                                        <img src="{{ stat.league.logo }}" width="30" class="me-2">
+                                        <h6 class="mb-0 fw-bold">{{ stat.league.name }}</h6>
+                                        <span class="ms-auto badge bg-dark">{{ stat.team.name }}</span>
+                                    </div>
+                                    
+                                    <div class="row text-center">
+                                        <div class="col-3 col-md-2 mb-2">
+                                            <div class="p-2 border rounded bg-white">
+                                                <div class="h4 mb-0 fw-bold text-primary">{{ stat.games.appearences|default(0) }}</div>
+                                                <small class="text-muted" style="font-size: 0.75rem;">Partidos</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-2 mb-2">
+                                            <div class="p-2 border rounded bg-white">
+                                                <div class="h4 mb-0 fw-bold text-success">{{ stat.goals.total|default(0) }}</div>
+                                                <small class="text-muted" style="font-size: 0.75rem;">Goles</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-2 mb-2">
+                                            <div class="p-2 border rounded bg-white">
+                                                <div class="h4 mb-0 fw-bold text-info">{{ stat.goals.assists|default(0) }}</div>
+                                                <small class="text-muted" style="font-size: 0.75rem;">Asistencias</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-2 mb-2">
+                                            <div class="p-2 border rounded bg-white">
+                                                <div class="h4 mb-0 fw-bold text-warning">{{ stat.games.minutes|default(0) }}</div>
+                                                <small class="text-muted" style="font-size: 0.75rem;">Minutos</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-md-2 mb-2">
+                                            <div class="p-2 border rounded bg-white">
+                                                <div class="h4 mb-0 fw-bold text-secondary">{{ stat.games.rating|default('-')|slice(0,4) }}</div>
+                                                <small class="text-muted" style="font-size: 0.75rem;">Rating</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="trophies">
+                        {% if trophies is empty %}
+                            <p class="text-muted text-center py-4">Sin títulos registrados.</p>
+                        {% else %}
+                            <div class="row row-cols-1 row-cols-md-2 g-3">
+                                {% for trophy in trophies %}
+                                    <div class="col">
+                                        <div class="d-flex align-items-center p-3 border rounded">
+                                            <i class="fas fa-trophy text-warning fs-3 me-3"></i>
+                                            <div>
+                                                <div class="fw-bold">{{ trophy.league }}</div>
+                                                <div class="text-muted small">{{ trophy.season }} - {{ trophy.place }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="transfers">
+                        {% if transfers is empty %}
+                            <p class="text-muted text-center py-4">Sin historial de fichajes.</p>
+                        {% else %}
+                            <div class="timeline position-relative ps-4 border-start ms-2">
+                                {% for transfer in transfers %}
+                                    <div class="mb-4 position-relative">
+                                        <div class="position-absolute start-0 top-0 translate-middle-x bg-white border border-primary rounded-circle" style="width: 12px; height: 12px; left: -1px;"></div>
+                                        <div class="h6 mb-1 text-primary">{{ transfer.date|date('d M Y') }}</div>
+                                        <div class="d-flex align-items-center bg-light p-3 rounded">
+                                            <div class="d-flex align-items-center text-muted">
+                                                <img src="{{ transfer.teams.out.logo }}" width="30" class="me-2 rounded-circle border">
+                                                {{ transfer.teams.out.name }}
+                                            </div>
+                                            <i class="fas fa-arrow-right mx-3 text-secondary"></i>
+                                            <div class="d-flex align-items-center fw-bold">
+                                                <img src="{{ transfer.teams.in.logo }}" width="30" class="me-2 rounded-circle border">
+                                                {{ transfer.teams.in.name }}
+                                            </div>
+                                            
+                                            <div class="ms-auto text-success fw-bold small">
+                                                {{ transfer.type == 'Loan' ? 'Cedido' : (transfer.type == 'Free' ? 'Libre' : transfer.type) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="news">
+                        {% if relatedNews is empty %}
+                            <p class="text-muted text-center py-4">No hay noticias relacionadas con este jugador.</p>
+                        {% else %}
+                            <div class="row row-cols-1 row-cols-md-2 g-3">
+                                {% for item in relatedNews %}
+                                    <div class="col">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            {% if item.image %}
+                                                <img src="{{ item.image }}" class="card-img-top" style="height: 150px; object-fit: cover;">
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <h6 class="card-title fw-bold">{{ item.title }}</h6>
+                                                <p class="card-text small text-muted">{{ item.content|slice(0, 80) }}...</p>
+                                                <button class="btn btn-sm btn-outline-primary" 
+                                                    data-bs-toggle="modal" data-bs-target="#newsDetailModal"
+                                                    data-news-id="{{ item.id }}"
+                                                    data-news-title="{{ item.title }}"
+                                                    data-news-content="{{ item.content }}"
+                                                    data-news-image="{{ item.image }}"
+                                                    data-news-date="{{ item.createdAt|date('d M, Y') }}">
+                                                    Leer más
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="forum">
+                        <div class="alert alert-info border-0 d-flex align-items-center">
+                            <i class="fas fa-info-circle me-2 fs-4"></i>
+                            <div>
+                                <strong>Foro de Discusión</strong>
+                                <div class="small">Comparte tu opinión sobre {{ player.player.name }}.</div>
+                            </div>
+                        </div>
+
+                        
+                        {% include 'review/_form.html.twig' with {'type': 'player', 'externalId': player.player.id} %}
+                        {% include 'review/_list.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

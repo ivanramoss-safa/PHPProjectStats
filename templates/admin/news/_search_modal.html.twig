@@ -1,0 +1,73 @@
+
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Buscar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="window.newsSearch && window.newsSearch.closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div id="playerFilters" class="mb-3" style="display: none;">
+                    <div class="card bg-light mb-3">
+                        <div class="card-body p-3">
+                            <h6 class="card-title mb-2">📋 Primero selecciona una liga o equipo:</h6>
+                            <div class="row g-2">
+                                <div class="col-md-5">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="leagueSearchInput" 
+                                               placeholder="Buscar liga..."
+                                               onkeydown="if(event.key === 'Enter') { event.preventDefault(); window.newsSearch.searchLeagueForFilter(this.value); }">
+                                        <button class="btn btn-outline-primary" type="button" 
+                                                onclick="window.newsSearch.searchLeagueForFilter(document.getElementById('leagueSearchInput').value)">🔍</button>
+                                    </div>
+                                    <div id="leagueFilterResults" class="mt-1" style="max-height: 150px; overflow-y: auto;"></div>
+                                </div>
+                                <div class="col-md-2 text-center align-self-center">
+                                    <span class="text-muted">o</span>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" id="teamSearchInput" 
+                                               placeholder="Buscar equipo..."
+                                               onkeydown="if(event.key === 'Enter') { event.preventDefault(); window.newsSearch.searchTeamForFilter(this.value); }">
+                                        <button class="btn btn-outline-primary" type="button" 
+                                                onclick="window.newsSearch.searchTeamForFilter(document.getElementById('teamSearchInput').value)">🔍</button>
+                                    </div>
+                                    <div id="teamFilterResults" class="mt-1" style="max-height: 150px; overflow-y: auto;"></div>
+                                </div>
+                            </div>
+                            <div id="selectedFilter" class="mt-2" style="display: none;">
+                                <span class="badge bg-success fs-6" id="selectedFilterBadge"></span>
+                                <button class="btn btn-sm btn-link text-danger" onclick="window.newsSearch.resetPlayerFilters()">✕ Cambiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="input-group">
+                        <input type="text" 
+                               class="form-control form-control-lg" 
+                               id="modalSearchInput" 
+                               placeholder="Escribe y pulsa Enter o haz clic en Buscar..."
+                               onkeydown="if(event.key === 'Enter') { event.preventDefault(); window.newsSearch.search(this.value); }">
+                        <button class="btn btn-primary" type="button" onclick="window.newsSearch.search(document.getElementById('modalSearchInput').value)">
+                            🔍 Buscar
+                        </button>
+                    </div>
+                    <small class="text-muted" id="searchHelpText">Pulsa Enter o haz clic en el botón para buscar (mínimo 2 caracteres)</small>
+                </div>
+                <div id="modalResultsList" style="max-height: 400px; overflow-y: auto;">
+                    <p class="text-muted">Escribe al menos 2 caracteres y pulsa Enter...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="window.newsSearch && window.newsSearch.closeModal()">Cancelar</button>
+                <button type="button" class="btn btn-success" onclick="window.newsSearch.addSelected()">
+                    ✓ Añadir Seleccionados
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

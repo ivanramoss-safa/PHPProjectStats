@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Noticias{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>📰 Gestión de Noticias</h1>
+        <a href="{{ path('admin_news_new') }}" class="btn btn-success">+ Nueva Noticia</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Categoría</th>
+                <th>Destacada</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for noticia in noticias %}
+            <tr>
+                <td>{{ noticia.title }}</td>
+                <td>
+                    <span class="badge bg-{{ noticia.category == 'fichaje' ? 'success' : (noticia.category == 'lesion' ? 'danger' : 'secondary') }}">
+                        {{ noticia.category|default('general') }}
+                    </span>
+                </td>
+                <td>{{ noticia.featured ? '⭐' : '' }}</td>
+                <td>{{ noticia.createdAt|date('d/m/Y H:i') }}</td>
+                <td>
+                    <a href="{{ path('admin_news_edit', {id: noticia.id}) }}" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="{{ path('admin_news_delete', {id: noticia.id}) }}" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

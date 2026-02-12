@@ -31,8 +31,11 @@ class Review
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\Column]
-    private ?int $externalId = null;
+    #[ORM\Column(type: Types::STRING, length: 255)]
+    private ?string $externalId = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $season = null;
 
     public function getId(): ?int
     {
@@ -47,6 +50,18 @@ class Review
     public function setStars(int $stars): static
     {
         $this->stars = $stars;
+
+        return $this;
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->stars;
+    }
+
+    public function setRating(int $rating): static
+    {
+        $this->stars = $rating;
 
         return $this;
     }
@@ -80,10 +95,19 @@ class Review
         return $this->createdAt;
     }
 
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
     #[ORM\PrePersist]
     public function setCreatedAtValue(): void
     {
-        $this->createdAt = new \DateTimeImmutable();
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
     }
 
     public function getUser(): ?User
@@ -98,14 +122,26 @@ class Review
         return $this;
     }
 
-    public function getExternalId(): ?int
+    public function getExternalId(): ?string
     {
-        return $this->externalId;
+        return (string) $this->externalId;
     }
 
-    public function setExternalId(int $externalId): static
+    public function setExternalId(string $externalId): static
     {
         $this->externalId = $externalId;
+
+        return $this;
+    }
+
+    public function getSeason(): ?int
+    {
+        return $this->season;
+    }
+
+    public function setSeason(?int $season): static
+    {
+        $this->season = $season;
 
         return $this;
     }

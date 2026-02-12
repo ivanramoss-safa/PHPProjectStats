@@ -5,6 +5,7 @@
     <title>{% block title %}Fútbol Stats{% endblock %}</title>
     {% block stylesheets %}
         {{ importmap('app') }}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     {% endblock %}
 </head>
 <body>
@@ -22,7 +23,7 @@
                     <a class="nav-link" href="{{ path('app_home') }}">🏠 Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">🏆 Ligas</a>
+                    <a class="nav-link" href="{{ path('leagues_index') }}">🏆 Ligas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">📊 Rankings</a>
@@ -89,5 +90,156 @@
 </div>
 
 {% block javascripts %}{% endblock %}
+
+
+<div class="modal fade" id="newsDetailModal" tabindex="-1" aria-hidden="true" style="z-index: 1055;">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body pt-0">
+                <div id="newsModalImageContainer" class="text-center mb-3" style="display: none;">
+                    <img id="newsModalImage" src="" class="img-fluid rounded" style="max-height: 400px; object-fit: cover;">
+                </div>
+                <h3 id="newsModalTitle" class="fw-bold mb-2"></h3>
+                <div class="mb-3">
+                    <span id="newsModalDate" class="text-muted small"></span>
+                    <span id="newsModalCategory" class="badge bg-secondary ms-2" style="display: none;"></span>
+                </div>
+                <div id="newsModalContent" class="news-content" style="max-height: 60vh; overflow-y: auto; white-space: pre-wrap;"></div>
+                
+                <div id="newsModalAssociations" class="mt-4 pt-3 border-top" style="display: none;">
+                    <h6 class="text-muted mb-2 small text-uppercase fw-bold">Asociado a:</h6>
+                    <div id="newsModalAssociationsList" class="d-flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function initNewsDetailModal() {
+    var newsModalEl = document.getElementById('newsDetailModal');
+    if (!newsModalEl) return;
+
+
+
+
+    if (newsModalEl.dataset.customInit === 'true') return;
+    newsModalEl.dataset.customInit = 'true';
+
+    var closeButtons = newsModalEl.querySelectorAll('[data-bs-dismiss="modal"]');
+    closeButtons.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+
+            var modalInstance = bootstrap.Modal.getInstance(newsModalEl);
+            if (modalInstance) {
+                modalInstance.hide();
+            } else {
+
+                newsModalEl.classList.remove('show');
+                newsModalEl.style.display = 'none';
+                newsModalEl.setAttribute('aria-hidden', 'true');
+                newsModalEl.removeAttribute('aria-modal');
+                newsModalEl.removeAttribute('role');
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+                
+                var backdrop = document.querySelector('.modal-backdrop');
+                if (backdrop) backdrop.remove();
+            }
+        });
+    });
+
+    newsModalEl.addEventListener('show.bs.modal', function (event) {
+
+        var button = event.relatedTarget;
+        if (!button) return;
+
+        var newsId = button.getAttribute('data-news-id');
+        var title = button.getAttribute('data-news-title');
+        var content = button.getAttribute('data-news-content');
+        var image = button.getAttribute('data-news-image');
+        var date = button.getAttribute('data-news-date');
+        var category = button.getAttribute('data-news-category');
+
+        document.getElementById('newsModalTitle').textContent = title;
+        document.getElementById('newsModalContent').innerHTML = content; 
+        document.getElementById('newsModalDate').textContent = date;
+        
+        var imgContainer = document.getElementById('newsModalImageContainer');
+        var imgElement = document.getElementById('newsModalImage');
+        
+        if (image) {
+            imgElement.src = image;
+            imgContainer.style.display = 'block';
+        } else {
+            imgContainer.style.display = 'none';
+        }
+
+        var catBadge = document.getElementById('newsModalCategory');
+        if (category) {
+            var catText = category.charAt(0).toUpperCase() + category.slice(1);
+            catBadge.textContent = catText;
+            catBadge.style.display = 'inline-block';
+            
+            catBadge.className = 'badge ms-2';
+            if (category === 'fichaje') catBadge.classList.add('bg-success');
+            else if (category === 'lesion') catBadge.classList.add('bg-danger');
+            else if (category === 'sancion') catBadge.classList.add('bg-warning');
+            else catBadge.classList.add('bg-secondary');
+        } else {
+            catBadge.style.display = 'none';
+        }
+
+        var associationsContainer = document.getElementById('newsModalAssociations');
+        var associationsList = document.getElementById('newsModalAssociationsList');
+
+        associationsContainer.style.display = 'none';
+        associationsList.innerHTML = '';
+
+        if (newsId) {
+            associationsContainer.style.display = 'block';
+            associationsList.innerHTML = '<small class="text-muted">Cargando elementos relacionados...</small>';
+            
+            fetch('/news/' + newsId + '/associations')
+                .then(response => response.json())
+                .then(data => {
+                    associationsList.innerHTML = '';
+                    if (data && data.length > 0) {
+                        data.forEach(item => {
+                            var link = document.createElement('a');
+                            link.href = item.url;
+                            link.className = 'badge ' + (item.badgeClass || 'bg-secondary') + ' text-decoration-none me-1 mb-1 p-2 d-inline-flex align-items-center';
+                            link.style.fontSize = '0.85rem';
+                            
+                            var imgHtml = '';
+                            if (item.photo) {
+                                imgHtml = '<img src="' + item.photo + '" class="rounded-circle me-2" width="20" height="20" style="object-fit: cover;">';
+                            }
+                            
+                            link.innerHTML = imgHtml + item.name;
+                            associationsList.appendChild(link);
+                        });
+                    } else {
+                        associationsContainer.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading associations:', error);
+                    associationsList.innerHTML = '<small class="text-danger">Error al cargar elementos.</small>';
+                });
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initNewsDetailModal);
+document.addEventListener('turbo:load', initNewsDetailModal);
+</script>
 </body>
 </html>

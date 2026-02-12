@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jugadores - Fútbol Stats{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold">⚽ Jugadores</h1>
+        <form method="get" class="d-flex">
+            <input type="text" name="q" class="form-control me-2" placeholder="Buscar jugador..." value="{{ searchQuery }}">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+
+    {% if searchQuery %}
+        <h4 class="mb-3">Resultados de búsqueda: "{{ searchQuery }}"</h4>
+        {% if players is empty %}
+            <div class="alert alert-info">No se encontraron jugadores.</div>
+        {% else %}
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                {% for player in players %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body text-center">
+                                <img src="{{ player.player.photo }}" class="rounded-circle mb-3 shadow-sm" width="80" height="80">
+                                <h5 class="card-title fw-bold text-truncate">{{ player.player.name }}</h5>
+                                <p class="text-muted small mb-2">{{ player.statistics[0].team.name ?? 'Sin equipo' }}</p>
+                                <a href="{{ path('player_show', {id: player.player.id}) }}" class="btn btn-outline-primary btn-sm stretched-link">Ver Perfil</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% else %}
+        <h4 class="mb-3 text-warning"><i class="fas fa-star me-2"></i>Mejor Valorados</h4>
+        {% if topRated is empty %}
+            <div class="alert alert-light border">Aún no hay valoraciones suficientes para mostrar el ranking.</div>
+        {% else %}
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                {% for item in topRated %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 position-relative animate-hover">
+                            <span class="position-absolute top-0 end-0 badge bg-warning text-dark m-2 shadow-sm">
+                                <i class="fas fa-star me-1"></i>{{ item.average_rating|number_format(1) }}
+                            </span>
+                            <div class="card-body text-center">
+                                <img src="{{ item.player.photo }}" class="rounded-circle mb-3 shadow-sm" width="80" height="80">
+                                <h5 class="card-title fw-bold text-truncate">{{ item.player.name }}</h5>
+                                <p class="text-muted small mb-2">{{ item.statistics[0].team.name ?? 'Sin equipo' }}</p>
+                                <a href="{{ path('player_show', {id: item.player.id}) }}" class="btn btn-primary btn-sm stretched-link rounded-pill px-4">Ver Perfil</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

@@ -9,6 +9,8 @@ services:
     App\:
         resource: '../src/'
     
-    App\DataCollector\ApiStatusCollector:
+    App\DataCollector\FootballApiCollector:
         tags:
-            - { name: 'data_collector', template: 'data_collector/api_status.html.twig', id: 'app.api_status_collector' }
+            - { name: 'data_collector', template: 'data_collector/football_api.html.twig', id: 'football_api' }
+    
+

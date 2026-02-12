@@ -1,0 +1,337 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ team.team.name }} - Perfil del Equipo{% endblock %}
+
+{% block body %}
+<div class="row">
+    
+    <div class="col-lg-3 mb-4">
+        <div class="card border-0 shadow-sm text-center p-4 mb-4">
+            <img src="{{ team.team.logo }}" alt="{{ team.team.name }}" class="mx-auto mb-3 shadow-sm p-2 bg-white rounded" style="width: 120px; height: 120px; object-fit: contain;">
+            <h3 class="fw-bold mb-1">{{ team.team.name }}</h3>
+            <p class="text-muted mb-3">{{ team.team.country }}</p>
+            
+            <div class="d-flex justify-content-center gap-2 mb-3">
+                 <span class="badge bg-secondary align-self-center fs-6">Fundado: {{ team.team.founded }}</span>
+            </div>
+
+            <hr>
+
+            <ul class="list-group list-group-flush text-start small">
+                
+                <li class="list-group-item d-flex justify-content-between px-0">
+                    <span class="text-muted">Estadio</span>
+                    <span class="fw-bold">{{ team.venue.name }}</span>
+                </li>
+                 <li class="list-group-item d-flex justify-content-between px-0">
+                    <span class="text-muted">Capacidad</span>
+                    <span class="fw-bold">{{ team.venue.capacity|number_format(0, ',', '.') }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between px-0">
+                    <span class="text-muted">Ciudad</span>
+                    <span class="fw-bold">{{ team.venue.city }}</span>
+                </li>
+            </ul>
+             <div class="mt-3">
+                 <img src="{{ team.venue.image }}" class="img-fluid rounded shadow-sm" alt="{{ team.venue.name }}">
+             </div>
+        </div>
+    </div>
+
+    
+    <div class="col-lg-9">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-bottom-0 pb-0">
+                <ul class="nav nav-tabs border-bottom-0" id="teamTab" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold {{ activeTab == 'squad' ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#squad">
+                            👥 Plantilla
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold {{ activeTab == 'fixtures' ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#fixtures">
+                            ⚽ Partidos
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold {{ activeTab == 'transfers' ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#transfers">
+                             ✈️ Fichajes
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold {{ activeTab == 'news' ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#news">
+                            📰 Noticias
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold text-primary {{ activeTab == 'forum' ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#forum">
+                            💬 Foro
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="card-body">
+                <div class="tab-content" id="teamTabContent">
+
+                    
+                    <div class="tab-pane fade {{ activeTab == 'squad' ? 'show active' : '' }}" id="squad">
+                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                            {% for player in squad %}
+                                <div class="col">
+                                    <div class="card h-100 border shadow-sm hover-shadow transition-all">
+                                        <div class="card-body d-flex align-items-center">
+                                            <img src="{{ player.photo }}" class="rounded-circle me-3 border" width="50" height="50" style="object-fit: cover;">
+                                            <div>
+                                                <a href="{{ path('player_show', {'id': player.id}) }}" class="text-decoration-none text-dark fw-bold stretched-link">
+                                                    {{ player.name }}
+                                                </a>
+                                                <div class="small text-muted">{{ player.position }} • {{ player.age }} años</div>
+                                            </div>
+                                            <div class="ms-auto fw-bold text-primary">#{{ player.number }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="tab-pane fade {{ activeTab == 'fixtures' ? 'show active' : '' }}" id="fixtures">
+                        <div class="bg-light p-3 rounded mb-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+                             <div class="d-flex align-items-center gap-3">
+                                <h5 class="mb-0 fw-bold">Calendario</h5>
+                                <span class="badge bg-white text-dark border">{{ currentSeason }}/{{ currentSeason + 1 }}</span>
+                             </div>
+
+                             
+                             <form method="get" action="{{ path('team_show', {id: team.team.id}) }}" class="d-flex align-items-center gap-2">
+                                <input type="hidden" name="tab" value="fixtures"> 
+                                
+                                
+                                <select name="competition" class="form-select form-select-sm w-auto shadow-sm border-0" onchange="this.form.submit()">
+                                    <option value="all">🏆 Todas las competiciones</option>
+                                    {% for cId, cName in competitions %}
+                                        <option value="{{ cId }}" {{ currentCompetition == cId ? 'selected' : '' }}>{{ cName }}</option>
+                                    {% endfor %}
+                                </select>
+
+                                
+                                <select name="season" class="form-select form-select-sm w-auto shadow-sm border-0" onchange="this.form.submit()">
+                                    {% for s in seasons %}
+                                        <option value="{{ s }}" {{ s == currentSeason ? 'selected' : '' }}>
+                                            {{ s }}/{{ s+1 }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                             </form>
+                        </div>
+
+                        {% if fixtures is empty %}
+                             <div class="alert alert-info text-center py-5">
+                                <i class="fas fa-calendar-times fs-1 mb-3 text-muted"></i>
+                                <p class="mb-0">No hay partidos disponibles para la selección actual.</p>
+                             </div>
+                        {% else %}
+                             <div class="fixtures-list">
+                                {% set lastMonth = null %}
+                                {% for match in fixtures %}
+                                    {% set currentMonth = match.fixture.date|date('F Y') %}
+                                    {% if currentMonth != lastMonth %}
+                                        <div class="d-flex align-items-center my-3">
+                                            <h6 class="fw-bold text-uppercase text-muted mb-0 me-3" style="font-size: 0.85rem; letter-spacing: 1px;">
+                                                {{ match.fixture.date|date('F Y') }}
+                                            </h6>
+                                            <hr class="flex-grow-1 my-0 text-muted" style="opacity: 0.2">
+                                        </div>
+                                        {% set lastMonth = currentMonth %}
+                                    {% endif %}
+
+                                    <div class="card mb-2 border-0 shadow-sm hover-scale transition-all">
+                                        
+                                        <div class="card-header bg-white border-0 pt-2 pb-0 text-center">
+                                            <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">
+                                                {% if match.league.logo %}
+                                                    <img src="{{ match.league.logo }}" width="15" class="me-1" style="vertical-align: text-top;">
+                                                {% endif %}
+                                                {{ match.league.name }} 
+                                                <span class="text-primary">•</span> 
+                                                {{ match.league.round }}
+                                            </small>
+                                        </div>
+                                        
+                                        <div class="card-body py-2">
+                                            <div class="row align-items-center">
+                                                
+                                                <div class="col-4 text-end">
+                                                     <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-block">
+                                                        <span class="d-none d-md-inline fw-bold me-2">{{ match.teams.home.name }}</span>
+                                                        <img src="{{ match.teams.home.logo }}" width="40" alt="{{ match.teams.home.name }}">
+                                                        <span class="d-md-none d-block small mt-1 fw-bold">{{ match.teams.home.name }}</span>
+                                                     </a>
+                                                </div>
+
+                                                
+                                                <div class="col-4 text-center">
+                                                     {% set statusCode = match.fixture.status.short|upper %}
+                                                     <a href="{{ path('match_show', {id: match.fixture.id}) }}" class="text-decoration-none text-dark d-block">
+                                                        
+                                                        {% if statusCode in ['FT', 'AET', 'PEN'] %}
+                                                            <div class="display-6 fw-bold lh-1">{{ match.goals.home }} - {{ match.goals.away }}</div>
+                                                            
+                                                            {% if statusCode == 'PEN' %}
+                                                                <small class="d-block text-muted small mb-1">
+                                                                    ({{ match.score.penalty.home }} - {{ match.score.penalty.away }})
+                                                                </small>
+                                                            {% endif %}
+
+                                                            <small class="badge bg-light text-muted border mt-1">
+                                                                Finalizado
+                                                            </small>
+
+                                                        
+                                                        {% elseif statusCode in ['NS', 'TBD'] %}
+                                                             <div class="fs-4 fw-bold text-muted lh-1">- vs -</div>
+                                                             <div class="text-primary fw-bold mt-1">
+                                                                {{ match.fixture.date|date('H:i') }}
+                                                             </div>
+                                                             <small class="text-muted">{{ match.fixture.date|date('d M') }}</small>
+
+                                                        
+                                                        {% elseif statusCode in ['PST', 'CANC', 'ABD', 'AWD', 'WO', 'SUSP'] %}
+                                                             <div class="fs-5 fw-bold text-muted lh-1 mb-1">--</div>
+                                                             <span class="badge bg-secondary">{{ match.fixture.status.long }}</span>
+
+                                                        
+                                                        {% else %}
+                                                             <div class="fs-4 fw-bold text-danger lh-1">
+                                                                {{ match.goals.home ?? 0 }} - {{ match.goals.away ?? 0 }}
+                                                             </div>
+                                                             <small class="badge bg-danger mt-1 animate-pulse">
+                                                                {% if statusCode == 'HT' %}
+                                                                    Descanso
+                                                                {% elseif statusCode == 'BT' %}
+                                                                    Descanso (Prórroga)
+                                                                {% elseif match.fixture.status.elapsed %}
+                                                                    {{ match.fixture.status.elapsed }}'
+                                                                {% else %}
+                                                                    En juego
+                                                                {% endif %}
+                                                             </small>
+                                                        {% endif %}
+                                                     </a>
+                                                </div>
+
+                                                
+                                                <div class="col-4 text-start">
+                                                     <a href="{{ path('team_show', {id: match.teams.away.id}) }}" class="text-decoration-none text-dark d-block">
+                                                        <img src="{{ match.teams.away.logo }}" width="40" alt="{{ match.teams.away.name }}">
+                                                        <span class="d-none d-md-inline fw-bold ms-2">{{ match.teams.away.name }}</span>
+                                                        <span class="d-md-none d-block small mt-1 fw-bold">{{ match.teams.away.name }}</span>
+                                                     </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                             </div>
+                        {% endif %}
+                    </div>
+                
+
+                    
+                    <div class="tab-pane fade" id="transfers">
+                         {% if transfers is empty %}
+                            <p class="text-muted text-center py-4">Sin historial reciente de fichajes.</p>
+                        {% else %}
+                             <div class="overflow-auto" style="max-height: 600px;">
+                                <div class="timeline position-relative ps-4 border-start ms-2">
+                                    {% for transfer in transfers %}
+                                        <div class="mb-3 position-relative">
+                                            <div class="position-absolute start-0 top-0 translate-middle-x bg-white border {{ transfer.direction == 'in' ? 'border-success' : 'border-danger' }} rounded-circle" style="width: 12px; height: 12px; left: -1px;"></div>
+                                            <div class="h6 mb-1 text-muted small">{{ transfer.date|date('d M Y') }}</div>
+                                            
+                                            <div class="d-flex align-items-center bg-light p-2 rounded">
+                                                
+                                                <a href="{{ path('player_show', {'id': transfer.player.id}) }}" class="d-flex align-items-center text-decoration-none text-dark me-3">
+                                                     <div class="fw-bold">{{ transfer.player.name }}</div>
+                                                </a>
+
+                                                
+                                                <div class="d-flex align-items-center flex-grow-1 justify-content-center small">
+                                                    <div class="text-end me-2 {{ transfer.direction == 'out' ? 'fw-bold' : 'text-muted' }}">
+                                                        {{ transfer.teams.out.name }}
+                                                    </div>
+                                                    <i class="fas fa-arrow-right text-secondary mx-1"></i>
+                                                    <div class="text-start ms-2 {{ transfer.direction == 'in' ? 'fw-bold' : 'text-muted' }}">
+                                                        {{ transfer.teams.in.name }}
+                                                    </div>
+                                                </div>
+
+                                                
+                                                <div class="ms-3 badge {{ transfer.direction == 'in' ? 'bg-success' : 'bg-danger' }}">
+                                                    {{ transfer.direction == 'in' ? 'ALTA' : 'BAJA' }}
+                                                </div>
+                                                <div class="ms-1 badge bg-secondary">
+                                                    {{ transfer.type == 'Loan' ? 'Cesión' : (transfer.type == 'Free' ? 'Libre' : transfer.type) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                             </div>
+                        {% endif %}
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="news">
+                        {% if relatedNews is empty %}
+                            <p class="text-muted text-center py-4">No hay noticias relacionadas con este equipo.</p>
+                        {% else %}
+                            <div class="row row-cols-1 row-cols-md-2 g-3">
+                                {% for item in relatedNews %}
+                                    <div class="col">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            {% if item.image %}
+                                                <img src="{{ item.image }}" class="card-img-top" style="height: 150px; object-fit: cover;">
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <h6 class="card-title fw-bold">{{ item.title }}</h6>
+                                                <p class="card-text small text-muted">{{ item.content|slice(0, 80) }}...</p>
+                                                <button class="btn btn-sm btn-outline-primary" 
+                                                    data-bs-toggle="modal" data-bs-target="#newsDetailModal"
+                                                    data-news-id="{{ item.id }}"
+                                                    data-news-title="{{ item.title }}"
+                                                    data-news-content="{{ item.content }}"
+                                                    data-news-image="{{ item.image }}"
+                                                    data-news-date="{{ item.createdAt|date('d M, Y') }}">
+                                                    Leer más
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    
+                    <div class="tab-pane fade" id="forum">
+                         <div class="alert alert-info border-0 d-flex align-items-center">
+                            <i class="fas fa-info-circle me-2 fs-4"></i>
+                            <div>
+                                <strong>Foro de Aficionados</strong>
+                                <div class="small">Debate sobre la actualidad del {{ team.team.name }}.</div>
+                            </div>
+                        </div>
+
+                        
+                        {% include 'review/_form.html.twig' with {'type': 'team', 'externalId': team.team.id} %}
+                        {% include 'review/_list.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
