@@ -101,13 +101,16 @@
                         <div class="bg-light p-3 rounded mb-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
                              <div class="d-flex align-items-center gap-3">
                                 <h5 class="mb-0 fw-bold">Calendario</h5>
-                                <span class="badge bg-white text-dark border">{{ currentSeason }}/{{ currentSeason + 1 }}</span>
+                                <span class="badge bg-white text-dark border">
+                                    {{ isLive ? 'Temporada Actual' : currentSeason ~ '/' ~ (currentSeason + 1) }}
+                                </span>
                              </div>
 
                              
                              <form method="get" action="{{ path('team_show', {id: team.team.id}) }}" class="d-flex align-items-center gap-2">
-                                <input type="hidden" name="tab" value="fixtures"> 
-                                
+                                <input type="hidden" name="tab" value="fixtures">
+
+                                {% if not isLive %}
                                 
                                 <select name="competition" class="form-select form-select-sm w-auto shadow-sm border-0" onchange="this.form.submit()">
                                     <option value="all">🏆 Todas las competiciones</option>
@@ -115,11 +118,13 @@
                                         <option value="{{ cId }}" {{ currentCompetition == cId ? 'selected' : '' }}>{{ cName }}</option>
                                     {% endfor %}
                                 </select>
+                                {% endif %}
 
                                 
                                 <select name="season" class="form-select form-select-sm w-auto shadow-sm border-0" onchange="this.form.submit()">
-                                    {% for s in seasons %}
-                                        <option value="{{ s }}" {{ s == currentSeason ? 'selected' : '' }}>
+                                    <option value="live" {{ isLive ? 'selected' : ''}}>⚽ Temporada Actual</option>
+                                    {% for s in seasons|reverse %}
+                                        <option value="{{ s }}" {{ not isLive and s == currentSeason ? 'selected' : '' }}>
                                             {{ s }}/{{ s+1 }}
                                         </option>
                                     {% endfor %}
@@ -127,115 +132,172 @@
                              </form>
                         </div>
 
-                        {% if fixtures is empty %}
-                             <div class="alert alert-info text-center py-5">
-                                <i class="fas fa-calendar-times fs-1 mb-3 text-muted"></i>
-                                <p class="mb-0">No hay partidos disponibles para la selección actual.</p>
-                             </div>
-                        {% else %}
-                             <div class="fixtures-list">
-                                {% set lastMonth = null %}
-                                {% for match in fixtures %}
-                                    {% set currentMonth = match.fixture.date|date('F Y') %}
-                                    {% if currentMonth != lastMonth %}
-                                        <div class="d-flex align-items-center my-3">
-                                            <h6 class="fw-bold text-uppercase text-muted mb-0 me-3" style="font-size: 0.85rem; letter-spacing: 1px;">
-                                                {{ match.fixture.date|date('F Y') }}
-                                            </h6>
-                                            <hr class="flex-grow-1 my-0 text-muted" style="opacity: 0.2">
-                                        </div>
-                                        {% set lastMonth = currentMonth %}
-                                    {% endif %}
+                        {% if isLive %}
+                            
+                            <div class="d-flex align-items-center justify-content-between mb-4 bg-white border rounded p-2">
+                                <a href="{{ path('team_show', {id: team.team.id, season: 'live', fixture_date: prevDate, tab: 'fixtures'}) }}"
+                                   class="btn btn-outline-secondary btn-sm">&#9664; {{ prevDate|date('d M') }}</a>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="fw-bold">📅 {{ fixtureDate|date('d F Y') }}</span>
+                                    <form method="get" action="{{ path('team_show', {id: team.team.id}) }}" class="d-inline">
+                                        <input type="hidden" name="season" value="live">
+                                        <input type="hidden" name="tab" value="fixtures">
+                                        <input type="date" name="fixture_date" value="{{ fixtureDate }}"
+                                               class="form-control form-control-sm d-inline w-auto" onchange="this.form.submit()">
+                                    </form>
+                                </div>
+                                <a href="{{ path('team_show', {id: team.team.id, season: 'live', fixture_date: nextDate, tab: 'fixtures'}) }}"
+                                   class="btn btn-outline-secondary btn-sm">{{ nextDate|date('d M') }} &#9654;</a>
+                            </div>
 
-                                    <div class="card mb-2 border-0 shadow-sm hover-scale transition-all">
-                                        
+                            {% if fixtures is empty %}
+                                <div class="alert alert-info text-center py-4">
+                                    No hay partidos de {{ team.team.name }} para este día.
+                                </div>
+                            {% else %}
+                                {% for match in fixtures %}
+                                    <div class="card mb-3 border-0 shadow-sm">
                                         <div class="card-header bg-white border-0 pt-2 pb-0 text-center">
                                             <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">
-                                                {% if match.league.logo %}
-                                                    <img src="{{ match.league.logo }}" width="15" class="me-1" style="vertical-align: text-top;">
-                                                {% endif %}
-                                                {{ match.league.name }} 
-                                                <span class="text-primary">•</span> 
-                                                {{ match.league.round }}
+                                                {% if match.league.logo %}<img src="{{ match.league.logo }}" width="15" class="me-1">{% endif %}
+                                                {{ match.league.name }} • {{ match.league.round }}
                                             </small>
                                         </div>
-                                        
                                         <div class="card-body py-2">
                                             <div class="row align-items-center">
-                                                
                                                 <div class="col-4 text-end">
-                                                     <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-block">
+                                                    <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-block">
                                                         <span class="d-none d-md-inline fw-bold me-2">{{ match.teams.home.name }}</span>
-                                                        <img src="{{ match.teams.home.logo }}" width="40" alt="{{ match.teams.home.name }}">
-                                                        <span class="d-md-none d-block small mt-1 fw-bold">{{ match.teams.home.name }}</span>
-                                                     </a>
+                                                        <img src="{{ match.teams.home.logo }}" width="40">
+                                                    </a>
                                                 </div>
-
-                                                
                                                 <div class="col-4 text-center">
-                                                     {% set statusCode = match.fixture.status.short|upper %}
-                                                     <a href="{{ path('match_show', {id: match.fixture.id}) }}" class="text-decoration-none text-dark d-block">
-                                                        
-                                                        {% if statusCode in ['FT', 'AET', 'PEN'] %}
+                                                    {% set sc = match.fixture.status.short|upper %}
+                                                    <a href="{{ path('match_show', {id: match.fixture.id}) }}" class="text-decoration-none text-dark d-block">
+                                                        {% if sc in ['FT','AET','PEN'] %}
                                                             <div class="display-6 fw-bold lh-1">{{ match.goals.home }} - {{ match.goals.away }}</div>
-                                                            
-                                                            {% if statusCode == 'PEN' %}
-                                                                <small class="d-block text-muted small mb-1">
-                                                                    ({{ match.score.penalty.home }} - {{ match.score.penalty.away }})
-                                                                </small>
-                                                            {% endif %}
-
-                                                            <small class="badge bg-light text-muted border mt-1">
-                                                                Finalizado
-                                                            </small>
-
-                                                        
-                                                        {% elseif statusCode in ['NS', 'TBD'] %}
-                                                             <div class="fs-4 fw-bold text-muted lh-1">- vs -</div>
-                                                             <div class="text-primary fw-bold mt-1">
-                                                                {{ match.fixture.date|date('H:i') }}
-                                                             </div>
-                                                             <small class="text-muted">{{ match.fixture.date|date('d M') }}</small>
-
-                                                        
-                                                        {% elseif statusCode in ['PST', 'CANC', 'ABD', 'AWD', 'WO', 'SUSP'] %}
-                                                             <div class="fs-5 fw-bold text-muted lh-1 mb-1">--</div>
-                                                             <span class="badge bg-secondary">{{ match.fixture.status.long }}</span>
-
-                                                        
+                                                            <small class="badge bg-light text-muted border mt-1">Finalizado</small>
+                                                        {% elseif sc in ['NS','TBD'] %}
+                                                            <div class="fs-4 fw-bold text-muted lh-1">- vs -</div>
+                                                            <div class="text-primary fw-bold mt-1">{{ match.fixture.date|date('H:i') }}</div>
+                                                        {% elseif sc in ['PST','ABD','WO','SUSP'] %}
+                                                            <span class="badge bg-secondary">{{ match.fixture.status.long }}</span>
                                                         {% else %}
-                                                             <div class="fs-4 fw-bold text-danger lh-1">
-                                                                {{ match.goals.home ?? 0 }} - {{ match.goals.away ?? 0 }}
-                                                             </div>
-                                                             <small class="badge bg-danger mt-1 animate-pulse">
-                                                                {% if statusCode == 'HT' %}
-                                                                    Descanso
-                                                                {% elseif statusCode == 'BT' %}
-                                                                    Descanso (Prórroga)
-                                                                {% elseif match.fixture.status.elapsed %}
-                                                                    {{ match.fixture.status.elapsed }}'
-                                                                {% else %}
-                                                                    En juego
-                                                                {% endif %}
-                                                             </small>
+                                                            <div class="fs-4 fw-bold text-danger lh-1">{{ match.goals.home ?? 0 }} - {{ match.goals.away ?? 0 }}</div>
+                                                            <small class="badge bg-danger mt-1">{{ match.fixture.status.elapsed ? match.fixture.status.elapsed ~ "'" : 'En juego' }}</small>
                                                         {% endif %}
-                                                     </a>
+                                                    </a>
                                                 </div>
-
-                                                
                                                 <div class="col-4 text-start">
-                                                     <a href="{{ path('team_show', {id: match.teams.away.id}) }}" class="text-decoration-none text-dark d-block">
-                                                        <img src="{{ match.teams.away.logo }}" width="40" alt="{{ match.teams.away.name }}">
+                                                    <a href="{{ path('team_show', {id: match.teams.away.id}) }}" class="text-decoration-none text-dark d-block">
+                                                        <img src="{{ match.teams.away.logo }}" width="40">
                                                         <span class="d-none d-md-inline fw-bold ms-2">{{ match.teams.away.name }}</span>
-                                                        <span class="d-md-none d-block small mt-1 fw-bold">{{ match.teams.away.name }}</span>
-                                                     </a>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 {% endfor %}
-                             </div>
+                            {% endif %}
+
+                        {% else %}
+                            
+                            {% if fixtures is empty %}
+                                 <div class="alert alert-info text-center py-5">
+                                    <i class="fas fa-calendar-times fs-1 mb-3 text-muted"></i>
+                                    <p class="mb-0">No hay partidos disponibles para la selección actual.</p>
+                                 </div>
+                            {% else %}
+                                 <div class="fixtures-list">
+                                    {% set lastMonth = null %}
+                                    {% for match in fixtures %}
+                                        {% set currentMonth = match.fixture.date|date('F Y') %}
+                                        {% if currentMonth != lastMonth %}
+                                            <div class="d-flex align-items-center my-3">
+                                                <h6 class="fw-bold text-uppercase text-muted mb-0 me-3" style="font-size: 0.85rem; letter-spacing: 1px;">
+                                                    {{ match.fixture.date|date('F Y') }}
+                                                </h6>
+                                                <hr class="flex-grow-1 my-0 text-muted" style="opacity: 0.2">
+                                            </div>
+                                            {% set lastMonth = currentMonth %}
+                                        {% endif %}
+
+                                        <div class="card mb-2 border-0 shadow-sm hover-scale transition-all">
+                                            <div class="card-header bg-white border-0 pt-2 pb-0 text-center">
+                                                <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">
+                                                    {% if match.league.logo %}
+                                                        <img src="{{ match.league.logo }}" width="15" class="me-1" style="vertical-align: text-top;">
+                                                    {% endif %}
+                                                    {{ match.league.name }} 
+                                                    <span class="text-primary">•</span> 
+                                                    {{ match.league.round }}
+                                                </small>
+                                            </div>
+                                            
+                                            <div class="card-body py-2">
+                                                <div class="row align-items-center">
+                                                    <div class="col-4 text-end">
+                                                         <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-block">
+                                                            <span class="d-none d-md-inline fw-bold me-2">{{ match.teams.home.name }}</span>
+                                                            <img src="{{ match.teams.home.logo }}" width="40" alt="{{ match.teams.home.name }}">
+                                                            <span class="d-md-none d-block small mt-1 fw-bold">{{ match.teams.home.name }}</span>
+                                                         </a>
+                                                    </div>
+
+                                                    <div class="col-4 text-center">
+                                                         {% set statusCode = match.fixture.status.short|upper %}
+                                                         <a href="{{ path('match_show', {id: match.fixture.id}) }}" class="text-decoration-none text-dark d-block">
+                                                            {% if statusCode in ['FT', 'AET', 'PEN'] %}
+                                                                <div class="display-6 fw-bold lh-1">{{ match.goals.home }} - {{ match.goals.away }}</div>
+                                                                {% if statusCode == 'PEN' %}
+                                                                    <small class="d-block text-muted small mb-1">
+                                                                        ({{ match.score.penalty.home }} - {{ match.score.penalty.away }})
+                                                                    </small>
+                                                                {% endif %}
+                                                                <small class="badge bg-light text-muted border mt-1">Finalizado</small>
+                                                            {% elseif statusCode in ['NS', 'TBD'] %}
+                                                                 <div class="fs-4 fw-bold text-muted lh-1">- vs -</div>
+                                                                 <div class="text-primary fw-bold mt-1">
+                                                                    {{ match.fixture.date|date('H:i') }}
+                                                                 </div>
+                                                                 <small class="text-muted">{{ match.fixture.date|date('d M') }}</small>
+                                                            {% elseif statusCode in ['PST', 'CANC', 'ABD', 'AWD', 'WO', 'SUSP'] %}
+                                                                 <div class="fs-5 fw-bold text-muted lh-1 mb-1">--</div>
+                                                                 <span class="badge bg-secondary">{{ match.fixture.status.long }}</span>
+                                                            {% else %}
+                                                                 <div class="fs-4 fw-bold text-danger lh-1">
+                                                                    {{ match.goals.home ?? 0 }} - {{ match.goals.away ?? 0 }}
+                                                                 </div>
+                                                                 <small class="badge bg-danger mt-1 animate-pulse">
+                                                                    {% if statusCode == 'HT' %}
+                                                                        Descanso
+                                                                    {% elseif statusCode == 'BT' %}
+                                                                        Descanso (Prórroga)
+                                                                    {% elseif match.fixture.status.elapsed %}
+                                                                        {{ match.fixture.status.elapsed }}'
+                                                                    {% else %}
+                                                                        En juego
+                                                                    {% endif %}
+                                                                 </small>
+                                                            {% endif %}
+                                                         </a>
+                                                    </div>
+
+                                                    <div class="col-4 text-start">
+                                                         <a href="{{ path('team_show', {id: match.teams.away.id}) }}" class="text-decoration-none text-dark d-block">
+                                                            <img src="{{ match.teams.away.logo }}" width="40" alt="{{ match.teams.away.name }}">
+                                                            <span class="d-none d-md-inline fw-bold ms-2">{{ match.teams.away.name }}</span>
+                                                            <span class="d-md-none d-block small mt-1 fw-bold">{{ match.teams.away.name }}</span>
+                                                         </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                 </div>
+                            {% endif %}
                         {% endif %}
+
                     </div>
                 
 

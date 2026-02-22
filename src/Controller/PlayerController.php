@@ -151,7 +151,7 @@ class PlayerController extends AbstractController
         }
 
         if (!$playerInfo) {
-             throw $this->createNotFoundException('Jugador no encontrado o sin datos disponibles.');
+             return $this->render('player/not_found.html.twig', [], new Response('', 404));
         }
 
         $trophiesData = $api->getPlayerTrophies($id);
@@ -166,23 +166,27 @@ class PlayerController extends AbstractController
         });
 
 
+
+        $normalize = fn(string $name) => strtolower(preg_replace('/[\s\-]+/', '', $name));
+        
         $dedupedTransfers = [];
         foreach ($transfers as $transfer) {
-            $inTeamId = $transfer['teams']['in']['id'] ?? 0;
-            $outTeamId = $transfer['teams']['out']['id'] ?? 0;
+            $inName = $normalize($transfer['teams']['in']['name'] ?? '');
+            $outName = $normalize($transfer['teams']['out']['name'] ?? '');
             $type = $transfer['type'] ?? '';
             $date = strtotime($transfer['date'] ?? '1970-01-01');
             
             $isDuplicate = false;
             foreach ($dedupedTransfers as &$existing) {
-                $eInTeamId = $existing['teams']['in']['id'] ?? 0;
-                $eOutTeamId = $existing['teams']['out']['id'] ?? 0;
+                $eInName = $normalize($existing['teams']['in']['name'] ?? '');
+                $eOutName = $normalize($existing['teams']['out']['name'] ?? '');
                 $eType = $existing['type'] ?? '';
                 $eDate = strtotime($existing['date'] ?? '1970-01-01');
                 
-                if ($inTeamId === $eInTeamId && $outTeamId === $eOutTeamId && $type === $eType) {
+                if ($inName === $eInName && $outName === $eOutName && $type === $eType) {
                     if (abs($date - $eDate) <= 4 * 86400) {
                         $isDuplicate = true;
+
                         if ($date < $eDate) {
                             $existing['date'] = $transfer['date'];
                         }
@@ -197,6 +201,8 @@ class PlayerController extends AbstractController
             }
         }
         $transfers = $dedupedTransfers;
+
+        usort($transfers, fn($a, $b) => strtotime($b['date']) - strtotime($a['date']));
 
         $currentTeam = null;
         if (!empty($transfers)) {

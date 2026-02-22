@@ -408,24 +408,31 @@ class FootballApiService
     
     public function getInjuriesByLeague(int $leagueId = 140, int $season = 2024, int $limit = 10): array
     {
-        $cacheKey = 'injuries_league_v3_' . $leagueId . '_' . $season;
+        $cacheKey = 'injuries_league_date_v2_' . $leagueId;
 
-        return $this->cache->get($cacheKey, function (ItemInterface $item) use ($leagueId, $season, $limit) {
-            $item->expiresAfter(86400); 
+        return $this->cache->get($cacheKey, function (ItemInterface $item) use ($leagueId, $limit) {
+            $item->expiresAfter(21600); 
 
-            $injuriesData = $this->getCachedData('injuries', [
-                'league' => $leagueId,
-                'season' => $season,
-            ], 86400);
+            $allInjuries = [];
 
-            $allInjuries = $injuriesData['response'] ?? [];
+            $datesToTry = [
+                date('Y-m-d', strtotime('+1 day')), 
+                date('Y-m-d'), 
+                date('Y-m-d', strtotime('-1 day')), 
+            ];
 
-            if (empty($allInjuries)) {
+            foreach ($datesToTry as $dateStr) {
                 $injuriesData = $this->getCachedData('injuries', [
-                    'date' => date('Y-m-d'),
                     'league' => $leagueId,
-                ], 3600);
-                $allInjuries = $injuriesData['response'] ?? [];
+                    'date' => $dateStr,
+                ], 21600);
+
+                $results = $injuriesData['response'] ?? [];
+
+                if (!empty($results)) {
+
+                    $allInjuries = array_merge($allInjuries, $results);
+                }
             }
 
             usort($allInjuries, function ($a, $b) {

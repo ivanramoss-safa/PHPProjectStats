@@ -113,6 +113,7 @@
                         
                         <h5 class="fw-bold mb-3">Rendimiento Temporada {{ season }}</h5>
                         {% for stat in player.statistics %}
+                            {% if stat.games.appearences|default(0) > 0 %}
                             <div class="card bg-light border-0 mb-3">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center mb-3 border-bottom pb-2">
@@ -155,6 +156,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
 
