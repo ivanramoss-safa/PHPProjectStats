@@ -77,8 +77,19 @@ class TeamController extends AbstractController
 
         $seasonsAvailable = $api->filterSeasonsByPlan($seasons);
 
-        $requestedSeason = $request->query->getInt('season');
-        $season = $requestedSeason;
+        $requestedSeason = $request->query->get('season');
+        $isLive = ($requestedSeason === 'live' || $requestedSeason === null || $requestedSeason === '');
+        $season = 2024;
+        if (!$isLive) {
+            $season = (int)$requestedSeason;
+            if ($season < 2022) $season = 2024;
+        } elseif (!empty($seasonsAvailable)) {
+            $season = max($seasonsAvailable);
+        }
+        $fixtureDate = $request->query->get('fixture_date', date('Y-m-d'));
+        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fixtureDate)) { $fixtureDate = date('Y-m-d'); }
+        $prevDate = date('Y-m-d', strtotime($fixtureDate . ' -1 day'));
+        $nextDate = date('Y-m-d', strtotime($fixtureDate . ' +1 day'));        
         
         if (!$season) {
 
@@ -113,28 +124,33 @@ class TeamController extends AbstractController
 
 
         
-        $fixturesData = $api->getCachedData('fixtures', ['team' => $id, 'season' => $season], 3600);
-        $allFixtures = $fixturesData['response'] ?? [];
-
-        usort($allFixtures, function($a, $b) {
-            return strtotime($a['fixture']['date']) - strtotime($b['fixture']['date']);
-        });
-
-        $competitions = [];
-        foreach ($allFixtures as $f) {
-            $c = $f['league'];
-            $competitions[$c['id']] = $c['name'];
-        }
-
-        $competitionFilter = $request->query->get('competition');
-        $fixtures = $allFixtures;
-        
-        if ($competitionFilter && $competitionFilter !== 'all') {
-            $fixtures = array_filter($allFixtures, function($f) use ($competitionFilter) {
-                return $f['league']['id'] == $competitionFilter;
+        if ($isLive) {
+            $allDateFixtures = $api->getFixturesByDate($fixtureDate);
+            $allFixtures = array_values(array_filter(
+                $allDateFixtures['response'] ?? [],
+                fn($f) => ($f['teams']['home']['id'] ?? 0) == $id || ($f['teams']['away']['id'] ?? 0) == $id
+            ));
+        } else {
+            $fixturesData = $api->getCachedData('fixtures', ['team' => $id, 'season' => $season], 3600);
+            $allFixtures = $fixturesData['response'] ?? [];
+            $allFixtures = array_filter($allFixtures, function($f) {
+                $status = strtoupper($f['fixture']['status']['short'] ?? '');
+                return !in_array($status, ['CANC', 'AWD']);
+            });
+            $allFixtures = array_values($allFixtures);
+            usort($allFixtures, function($a, $b) {
+                return strtotime($a['fixture']['date']) - strtotime($b['fixture']['date']);
             });
         }
-
+        $competitions = [];
+        if (!$isLive) {
+            foreach ($allFixtures as $f) { $c = $f['league']; $competitions[$c['id']] = $c['name']; }
+        }
+        $competitionFilter = $request->query->get('competition');
+        $fixtures = $allFixtures;
+        if (!$isLive && $competitionFilter && $competitionFilter !== 'all') {
+            $fixtures = array_filter($allFixtures, fn($f) => $f['league']['id'] == $competitionFilter);
+        }
         $reviews = $reviewRepo->findBy(
             ['type' => 'team', 'externalId' => (string)$id],
             ['createdAt' => 'DESC']
@@ -159,6 +175,10 @@ class TeamController extends AbstractController
             'fixtures' => $fixtures,
             'seasons' => $seasonsAvailable,
             'currentSeason' => $season,
+            'isLive' => $isLive,
+            'fixtureDate' => $fixtureDate,
+            'prevDate' => $prevDate,
+            'nextDate' => $nextDate,
             'reviews' => $reviews,
             'averageRating' => $averageRating,
             'reviewForm' => $reviewForm->createView(),
