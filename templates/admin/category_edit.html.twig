@@ -37,44 +37,35 @@
 
                 <hr>
 
-                <h5>Elementos de la categoría</h5>
+                <h5>Elementos de la Categoría</h5>
 
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead>
-                        <tr>
-                            <th width="50">
-                                <input type="checkbox" id="selectAll" onclick="toggleAll(this)">
-                            </th>
-                            <th width="80">Foto</th>
-                            <th>Nombre</th>
-                            <th>Equipo</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for item in availableItems %}
-                            <tr>
-                                <td>
-                                    <input type="checkbox"
-                                           name="items[]"
-                                           value="{{ item.id }}"
-                                           class="item-checkbox"
-                                           {% if item.id in currentItems %}checked{% endif %}>
-                                </td>
-                                <td>
-                                    {% if item.photo %}
-                                        <img src="{{ item.photo }}" width="40" class="rounded-circle">
-                                    {% endif %}
-                                </td>
-                                <td><strong>{{ item.name }}</strong></td>
-                                <td>{{ item.team }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                
+                <div class="mb-4 mt-3">
+                    <div class="d-flex mb-2">
+                        <button type="button" class="btn btn-outline-primary btn-sm me-2 btn-open-search-modal" id="dynamicSearchBtn" data-type="" disabled>
+                            🔍 Añadir Elementos
+                        </button>
+                    </div>
+
+                    <div id="dynamicIds-chips" class="p-3 border rounded bg-light" style="min-height: 60px;">
+                        <span class="text-muted">Cargando elementos...</span>
+                    </div>
+
+                    
+                    <input type="hidden" name="items" id="dynamicIds-hidden" value="{{ currentItems|join(',') }}">
+
+                    
+                    <div style="display: none;">
+                        <input type="hidden" id="playersIds-hidden" value="">
+                        <input type="hidden" id="teamsIds-hidden" value="">
+                        <input type="hidden" id="leaguesIds-hidden" value="">
+                        <input type="hidden" id="coachesIds-hidden" value="">
+                        <input type="hidden" id="venuesIds-hidden" value="">
+                        <input type="hidden" id="fixturesIds-hidden" value="">
+                    </div>
                 </div>
 
-                <div class="mt-3">
+                <div class="mt-4">
                     <button type="submit" class="btn btn-primary">💾 Guardar Cambios</button>
                     <a href="{{ path('app_admin') }}" class="btn btn-secondary">Cancelar</a>
                 </div>
@@ -83,11 +74,50 @@
     </div>
 
     <script>
-        function toggleAll(source) {
-            const checkboxes = document.querySelectorAll('.item-checkbox');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = source.checked;
-            });
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+             const categoryType = '{{ category.type }}';
+             const currentItemsData = {{ currentItemsObjects|json_encode|raw }};
+
+             const searchBtn = document.getElementById('dynamicSearchBtn');
+             const chipsContainer = document.getElementById('dynamicIds-chips');
+             const hiddenInput = document.getElementById('dynamicIds-hidden');
+
+             const typeMapping = {
+                'player': 'players',
+                'team': 'teams',
+                'league': 'leagues',
+                'stadium': 'venues',
+                'coach': 'coaches'
+             };
+
+             const searchType = typeMapping[categoryType];
+
+             if (searchType) {
+                 searchBtn.dataset.type = searchType;
+                 searchBtn.disabled = false;
+
+                 chipsContainer.id = `${searchType}Ids-chips`;
+                 hiddenInput.id = `${searchType}Ids-hidden`;
+
+                 const fillChips = () => {
+                     if (window.newsSearch) {
+                         window.newsSearch.selectedItems[searchType] = currentItemsData.map(item => ({
+                             id: parseInt(item.id),
+                             name: item.name,
+                             photo: item.photo
+                         }));
+                         window.newsSearch.renderChips(searchType);
+                         window.newsSearch.updateHiddenInput(searchType);
+                     } else {
+                         setTimeout(fillChips, 50);
+                     }
+                 };
+                 fillChips();
+             }
+        });
     </script>
+
+    
+    {% include 'admin/news/_search_modal.html.twig' %}
+    <script src="{{ asset('js/news-associations.js') }}"></script>
 {% endblock %}

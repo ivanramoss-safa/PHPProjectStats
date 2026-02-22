@@ -1,0 +1,1978 @@
+{
+  "Lamine Yamal": {
+    "name": "Lamine Yamal",
+    "besoccer_url": "https://es.besoccer.com/jugador/l-nasraoui-3189487",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/3189487.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 33,
+      "minutos": 2759,
+      "goles": 15,
+      "asistencias": 12,
+      "amarillas": 4,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "FCB",
+        "away": "LEV",
+        "score": "3-0",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/levante/202622079"
+      },
+      {
+        "home": "GIR",
+        "away": "FCB",
+        "score": "2-1",
+        "date": "16 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/girona-fc/barcelona/202622071"
+      },
+      {
+        "home": "ATM",
+        "away": "FCB",
+        "score": "4-0",
+        "date": "12 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/barcelona/2026271214"
+      },
+      {
+        "home": "FCB",
+        "away": "MLL",
+        "score": "3-0",
+        "date": "07 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/mallorca/202622060"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:14:09"
+  },
+  "Vinícius": {
+    "name": "Vinícius",
+    "besoccer_url": "https://es.besoccer.com/jugador/vinicius-junior-358618",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/358618.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 36,
+      "minutos": 2832,
+      "goles": 12,
+      "asistencias": 9,
+      "amarillas": 9,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "OSA",
+        "away": "RMA",
+        "score": "2-1",
+        "date": "21 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/osasuna/real-madrid/202622082"
+      },
+      {
+        "home": "SLB",
+        "away": "RMA",
+        "score": "0-1",
+        "date": "17 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/champions.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/benfica/real-madrid/2026267561"
+      },
+      {
+        "home": "RMA",
+        "away": "RSO",
+        "score": "4-1",
+        "date": "14 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-madrid/real-sociedad/202622068"
+      },
+      {
+        "home": "RMA",
+        "away": "RAY",
+        "score": "2-1",
+        "date": "01 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-madrid/rayo-vallecano/202622045"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:14:16"
+  },
+  "G. Mikautadze": {
+    "name": "G. Mikautadze",
+    "besoccer_url": "https://es.besoccer.com/jugador/g-mikautadze-653782",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/653782.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 32,
+      "minutos": 2027,
+      "goles": 11,
+      "asistencias": 4,
+      "amarillas": 1,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "VIL",
+        "away": "VCF",
+        "score": "2-1",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/villarreal/valencia-cf/202622074"
+      },
+      {
+        "home": "LEV",
+        "away": "VIL",
+        "score": "0-1",
+        "date": "18 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/levante/villarreal/202621989"
+      },
+      {
+        "home": "GET",
+        "away": "VIL",
+        "score": "2-1",
+        "date": "14 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/villarreal/202622072"
+      },
+      {
+        "home": "VIL",
+        "away": "ESP",
+        "score": "4-1",
+        "date": "09 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/villarreal/espanyol/202622054"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:14:24"
+  },
+  "Luis Milla": {
+    "name": "Luis Milla",
+    "besoccer_url": "https://es.besoccer.com/jugador/luis-milla-159804",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/159804.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 25,
+      "minutos": 2162,
+      "goles": 0,
+      "asistencias": 8,
+      "amarillas": 2,
+      "rojas": 1
+    },
+    "last_matches": [
+      {
+        "home": "GET",
+        "away": "SEV",
+        "score": "0-1",
+        "date": "22 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/sevilla/202622077"
+      },
+      {
+        "home": "GET",
+        "away": "VIL",
+        "score": "2-1",
+        "date": "14 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/villarreal/202622072"
+      },
+      {
+        "home": "ALA",
+        "away": "GET",
+        "score": "0-2",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/alaves/getafe/202622061"
+      },
+      {
+        "home": "GET",
+        "away": "CEL",
+        "score": "0-0",
+        "date": "01 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/celta/202622050"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:14:31"
+  },
+  "M. Rashford": {
+    "name": "M. Rashford",
+    "besoccer_url": "https://es.besoccer.com/jugador/marcus-rashford",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/284437.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 34,
+      "minutos": 1967,
+      "goles": 10,
+      "asistencias": 11,
+      "amarillas": 2,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "FCB",
+        "away": "MLL",
+        "score": "3-0",
+        "date": "07 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/mallorca/202622060"
+      },
+      {
+        "home": "ALB",
+        "away": "FCB",
+        "score": "1-2",
+        "date": "03 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/albacete/barcelona/2026260359"
+      },
+      {
+        "home": "ELC",
+        "away": "FCB",
+        "score": "1-3",
+        "date": "31 ene.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/elche/barcelona/202622051"
+      },
+      {
+        "home": "FCB",
+        "away": "FCK",
+        "score": "4-1",
+        "date": "28 ene.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/champions.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/fc-kobenhavn/2026180119"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:14:38"
+  },
+  "F. Valverde": {
+    "name": "F. Valverde",
+    "besoccer_url": "https://es.besoccer.com/jugador/federico-santiago-valverde-dipetta",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/281486.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 35,
+      "minutos": 2942,
+      "goles": 2,
+      "asistencias": 10,
+      "amarillas": 3,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "OSA",
+        "away": "RMA",
+        "score": "2-1",
+        "date": "21 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/osasuna/real-madrid/202622082"
+      },
+      {
+        "home": "SLB",
+        "away": "RMA",
+        "score": "0-1",
+        "date": "17 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/champions.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/benfica/real-madrid/2026267561"
+      },
+      {
+        "home": "RMA",
+        "away": "RSO",
+        "score": "4-1",
+        "date": "14 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-madrid/real-sociedad/202622068"
+      },
+      {
+        "home": "VCF",
+        "away": "RMA",
+        "score": "0-2",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/valencia-cf/real-madrid/202622056"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:14:45"
+  },
+  "Arda Güler": {
+    "name": "Arda Güler",
+    "besoccer_url": "https://es.besoccer.com/jugador/arda-guler-3144243",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/3144243.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 38,
+      "minutos": 2456,
+      "goles": 3,
+      "asistencias": 12,
+      "amarillas": 2,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "OSA",
+        "away": "RMA",
+        "score": "2-1",
+        "date": "21 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/osasuna/real-madrid/202622082"
+      },
+      {
+        "home": "SLB",
+        "away": "RMA",
+        "score": "0-1",
+        "date": "17 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/champions.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/benfica/real-madrid/2026267561"
+      },
+      {
+        "home": "RMA",
+        "away": "RSO",
+        "score": "4-1",
+        "date": "14 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-madrid/real-sociedad/202622068"
+      },
+      {
+        "home": "VCF",
+        "away": "RMA",
+        "score": "0-2",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/valencia-cf/real-madrid/202622056"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:14:52"
+  },
+  "Dani Olmo": {
+    "name": "Dani Olmo",
+    "besoccer_url": "https://es.besoccer.com/jugador/daniel-olmo-carvajal",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/275868.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 31,
+      "minutos": 1785,
+      "goles": 7,
+      "asistencias": 6,
+      "amarillas": 2,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "FCB",
+        "away": "LEV",
+        "score": "3-0",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/levante/202622079"
+      },
+      {
+        "home": "GIR",
+        "away": "FCB",
+        "score": "2-1",
+        "date": "16 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/girona-fc/barcelona/202622071"
+      },
+      {
+        "home": "ATM",
+        "away": "FCB",
+        "score": "4-0",
+        "date": "12 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/barcelona/2026271214"
+      },
+      {
+        "home": "FCB",
+        "away": "MLL",
+        "score": "3-0",
+        "date": "07 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/mallorca/202622060"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:14:59"
+  },
+  "Pedri": {
+    "name": "Pedri",
+    "besoccer_url": "https://es.besoccer.com/jugador/pedri-869514",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/869514.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 26,
+      "minutos": 1853,
+      "goles": 2,
+      "asistencias": 8,
+      "amarillas": 2,
+      "rojas": 1
+    },
+    "last_matches": [
+      {
+        "home": "FCB",
+        "away": "LEV",
+        "score": "3-0",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/levante/202622079"
+      },
+      {
+        "home": "SLP",
+        "away": "FCB",
+        "score": "2-4",
+        "date": "21 ene.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/champions.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/slavia-praha/barcelona/2026180118"
+      },
+      {
+        "home": "RSO",
+        "away": "FCB",
+        "score": "2-1",
+        "date": "18 ene.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-sociedad/barcelona/202622026"
+      },
+      {
+        "home": "RAC",
+        "away": "FCB",
+        "score": "0-2",
+        "date": "15 ene.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/racing/barcelona/2026252117"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:15:05"
+  },
+  "Fermín López": {
+    "name": "Fermín López",
+    "besoccer_url": "https://es.besoccer.com/jugador/f-lopez-999075",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/999075.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 32,
+      "minutos": 2017,
+      "goles": 11,
+      "asistencias": 12,
+      "amarillas": 6,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "FCB",
+        "away": "LEV",
+        "score": "3-0",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/levante/202622079"
+      },
+      {
+        "home": "GIR",
+        "away": "FCB",
+        "score": "2-1",
+        "date": "16 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/girona-fc/barcelona/202622071"
+      },
+      {
+        "home": "ATM",
+        "away": "FCB",
+        "score": "4-0",
+        "date": "12 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/barcelona/2026271214"
+      },
+      {
+        "home": "FCB",
+        "away": "MLL",
+        "score": "3-0",
+        "date": "07 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/mallorca/202622060"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:15:12"
+  },
+  "Antony": {
+    "name": "Antony",
+    "besoccer_url": "https://es.besoccer.com/jugador/antony-667430",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/667430.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 30,
+      "minutos": 2418,
+      "goles": 10,
+      "asistencias": 9,
+      "amarillas": 2,
+      "rojas": 1
+    },
+    "last_matches": [
+      {
+        "home": "BET",
+        "away": "RAY",
+        "score": "1-1",
+        "date": "21 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/betis/rayo-vallecano/202622078"
+      },
+      {
+        "home": "MLL",
+        "away": "BET",
+        "score": "1-2",
+        "date": "15 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/mallorca/betis/202622067"
+      },
+      {
+        "home": "ATM",
+        "away": "BET",
+        "score": "0-1",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/betis/202622062"
+      },
+      {
+        "home": "BET",
+        "away": "ATM",
+        "score": "0-5",
+        "date": "05 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/betis/atletico-madrid/2026260364"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:15:19"
+  },
+  "Giuliano": {
+    "name": "Giuliano",
+    "besoccer_url": "https://es.besoccer.com/jugador/giuliano-950006",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/950006.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 35,
+      "minutos": 2720,
+      "goles": 6,
+      "asistencias": 7,
+      "amarillas": 4,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "ATM",
+        "away": "ESP",
+        "score": "4-2",
+        "date": "21 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/espanyol/202622081"
+      },
+      {
+        "home": "BRU",
+        "away": "ATM",
+        "score": "3-3",
+        "date": "18 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/champions.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/club-brugge/atletico-madrid/2026267554"
+      },
+      {
+        "home": "ATM",
+        "away": "FCB",
+        "score": "4-0",
+        "date": "12 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/barcelona/2026271214"
+      },
+      {
+        "home": "ATM",
+        "away": "BET",
+        "score": "0-1",
+        "date": "08 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/betis/202622062"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:15:25"
+  },
+  "Rubén García": {
+    "name": "Rubén García",
+    "besoccer_url": "https://es.besoccer.com/jugador/ruben-garcia-74994",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/74994.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 27,
+      "minutos": 1561,
+      "goles": 2,
+      "asistencias": 7,
+      "amarillas": 4,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "OSA",
+        "away": "RMA",
+        "score": "2-1",
+        "date": "21 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/osasuna/real-madrid/202622082"
+      },
+      {
+        "home": "ELC",
+        "away": "OSA",
+        "score": "0-0",
+        "date": "13 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/elche/osasuna/202622073"
+      },
+      {
+        "home": "CEL",
+        "away": "OSA",
+        "score": "1-2",
+        "date": "06 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/celta/osasuna/202622057"
+      },
+      {
+        "home": "OSA",
+        "away": "VIL",
+        "score": "2-2",
+        "date": "31 ene.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/osasuna/villarreal/202622052"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:15:32"
+  },
+  "Edu Expósito": {
+    "name": "Edu Expósito",
+    "besoccer_url": "https://es.besoccer.com/jugador/eduardo-exposito-jaen",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/282577.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 26,
+      "minutos": 1678,
+      "goles": 1,
+      "asistencias": 5,
+      "amarillas": 4,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "ATM",
+        "away": "ESP",
+        "score": "4-2",
+        "date": "21 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/espanyol/202622081"
+      },
+      {
+        "home": "ESP",
+        "away": "CEL",
+        "score": "2-2",
+        "date": "14 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/espanyol/celta/202622066"
+      },
+      {
+        "home": "VIL",
+        "away": "ESP",
+        "score": "4-1",
+        "date": "09 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/villarreal/espanyol/202622054"
+      },
+      {
+        "home": "ESP",
+        "away": "ALA",
+        "score": "1-2",
+        "date": "30 ene.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/espanyol/alaves/202622044"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:15:39"
+  },
+  "Rubén Vargas": {
+    "name": "Rubén Vargas",
+    "besoccer_url": "https://es.besoccer.com/jugador/r-vargas-331264",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/331264.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 14,
+      "minutos": 887,
+      "goles": 3,
+      "asistencias": 4,
+      "amarillas": 1,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "SEV",
+        "away": "CEL",
+        "score": "0-1",
+        "date": "12 ene.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/sevilla/celta/202622015"
+      },
+      {
+        "home": "ESP",
+        "away": "SEV",
+        "score": "2-1",
+        "date": "24 nov.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/espanyol/sevilla/202621955"
+      },
+      {
+        "home": "XXK",
+        "away": "SUI",
+        "score": "1-1",
+        "date": "18 nov.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/mundial-2026.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/kosovo/seleccion-suiza/2024757552"
+      },
+      {
+        "home": "SUI",
+        "away": "SWE",
+        "score": "4-1",
+        "date": "15 nov.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/mundial-2026.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/seleccion-suiza/seleccion-suecia/2024757551"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:15:45"
+  },
+  "Ez Abde": {
+    "name": "Ez Abde",
+    "besoccer_url": "https://es.besoccer.com/jugador/a-ezzalzouli-875234",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/875234.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 26,
+      "minutos": 1823,
+      "goles": 9,
+      "asistencias": 5,
+      "amarillas": 2,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "BET",
+        "away": "RAY",
+        "score": "1-1",
+        "date": "21 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/betis/rayo-vallecano/202622078"
+      },
+      {
+        "home": "MLL",
+        "away": "BET",
+        "score": "1-2",
+        "date": "15 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/mallorca/betis/202622067"
+      },
+      {
+        "home": "ATM",
+        "away": "BET",
+        "score": "0-1",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/betis/202622062"
+      },
+      {
+        "home": "BET",
+        "away": "ATM",
+        "score": "0-5",
+        "date": "05 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/betis/atletico-madrid/2026260364"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:15:53"
+  },
+  "Brahim Díaz": {
+    "name": "Brahim Díaz",
+    "besoccer_url": "https://es.besoccer.com/jugador/b-abdelkader-297592",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/297592.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 25,
+      "minutos": 646,
+      "goles": 1,
+      "asistencias": 4,
+      "amarillas": 2,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "OSA",
+        "away": "RMA",
+        "score": "2-1",
+        "date": "21 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/osasuna/real-madrid/202622082"
+      },
+      {
+        "home": "SLB",
+        "away": "RMA",
+        "score": "0-1",
+        "date": "17 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/champions.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/benfica/real-madrid/2026267561"
+      },
+      {
+        "home": "RMA",
+        "away": "RSO",
+        "score": "4-1",
+        "date": "14 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-madrid/real-sociedad/202622068"
+      },
+      {
+        "home": "VCF",
+        "away": "RMA",
+        "score": "0-2",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/valencia-cf/real-madrid/202622056"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:15:59"
+  },
+  "Javi Rueda": {
+    "name": "Javi Rueda",
+    "besoccer_url": "https://es.besoccer.com/jugador/javier-879218",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/879218.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 26,
+      "minutos": 1358,
+      "goles": 2,
+      "asistencias": 5,
+      "amarillas": 7,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "CEL",
+        "away": "MLL",
+        "score": "2-0",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/celta/mallorca/202622075"
+      },
+      {
+        "home": "PAO",
+        "away": "CEL",
+        "score": "1-2",
+        "date": "19 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/europa-league.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/paok/celta/2026267577"
+      },
+      {
+        "home": "ESP",
+        "away": "CEL",
+        "score": "2-2",
+        "date": "14 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/espanyol/celta/202622066"
+      },
+      {
+        "home": "CEL",
+        "away": "OSA",
+        "score": "1-2",
+        "date": "06 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/celta/osasuna/202622057"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:16:06"
+  },
+  "F. De Jong": {
+    "name": "F. De Jong",
+    "besoccer_url": "https://es.besoccer.com/jugador/frenkie-de-jong",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/279661.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 31,
+      "minutos": 2429,
+      "goles": 1,
+      "asistencias": 7,
+      "amarillas": 8,
+      "rojas": 2
+    },
+    "last_matches": [
+      {
+        "home": "FCB",
+        "away": "LEV",
+        "score": "3-0",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/levante/202622079"
+      },
+      {
+        "home": "GIR",
+        "away": "FCB",
+        "score": "2-1",
+        "date": "16 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/girona-fc/barcelona/202622071"
+      },
+      {
+        "home": "ATM",
+        "away": "FCB",
+        "score": "4-0",
+        "date": "12 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/atletico-madrid/barcelona/2026271214"
+      },
+      {
+        "home": "ALB",
+        "away": "FCB",
+        "score": "1-2",
+        "date": "03 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/albacete/barcelona/2026260359"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:16:13"
+  },
+  "Martim Neto": {
+    "name": "Martim Neto",
+    "besoccer_url": "https://es.besoccer.com/jugador/m-neto-886608",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/886608.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 24,
+      "minutos": 1254,
+      "goles": 3,
+      "asistencias": 4,
+      "amarillas": 1,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "ELC",
+        "away": "OSA",
+        "score": "0-0",
+        "date": "13 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/elche/osasuna/202622073"
+      },
+      {
+        "home": "RSO",
+        "away": "ELC",
+        "score": "3-1",
+        "date": "07 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-sociedad/elche/202622058"
+      },
+      {
+        "home": "ELC",
+        "away": "FCB",
+        "score": "1-3",
+        "date": "31 ene.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/elche/barcelona/202622051"
+      },
+      {
+        "home": "LEV",
+        "away": "ELC",
+        "score": "3-2",
+        "date": "23 ene.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/levante/elche/202622039"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:16:20"
+  },
+  "I. Ruiz De Galarreta": {
+    "name": "I. Ruiz De Galarreta",
+    "besoccer_url": "https://es.besoccer.com/jugador/i-ruiz-de-galarreta-107809",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/107809.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 34,
+      "minutos": 1993,
+      "goles": 1,
+      "asistencias": 2,
+      "amarillas": 12,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "ATH",
+        "away": "ELC",
+        "score": "2-1",
+        "date": "20 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/athletic-bilbao/elche/202622083"
+      },
+      {
+        "home": "OVI",
+        "away": "ATH",
+        "score": "1-2",
+        "date": "15 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-oviedo/athletic-bilbao/202622065"
+      },
+      {
+        "home": "ATH",
+        "away": "RSO",
+        "score": "0-1",
+        "date": "11 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/athletic-bilbao/real-sociedad/2026271215"
+      },
+      {
+        "home": "ATH",
+        "away": "LEV",
+        "score": "4-2",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/athletic-bilbao/levante/202622063"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:16:26"
+  },
+  "Carmona": {
+    "name": "Carmona",
+    "besoccer_url": "https://es.besoccer.com/jugador/j-carmona-916044",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/916044.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 26,
+      "minutos": 1990,
+      "goles": 1,
+      "asistencias": 3,
+      "amarillas": 10,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "GET",
+        "away": "SEV",
+        "score": "0-1",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/sevilla/202622077"
+      },
+      {
+        "home": "SEV",
+        "away": "ALA",
+        "score": "1-1",
+        "date": "14 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/sevilla/alaves/202622064"
+      },
+      {
+        "home": "SEV",
+        "away": "GIR",
+        "score": "1-1",
+        "date": "08 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/sevilla/girona-fc/202622055"
+      },
+      {
+        "home": "MLL",
+        "away": "SEV",
+        "score": "4-1",
+        "date": "02 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/mallorca/sevilla/202622048"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:16:33"
+  },
+  "L. Agoumé": {
+    "name": "L. Agoumé",
+    "besoccer_url": "https://es.besoccer.com/jugador/l-agoume-696537",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/696537.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 24,
+      "minutos": 1872,
+      "goles": 1,
+      "asistencias": 3,
+      "amarillas": 9,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "GET",
+        "away": "SEV",
+        "score": "0-1",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/sevilla/202622077"
+      },
+      {
+        "home": "SEV",
+        "away": "ALA",
+        "score": "1-1",
+        "date": "14 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/sevilla/alaves/202622064"
+      },
+      {
+        "home": "SEV",
+        "away": "GIR",
+        "score": "1-1",
+        "date": "08 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/sevilla/girona-fc/202622055"
+      },
+      {
+        "home": "MLL",
+        "away": "SEV",
+        "score": "4-1",
+        "date": "02 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/mallorca/sevilla/202622048"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:16:40"
+  },
+  "Mario Martín": {
+    "name": "Mario Martín",
+    "besoccer_url": "https://es.besoccer.com/jugador/m-martin-922299",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/922299.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 25,
+      "minutos": 1575,
+      "goles": 4,
+      "asistencias": 1,
+      "amarillas": 8,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "GET",
+        "away": "SEV",
+        "score": "0-1",
+        "date": "22 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/sevilla/202622077"
+      },
+      {
+        "home": "ALA",
+        "away": "GET",
+        "score": "0-2",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/alaves/getafe/202622061"
+      },
+      {
+        "home": "GET",
+        "away": "CEL",
+        "score": "0-0",
+        "date": "01 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/celta/202622050"
+      },
+      {
+        "home": "GIR",
+        "away": "GET",
+        "score": "1-1",
+        "date": "26 ene.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/girona-fc/getafe/202622040"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:16:46"
+  },
+  "A. Catena": {
+    "name": "A. Catena",
+    "besoccer_url": "https://es.besoccer.com/jugador/catena-205919",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/205919.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 26,
+      "minutos": 2207,
+      "goles": 2,
+      "asistencias": 2,
+      "amarillas": 8,
+      "rojas": 1
+    },
+    "last_matches": [
+      {
+        "home": "OSA",
+        "away": "RMA",
+        "score": "2-1",
+        "date": "21 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/osasuna/real-madrid/202622082"
+      },
+      {
+        "home": "ELC",
+        "away": "OSA",
+        "score": "0-0",
+        "date": "13 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/elche/osasuna/202622073"
+      },
+      {
+        "home": "CEL",
+        "away": "OSA",
+        "score": "1-2",
+        "date": "06 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/celta/osasuna/202622057"
+      },
+      {
+        "home": "OSA",
+        "away": "VIL",
+        "score": "2-2",
+        "date": "31 ene.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/osasuna/villarreal/202622052"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:16:53"
+  },
+  "Samú Costa": {
+    "name": "Samú Costa",
+    "besoccer_url": "https://es.besoccer.com/jugador/samuel-costa-865407",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/865407.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 24,
+      "minutos": 1802,
+      "goles": 4,
+      "asistencias": 0,
+      "amarillas": 8,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "CEL",
+        "away": "MLL",
+        "score": "2-0",
+        "date": "22 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/celta/mallorca/202622075"
+      },
+      {
+        "home": "MLL",
+        "away": "BET",
+        "score": "1-2",
+        "date": "15 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/mallorca/betis/202622067"
+      },
+      {
+        "home": "FCB",
+        "away": "MLL",
+        "score": "3-0",
+        "date": "07 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/mallorca/202622060"
+      },
+      {
+        "home": "MLL",
+        "away": "SEV",
+        "score": "4-1",
+        "date": "02 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/mallorca/sevilla/202622048"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:17:00"
+  },
+  "D. Duarte": {
+    "name": "D. Duarte",
+    "besoccer_url": "https://es.besoccer.com/jugador/d-duarte-229430",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/229430.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 23,
+      "minutos": 1966,
+      "goles": 0,
+      "asistencias": 0,
+      "amarillas": 8,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "GET",
+        "away": "SEV",
+        "score": "0-1",
+        "date": "22 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/sevilla/202622077"
+      },
+      {
+        "home": "GET",
+        "away": "VIL",
+        "score": "2-1",
+        "date": "14 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/villarreal/202622072"
+      },
+      {
+        "home": "ALA",
+        "away": "GET",
+        "score": "0-2",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/alaves/getafe/202622061"
+      },
+      {
+        "home": "GET",
+        "away": "CEL",
+        "score": "0-0",
+        "date": "01 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/celta/202622050"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:17:07"
+  },
+  "S. Mouriño": {
+    "name": "S. Mouriño",
+    "besoccer_url": "https://es.besoccer.com/jugador/santiago-mourino-3240357",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/3240357.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 24,
+      "minutos": 2055,
+      "goles": 0,
+      "asistencias": 1,
+      "amarillas": 11,
+      "rojas": 1
+    },
+    "last_matches": [
+      {
+        "home": "VIL",
+        "away": "VCF",
+        "score": "2-1",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/villarreal/valencia-cf/202622074"
+      },
+      {
+        "home": "LEV",
+        "away": "VIL",
+        "score": "0-1",
+        "date": "18 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/levante/villarreal/202621989"
+      },
+      {
+        "home": "GET",
+        "away": "VIL",
+        "score": "2-1",
+        "date": "14 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/villarreal/202622072"
+      },
+      {
+        "home": "VIL",
+        "away": "ESP",
+        "score": "4-1",
+        "date": "09 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/villarreal/espanyol/202622054"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:17:13"
+  },
+  "Aleix Febas": {
+    "name": "Aleix Febas",
+    "besoccer_url": "https://es.besoccer.com/jugador/febas-136595",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/136595.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 25,
+      "minutos": 2240,
+      "goles": 2,
+      "asistencias": 1,
+      "amarillas": 7,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "ATH",
+        "away": "ELC",
+        "score": "2-1",
+        "date": "20 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/athletic-bilbao/elche/202622083"
+      },
+      {
+        "home": "ELC",
+        "away": "OSA",
+        "score": "0-0",
+        "date": "13 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/elche/osasuna/202622073"
+      },
+      {
+        "home": "RSO",
+        "away": "ELC",
+        "score": "3-1",
+        "date": "07 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-sociedad/elche/202622058"
+      },
+      {
+        "home": "LEV",
+        "away": "ELC",
+        "score": "3-2",
+        "date": "23 ene.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/levante/elche/202622039"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:17:21"
+  },
+  "T. Buchanan": {
+    "name": "T. Buchanan",
+    "besoccer_url": "https://es.besoccer.com/jugador/t-buchanan-843554",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/843554.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 32,
+      "minutos": 1872,
+      "goles": 5,
+      "asistencias": 1,
+      "amarillas": 8,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "VIL",
+        "away": "VCF",
+        "score": "2-1",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/villarreal/valencia-cf/202622074"
+      },
+      {
+        "home": "GET",
+        "away": "VIL",
+        "score": "2-1",
+        "date": "14 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/villarreal/202622072"
+      },
+      {
+        "home": "VIL",
+        "away": "ESP",
+        "score": "4-1",
+        "date": "09 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/villarreal/espanyol/202622054"
+      },
+      {
+        "home": "OSA",
+        "away": "VIL",
+        "score": "2-2",
+        "date": "31 ene.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/osasuna/villarreal/202622052"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:17:27"
+  },
+  "Isi Palazón": {
+    "name": "Isi Palazón",
+    "besoccer_url": "https://es.besoccer.com/jugador/isi-206486",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/206486.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 35,
+      "minutos": 2377,
+      "goles": 5,
+      "asistencias": 4,
+      "amarillas": 9,
+      "rojas": 1
+    },
+    "last_matches": [
+      {
+        "home": "BET",
+        "away": "RAY",
+        "score": "1-1",
+        "date": "21 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/betis/rayo-vallecano/202622078"
+      },
+      {
+        "home": "RAY",
+        "away": "ATM",
+        "score": "3-0",
+        "date": "15 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/rayo-vallecano/atletico-madrid/202622069"
+      },
+      {
+        "home": "RMA",
+        "away": "RAY",
+        "score": "2-1",
+        "date": "01 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-madrid/rayo-vallecano/202622045"
+      },
+      {
+        "home": "RAY",
+        "away": "OSA",
+        "score": "1-3",
+        "date": "24 ene.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/rayo-vallecano/osasuna/202622037"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:17:35"
+  },
+  "Jon Aramburu": {
+    "name": "Jon Aramburu",
+    "besoccer_url": "https://es.besoccer.com/jugador/j-aramburu-851466",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/851466.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 28,
+      "minutos": 2183,
+      "goles": 1,
+      "asistencias": 0,
+      "amarillas": 7,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "RSO",
+        "away": "OVI",
+        "score": "3-3",
+        "date": "21 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-sociedad/real-oviedo/202622076"
+      },
+      {
+        "home": "RMA",
+        "away": "RSO",
+        "score": "4-1",
+        "date": "14 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-madrid/real-sociedad/202622068"
+      },
+      {
+        "home": "ATH",
+        "away": "RSO",
+        "score": "0-1",
+        "date": "11 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/athletic-bilbao/real-sociedad/2026271215"
+      },
+      {
+        "home": "RSO",
+        "away": "ELC",
+        "score": "3-1",
+        "date": "07 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-sociedad/elche/202622058"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:17:42"
+  },
+  "Peque": {
+    "name": "Peque",
+    "besoccer_url": "https://es.besoccer.com/jugador/peque-825392",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/825392.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 23,
+      "minutos": 1043,
+      "goles": 3,
+      "asistencias": 2,
+      "amarillas": 7,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "GET",
+        "away": "SEV",
+        "score": "0-1",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/sevilla/202622077"
+      },
+      {
+        "home": "SEV",
+        "away": "ALA",
+        "score": "1-1",
+        "date": "14 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/sevilla/alaves/202622064"
+      },
+      {
+        "home": "SEV",
+        "away": "GIR",
+        "score": "1-1",
+        "date": "08 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/sevilla/girona-fc/202622055"
+      },
+      {
+        "home": "MLL",
+        "away": "SEV",
+        "score": "4-1",
+        "date": "02 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/mallorca/sevilla/202622048"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:17:49"
+  },
+  "Pape Gueye": {
+    "name": "Pape Gueye",
+    "besoccer_url": "https://es.besoccer.com/jugador/p-gueye-345333",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/345333.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 28,
+      "minutos": 1967,
+      "goles": 3,
+      "asistencias": 1,
+      "amarillas": 11,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "VIL",
+        "away": "VCF",
+        "score": "2-1",
+        "date": "22 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/villarreal/valencia-cf/202622074"
+      },
+      {
+        "home": "LEV",
+        "away": "VIL",
+        "score": "0-1",
+        "date": "18 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/levante/villarreal/202621989"
+      },
+      {
+        "home": "GET",
+        "away": "VIL",
+        "score": "2-1",
+        "date": "14 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/villarreal/202622072"
+      },
+      {
+        "home": "VIL",
+        "away": "ESP",
+        "score": "4-1",
+        "date": "09 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/villarreal/espanyol/202622054"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:17:57"
+  },
+  "Igor Zubeldia": {
+    "name": "Igor Zubeldia",
+    "besoccer_url": "https://es.besoccer.com/jugador/igor-zubeldia-elorza",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/280863.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 22,
+      "minutos": 1874,
+      "goles": 1,
+      "asistencias": 1,
+      "amarillas": 7,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "RMA",
+        "away": "RSO",
+        "score": "4-1",
+        "date": "14 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-madrid/real-sociedad/202622068"
+      },
+      {
+        "home": "RSO",
+        "away": "ELC",
+        "score": "3-1",
+        "date": "07 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-sociedad/elche/202622058"
+      },
+      {
+        "home": "ALA",
+        "away": "RSO",
+        "score": "2-3",
+        "date": "04 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/alaves/real-sociedad/2026260360"
+      },
+      {
+        "home": "ATH",
+        "away": "RSO",
+        "score": "1-1",
+        "date": "01 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/athletic-bilbao/real-sociedad/202622053"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:18:03"
+  },
+  "David Carmo": {
+    "name": "David Carmo",
+    "besoccer_url": "https://es.besoccer.com/jugador/d-carmo-599135",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/599135.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 18,
+      "minutos": 1452,
+      "goles": 1,
+      "asistencias": 0,
+      "amarillas": 7,
+      "rojas": 1
+    },
+    "last_matches": [
+      {
+        "home": "RSO",
+        "away": "OVI",
+        "score": "3-3",
+        "date": "21 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-sociedad/real-oviedo/202622076"
+      },
+      {
+        "home": "OVI",
+        "away": "ATH",
+        "score": "1-2",
+        "date": "15 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-oviedo/athletic-bilbao/202622065"
+      },
+      {
+        "home": "OVI",
+        "away": "GIR",
+        "score": "1-0",
+        "date": "31 ene.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/real-oviedo/girona-fc/202622046"
+      },
+      {
+        "home": "FCB",
+        "away": "OVI",
+        "score": "3-0",
+        "date": "25 ene.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/real-oviedo/202622041"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:18:10"
+  },
+  "Jeremy Toljan": {
+    "name": "Jeremy Toljan",
+    "besoccer_url": "https://es.besoccer.com/jugador/j-toljan-194166",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/194166.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 26,
+      "minutos": 2103,
+      "goles": 1,
+      "asistencias": 3,
+      "amarillas": 6,
+      "rojas": 0
+    },
+    "last_matches": [
+      {
+        "home": "FCB",
+        "away": "LEV",
+        "score": "3-0",
+        "date": "22 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/barcelona/levante/202622079"
+      },
+      {
+        "home": "LEV",
+        "away": "VIL",
+        "score": "0-1",
+        "date": "18 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/levante/villarreal/202621989"
+      },
+      {
+        "home": "ATH",
+        "away": "LEV",
+        "score": "4-2",
+        "date": "08 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/athletic-bilbao/levante/202622063"
+      },
+      {
+        "home": "LEV",
+        "away": "ATM",
+        "score": "0-0",
+        "date": "31 ene.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/levante/atletico-madrid/202622049"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:18:17"
+  },
+  "D. Djené": {
+    "name": "D. Djené",
+    "besoccer_url": "https://es.besoccer.com/jugador/d-djene-162193",
+    "photo": "https://cdn.resfu.com/img_data/players/medium/162193.jpg?size=120x&lossy=1",
+    "season_stats": {
+      "partidos": 24,
+      "minutos": 1782,
+      "goles": 0,
+      "asistencias": 0,
+      "amarillas": 6,
+      "rojas": 1
+    },
+    "last_matches": [
+      {
+        "home": "GET",
+        "away": "SEV",
+        "score": "0-1",
+        "date": "22 feb.",
+        "result": "lose",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/sevilla/202622077"
+      },
+      {
+        "home": "GET",
+        "away": "VIL",
+        "score": "2-1",
+        "date": "14 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/villarreal/202622072"
+      },
+      {
+        "home": "ALA",
+        "away": "GET",
+        "score": "0-2",
+        "date": "08 feb.",
+        "result": "win",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/alaves/getafe/202622061"
+      },
+      {
+        "home": "GET",
+        "away": "CEL",
+        "score": "0-0",
+        "date": "01 feb.",
+        "result": "draw",
+        "league_logo": "https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=60x&lossy=1",
+        "url": "https://es.besoccer.com/partido/getafe/celta/202622050"
+      }
+    ],
+    "scraped_at": "2026-02-23T21:18:24"
+  }
+}

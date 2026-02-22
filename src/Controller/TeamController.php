@@ -151,7 +151,32 @@ class TeamController extends AbstractController
         if (!$isLive && $competitionFilter && $competitionFilter !== 'all') {
             $fixtures = array_filter($allFixtures, fn($f) => $f['league']['id'] == $competitionFilter);
         }
+
+
+        $today = date('Y-m-d');
+        $tomorrow = date('Y-m-d', strtotime('+1 day'));
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+        
+        $datesToFetch = [$tomorrow, $today, $yesterday];
+        $allInjuries = [];
+        foreach ($datesToFetch as $d) {
+            $resp = $api->getCumulativeInjuries(['team' => $id, 'date' => $d]);
+            $allInjuries = array_merge($allInjuries, $resp['response'] ?? []);
+        }
+        
+        $seenPlayers = [];
+        $injuries = [];
+        foreach ($allInjuries as $inj) {
+            $pid = $inj['player']['id'] ?? 0;
+            if (!isset($seenPlayers[$pid])) {
+                $seenPlayers[$pid] = true;
+                $injuries[] = $inj;
+            }
+        }
+        usort($injuries, fn($a, $b) => strtotime($b['fixture']['date'] ?? '0') - strtotime($a['fixture']['date'] ?? '0'));
+
         $reviews = $reviewRepo->findBy(
+
             ['type' => 'team', 'externalId' => (string)$id],
             ['createdAt' => 'DESC']
         );
@@ -172,6 +197,7 @@ class TeamController extends AbstractController
             'team' => $teamInfo,
             'squad' => $squad,
             'transfers' => $transfers,
+            'injuries' => $injuries,
             'fixtures' => $fixtures,
             'seasons' => $seasonsAvailable,
             'currentSeason' => $season,
@@ -226,9 +252,9 @@ class TeamController extends AbstractController
                 $eType = $existing['type'] ?? '';
                 $eDate = strtotime($existing['date'] ?? '1970-01-01');
                 
-                if ($playerId === $ePlayerId && $inTeamId === $eInTeamId && $outTeamId === $eOutTeamId && $type === $eType) {
+                if ($playerId === $ePlayerId) {
 
-                    if (abs($date - $eDate) <= 4 * 86400) {
+                    if (abs($date - $eDate) <= 30 * 86400) {
                         $isDuplicate = true;
 
                         if ($date < $eDate) {
@@ -248,3 +274,4 @@ class TeamController extends AbstractController
         return array_slice($deduped, 0, 50);
     }
 }
+

@@ -48,46 +48,28 @@
 
                 <hr>
 
-                <h5>Selecciona los elementos para esta categoría</h5>
-                <p class="text-muted">
-                    <small>Marca los jugadores que quieres incluir en esta categoría:</small>
-                </p>
+                <hr>
 
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead>
-                        <tr>
-                            <th width="50">
-                                <input type="checkbox" id="selectAll" onclick="toggleAll(this)">
-                            </th>
-                            <th width="80">Foto</th>
-                            <th>Nombre</th>
-                            <th>Equipo</th>
-                            <th>Goles</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for item in availableItems %}
-                            <tr>
-                                <td>
-                                    <input type="checkbox"
-                                           name="items[]"
-                                           value="{{ item.id }}"
-                                           class="item-checkbox">
-                                </td>
-                                <td>
-                                    {% if item.photo %}
-                                        <img src="{{ item.photo }}" width="40" class="rounded-circle">
-                                    {% endif %}
-                                </td>
-                                <td><strong>{{ item.name }}</strong></td>
-                                <td>{{ item.team }}</td>
-                                <td>{{ item.goals }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                <h5>Elementos de la Categoría</h5>
+                <p class="text-muted"><small>Busca y añade elementos según el tipo elegido arriba.</small></p>
+
+                
+                <div class="mb-4">
+                    <div class="d-flex mb-2">
+                        <button type="button" class="btn btn-outline-primary btn-sm me-2 btn-open-search-modal" id="dynamicSearchBtn" data-type="" disabled>
+                            🔍 Buscar Elementos
+                        </button>
+                        <small id="searchHelperText" class="text-danger mt-1">Primero debes seleccionar el tipo de categoría.</small>
+                    </div>
+
+                    <div id="dynamicIds-chips" data-role="dynamic-chips" class="p-3 border rounded bg-light" style="min-height: 60px;">
+                        <span class="text-muted">Ningún elemento añadido.</span>
+                    </div>
+
+                
+                <input type="hidden" name="items" id="dynamicIds-hidden" data-role="dynamic-hidden" value="">
+                
+            </div>
 
                 <div class="mt-3">
                     <button type="submit" class="btn btn-primary">💾 Crear Categoría</button>
@@ -98,12 +80,53 @@
     </div>
 
     <script>
+        (function() {
+            const typeSelect = document.getElementById('type');
+            const searchBtn = document.getElementById('dynamicSearchBtn');
+            const helperText = document.getElementById('searchHelperText');
 
-        function toggleAll(source) {
-            const checkboxes = document.querySelectorAll('.item-checkbox');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = source.checked;
-            });
-        }
+            const typeMapping = {
+                'player': 'players',
+                'team': 'teams',
+                'league': 'leagues',
+                'stadium': 'venues',
+                'coach': 'coaches'
+            };
+
+            const dynamicChips = document.querySelector('[data-role="dynamic-chips"]');
+            const dynamicHidden = document.querySelector('[data-role="dynamic-hidden"]');
+
+            if (typeSelect) {
+                typeSelect.addEventListener('change', (e) => {
+                    if (window.newsSearch) {
+                        window.newsSearch.selectedItems = {
+                            'players': [], 'teams': [], 'leagues': [], 'coaches': [], 'venues': [], 'fixtures': []
+                        };
+                    }
+                    
+                    if (dynamicChips) dynamicChips.innerHTML = '<span class="text-muted">Ningún elemento añadido.</span>';
+                    if (dynamicHidden) dynamicHidden.value = '';
+
+                    const val = e.target.value;
+                    if (val && typeMapping[val]) {
+                        const searchType = typeMapping[val];
+                        if (searchBtn) searchBtn.dataset.type = searchType;
+                        
+                        if (dynamicChips) dynamicChips.id = `${searchType}Ids-chips`;
+                        if (dynamicHidden) dynamicHidden.id = `${searchType}Ids-hidden`;
+                        
+                        if (searchBtn) searchBtn.disabled = false;
+                        if (helperText) helperText.style.display = 'none';
+                    } else {
+                        if (searchBtn) searchBtn.disabled = true;
+                        if (helperText) helperText.style.display = 'block';
+                    }
+                });
+            }
+        })();
     </script>
+    
+    
+    {% include 'admin/news/_search_modal.html.twig' %}
+    <script src="{{ asset('js/news-associations.js') }}"></script>
 {% endblock %}

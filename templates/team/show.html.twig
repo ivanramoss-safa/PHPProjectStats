@@ -14,6 +14,18 @@
             <div class="d-flex justify-content-center gap-2 mb-3">
                  <span class="badge bg-secondary align-self-center fs-6">Fundado: {{ team.team.founded }}</span>
             </div>
+            {% if averageRating is defined and averageRating > 0 %}
+                <div class="d-flex align-items-center justify-content-center mb-2">
+                    <span class="text-warning me-1">
+                        {% for i in 1..5 %}
+                            {% if i <= averageRating|round(0, 'floor') %}<i class="fas fa-star"></i>
+                            {% elseif i - averageRating < 0.5 %}<i class="fas fa-star-half-alt"></i>
+                            {% else %}<i class="far fa-star"></i>{% endif %}
+                        {% endfor %}
+                    </span>
+                    <span class="fw-bold small">({{ averageRating|number_format(1) }})</span>
+                </div>
+            {% endif %}
 
             <hr>
 
@@ -56,6 +68,11 @@
                     <li class="nav-item">
                         <button class="nav-link fw-bold {{ activeTab == 'transfers' ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#transfers">
                              ✈️ Fichajes
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link fw-bold {{ activeTab == 'injuries' ? 'active' : '' }}" data-bs-toggle="tab" data-bs-target="#injuries">
+                            🏥 Lesiones
                         </button>
                     </li>
                     <li class="nav-item">
@@ -179,7 +196,7 @@
                                                             <small class="badge bg-light text-muted border mt-1">Finalizado</small>
                                                         {% elseif sc in ['NS','TBD'] %}
                                                             <div class="fs-4 fw-bold text-muted lh-1">- vs -</div>
-                                                            <div class="text-primary fw-bold mt-1">{{ match.fixture.date|date('H:i') }}</div>
+                                                            <div class="text-primary fw-bold mt-1">{{ match.fixture.date|date('H:i', 'Europe/Madrid') }}</div>
                                                         {% elseif sc in ['PST','ABD','WO','SUSP'] %}
                                                             <span class="badge bg-secondary">{{ match.fixture.status.long }}</span>
                                                         {% else %}
@@ -258,7 +275,7 @@
                                                             {% elseif statusCode in ['NS', 'TBD'] %}
                                                                  <div class="fs-4 fw-bold text-muted lh-1">- vs -</div>
                                                                  <div class="text-primary fw-bold mt-1">
-                                                                    {{ match.fixture.date|date('H:i') }}
+                                                                    {{ match.fixture.date|date('H:i', 'Europe/Madrid') }}
                                                                  </div>
                                                                  <small class="text-muted">{{ match.fixture.date|date('d M') }}</small>
                                                             {% elseif statusCode in ['PST', 'CANC', 'ABD', 'AWD', 'WO', 'SUSP'] %}
@@ -342,6 +359,39 @@
                                     {% endfor %}
                                 </div>
                              </div>
+                        {% endif %}
+                    </div>
+
+
+                    
+                    <div class="tab-pane fade {{ activeTab == 'injuries' ? 'show active' : '' }}" id="injuries">
+                        {% if injuries is empty %}
+                            <p class="text-muted text-center py-4">No hay lesiones registradas para esta temporada.</p>
+                        {% else %}
+                            <div class="list-group list-group-flush">
+                                {% for inj in injuries %}
+                                    <div class="list-group-item px-0 py-2">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <img src="{{ inj.player.photo }}" width="40" class="rounded-circle">
+                                                <div>
+                                                    <a href="{{ path('player_show', {id: inj.player.id}) }}" class="fw-bold text-dark text-decoration-none d-block">{{ inj.player.name }}</a>
+                                                    <small class="text-muted">{{ inj.player.reason }}</small>
+                                                    {% if inj.fixture.date is defined %}
+                                                        <small class="d-block text-muted">{{ inj.fixture.date|date('d M Y') }}</small>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="text-end">
+                                                <span class="badge {{ inj.player.type == 'Missing Fixture' ? 'bg-danger' : 'bg-warning text-dark' }}">{{ inj.player.type }}</span>
+                                                {% if is_granted('ROLE_ADMIN') %}
+                                                    <a href="{{ path('admin_news_from_injury', {player_name: inj.player.name, team: team.team.name, reason: inj.player.reason, type: inj.player.type}) }}" class="badge bg-warning text-dark text-decoration-none d-block mt-1">📝 Noticia</a>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         {% endif %}
                     </div>
 

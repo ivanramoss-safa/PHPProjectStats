@@ -4,13 +4,56 @@
 
 {% block body %}
 <div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="fw-bold">⚽ Jugadores</h1>
-        <form method="get" class="d-flex">
-            <input type="text" name="q" class="form-control me-2" placeholder="Buscar jugador..." value="{{ searchQuery }}">
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </form>
+    <div class="mb-4 bg-light p-4 rounded shadow-sm border">
+        <h4 class="mb-3"><i class="fas fa-search"></i> Búsqueda Avanzada de Jugadores</h4>
+        
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label text-muted small fw-bold">1. Filtrar por Liga o Equipo *</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-trophy text-warning"></i></span>
+                    <input type="text" id="publicLeagueSearch" class="form-control" placeholder="Ej: La Liga">
+                </div>
+                <div id="publicLeagueResults" class="list-group position-absolute w-100 z-3 shadow-sm mt-1" style="max-height: 200px; overflow-y: auto;"></div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label text-muted small fw-bold">2. Filtrar por Equipo o Liga *</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-shield-alt text-primary"></i></span>
+                    <input type="text" id="publicTeamSearch" class="form-control" placeholder="Ej: Barcelona">
+                </div>
+                <div id="publicTeamResults" class="list-group position-absolute w-100 z-3 shadow-sm mt-1" style="max-height: 200px; overflow-y: auto;"></div>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label text-muted small fw-bold">3. Nombre del Jugador *</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-white"><i class="fas fa-user text-success"></i></span>
+                    <input type="text" id="publicPlayerSearch" class="form-control" placeholder="Ej: Messi">
+                    <button class="btn btn-primary" id="publicSearchBtn" type="button">Buscar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="publicActiveFilters" class="mt-3" style="display: none;">
+            <span class="badge bg-secondary mb-1">Filtro Activo: <span id="publicActiveFilterText"></span>
+                <i class="fas fa-times ms-1" style="cursor: pointer;" onclick="clearPublicFilters()"></i>
+            </span>
+        </div>
     </div>
+    
+    <div id="publicSearchResultsWrapper" style="display: none;">
+        <h4 class="mb-3 text-primary">Resultados de Búsqueda</h4>
+        <div id="publicSearchResultsLoader" class="text-center py-4" style="display:none;">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Buscando jugadores...</p>
+        </div>
+        <div id="publicSearchResultsContainer" class="row row-cols-1 row-cols-md-4 g-4 mb-5"></div>
+    </div>
+
+    <!-- Espaciador y separador lógico para los Top Rated -->
+    <div id="topRatedSection">
 
     {% if searchQuery %}
         <h4 class="mb-3">Resultados de búsqueda: "{{ searchQuery }}"</h4>
@@ -24,7 +67,7 @@
                             <div class="card-body text-center">
                                 <img src="{{ player.player.photo }}" class="rounded-circle mb-3 shadow-sm" width="80" height="80">
                                 <h5 class="card-title fw-bold text-truncate">{{ player.player.name }}</h5>
-                                <p class="text-muted small mb-2">{{ player.statistics[0].team.name ?? 'Sin equipo' }}</p>
+                                <p class="text-muted small mb-2">{{ player.currentTeam ?? player.statistics[0].team.name ?? 'Sin equipo' }}</p>
                                 <a href="{{ path('player_show', {id: player.player.id}) }}" class="btn btn-outline-primary btn-sm stretched-link">Ver Perfil</a>
                             </div>
                         </div>
@@ -47,7 +90,7 @@
                             <div class="card-body text-center">
                                 <img src="{{ item.player.photo }}" class="rounded-circle mb-3 shadow-sm" width="80" height="80">
                                 <h5 class="card-title fw-bold text-truncate">{{ item.player.name }}</h5>
-                                <p class="text-muted small mb-2">{{ item.statistics[0].team.name ?? 'Sin equipo' }}</p>
+                                <p class="text-muted small mb-2">{{ item.currentTeam ?? item.statistics[0].team.name ?? 'Sin equipo' }}</p>
                                 <a href="{{ path('player_show', {id: item.player.id}) }}" class="btn btn-primary btn-sm stretched-link rounded-pill px-4">Ver Perfil</a>
                             </div>
                         </div>
@@ -56,5 +99,168 @@
             </div>
         {% endif %}
     {% endif %}
+    </div> <!-- End topRatedSection -->
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    let filterType = null;
+    let filterId = null;
+
+    const els = {
+        leagueIn: document.getElementById('publicLeagueSearch'),
+        leagueRes: document.getElementById('publicLeagueResults'),
+        teamIn: document.getElementById('publicTeamSearch'),
+        teamRes: document.getElementById('publicTeamResults'),
+        playerIn: document.getElementById('publicPlayerSearch'),
+        searchBtn: document.getElementById('publicSearchBtn'),
+        activeFiltersList: document.getElementById('publicActiveFilters'),
+        activeFilterTxt: document.getElementById('publicActiveFilterText'),
+        resultsWrap: document.getElementById('publicSearchResultsWrapper'),
+        resultsContainer: document.getElementById('publicSearchResultsContainer'),
+        loader: document.getElementById('publicSearchResultsLoader'),
+        topRatedSection: document.getElementById('topRatedSection')
+    };
+
+    let leagueTimeout;
+    els.leagueIn.addEventListener('input', (e) => {
+        clearTimeout(leagueTimeout);
+        const q = e.target.value.trim();
+        if (q.length < 2) {
+            els.leagueRes.innerHTML = '';
+            return;
+        }
+        leagueTimeout = setTimeout(() => {
+            fetch(`/api/search/leagues?q=${encodeURIComponent(q)}`)
+                .then(r => r.json())
+                .then(data => {
+                    let html = '';
+                    (data.results || []).slice(0, 5).forEach(item => {
+                        html += `<button type="button" class="list-group-item list-group-item-action py-2" 
+                                  onclick="setPublicFilter('league', ${item.id}, '${item.name.replace(/'/g, "\\'")}')">
+                                  ${item.photo ? `<img src="${item.photo}" height="20" class="me-2 rounded">` : ''}
+                                  ${item.name} <small class="text-muted ms-1">${item.extra || ''}</small>
+                                </button>`;
+                    });
+                    els.leagueRes.innerHTML = html || '<div class="list-group-item text-muted">No encontrado</div>';
+                });
+        }, 400);
+    });
+
+    let teamTimeout;
+    els.teamIn.addEventListener('input', (e) => {
+        clearTimeout(teamTimeout);
+        const q = e.target.value.trim();
+        if (q.length < 2) {
+            els.teamRes.innerHTML = '';
+            return;
+        }
+        teamTimeout = setTimeout(() => {
+            fetch(`/api/search/teams?q=${encodeURIComponent(q)}`)
+                .then(r => r.json())
+                .then(data => {
+                    let html = '';
+                    (data.results || []).slice(0, 5).forEach(item => {
+                        html += `<button type="button" class="list-group-item list-group-item-action py-2" 
+                                  onclick="setPublicFilter('team', ${item.id}, '${item.name.replace(/'/g, "\\'")}')">
+                                  ${item.photo ? `<img src="${item.photo}" height="20" class="me-2 rounded">` : ''}
+                                  ${item.name} <small class="text-muted ms-1">${item.extra || ''}</small>
+                                </button>`;
+                    });
+                    els.teamRes.innerHTML = html || '<div class="list-group-item text-muted">No encontrado</div>';
+                });
+        }, 400);
+    });
+
+    window.setPublicFilter = (type, id, name) => {
+        filterType = type;
+        filterId = id;
+        
+        els.activeFilterTxt.textContent = `${type === 'league' ? 'LIGA' : 'EQUIPO'}: ${name}`;
+        els.activeFiltersList.style.display = 'block';
+        
+        els.leagueIn.value = '';
+        els.leagueRes.innerHTML = '';
+        els.teamIn.value = '';
+        els.teamRes.innerHTML = '';
+        
+        els.playerIn.focus();
+    };
+
+    window.clearPublicFilters = () => {
+        filterType = null;
+        filterId = null;
+        els.activeFiltersList.style.display = 'none';
+        els.activeFilterTxt.textContent = '';
+    };
+
+    const doPlayerSearch = () => {
+        const q = els.playerIn.value.trim();
+        if (q.length < 2) {
+            alert('Escribe al menos 2 caracteres para buscar al jugador.');
+            return;
+        }
+        
+        if (!filterId) {
+            alert('⚠️ Selecciona primero una Liga o Equipo en los pasos 1 o 2 para afinar la búsqueda.');
+            return;
+        }
+
+        els.topRatedSection.style.display = 'none';
+        els.resultsWrap.style.display = 'block';
+        els.resultsContainer.innerHTML = '';
+        els.loader.style.display = 'block';
+
+        let url = `/api/search/players?q=${encodeURIComponent(q)}`;
+        if (filterType === 'league') url += `&league=${filterId}`;
+        else if (filterType === 'team') url += `&team=${filterId}`;
+
+        fetch(url)
+            .then(r => r.json())
+            .then(data => {
+                els.loader.style.display = 'none';
+                const results = data.results || [];
+                
+                if (results.length === 0) {
+                    els.resultsContainer.innerHTML = '<div class="col-12"><div class="alert alert-info w-100">No se encontraron jugadores con ese nombre en esa competición/equipo.</div></div>';
+                    return;
+                }
+
+                let html = '';
+                results.forEach(player => {
+                    html += `
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 animate-hover">
+                            <div class="card-body text-center">
+                                ${player.photo ? `<img src="${player.photo}" class="rounded-circle mb-3 shadow-sm" width="80" height="80">` : ''}
+                                <h5 class="card-title fw-bold text-truncate">${player.name}</h5>
+                                <p class="text-muted small mb-3"><i class="fas fa-shield-alt me-1"></i>${player.extra || 'Sin equipo'}</p>
+                                <a href="/player/${player.id}" class="btn btn-outline-primary btn-sm stretched-link rounded-pill px-4">Ver Perfil</a>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+                els.resultsContainer.innerHTML = html;
+            })
+            .catch(err => {
+                console.error(err);
+                els.loader.style.display = 'none';
+                els.resultsContainer.innerHTML = '<div class="col-12"><div class="alert alert-danger w-100">Error interno al conectar con la API de fútbol. Inténtalo más tarde.</div></div>';
+            });
+    };
+
+    els.searchBtn.addEventListener('click', doPlayerSearch);
+    els.playerIn.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            doPlayerSearch();
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!els.leagueIn.contains(e.target) && !els.leagueRes.contains(e.target)) els.leagueRes.innerHTML = '';
+        if (!els.teamIn.contains(e.target) && !els.teamRes.contains(e.target)) els.teamRes.innerHTML = '';
+    });
+});
+</script>
 {% endblock %}

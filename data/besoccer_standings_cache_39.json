@@ -1,0 +1,565 @@
+{
+    "response": {
+        "league": {
+            "id": 39,
+            "name": "premier",
+            "season": 2025,
+            "standings": []
+        }
+    },
+    "standings": [
+        [
+            {
+                "rank": 1,
+                "team": {
+                    "id": null,
+                    "name": "Arsenal",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/arsenal.png?size=50&lossy=1"
+                },
+                "points": 61,
+                "goalsDiff": 35,
+                "form": "",
+                "status": "up",
+                "description": null,
+                "all": {
+                    "played": 28,
+                    "win": 18,
+                    "draw": 7,
+                    "lose": 3,
+                    "goals": {
+                        "for": 56,
+                        "against": 21
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 2,
+                "team": {
+                    "id": null,
+                    "name": "Manchester City",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/manchester-city-fc.png?size=50&lossy=1"
+                },
+                "points": 56,
+                "goalsDiff": 31,
+                "form": "",
+                "status": "up",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 17,
+                    "draw": 5,
+                    "lose": 5,
+                    "goals": {
+                        "for": 56,
+                        "against": 25
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 3,
+                "team": {
+                    "id": null,
+                    "name": "Aston Villa",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/aston-villa-fc.png?size=50&lossy=1"
+                },
+                "points": 51,
+                "goalsDiff": 10,
+                "form": "",
+                "status": "up",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 15,
+                    "draw": 6,
+                    "lose": 6,
+                    "goals": {
+                        "for": 38,
+                        "against": 28
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 4,
+                "team": {
+                    "id": null,
+                    "name": "Manchester United",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/manchester-united-fc.png?size=50&lossy=1"
+                },
+                "points": 48,
+                "goalsDiff": 11,
+                "form": "",
+                "status": "up",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 13,
+                    "draw": 9,
+                    "lose": 5,
+                    "goals": {
+                        "for": 48,
+                        "against": 37
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 5,
+                "team": {
+                    "id": null,
+                    "name": "Chelsea",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/chelsea-fc.png?size=50&lossy=1"
+                },
+                "points": 45,
+                "goalsDiff": 17,
+                "form": "",
+                "status": "up",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 12,
+                    "draw": 9,
+                    "lose": 6,
+                    "goals": {
+                        "for": 48,
+                        "against": 31
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 6,
+                "team": {
+                    "id": null,
+                    "name": "Liverpool",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/liverpool.png?size=50&lossy=1"
+                },
+                "points": 45,
+                "goalsDiff": 7,
+                "form": "",
+                "status": "up",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 13,
+                    "draw": 6,
+                    "lose": 8,
+                    "goals": {
+                        "for": 42,
+                        "against": 35
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 7,
+                "team": {
+                    "id": null,
+                    "name": "Brentford",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/brentford.png?size=50&lossy=1"
+                },
+                "points": 40,
+                "goalsDiff": 3,
+                "form": "",
+                "status": "same",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 12,
+                    "draw": 4,
+                    "lose": 11,
+                    "goals": {
+                        "for": 40,
+                        "against": 37
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 8,
+                "team": {
+                    "id": null,
+                    "name": "AFC Bournemouth",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/afc-bournemouth.png?size=50&lossy=1"
+                },
+                "points": 38,
+                "goalsDiff": -2,
+                "form": "",
+                "status": "same",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 9,
+                    "draw": 11,
+                    "lose": 7,
+                    "goals": {
+                        "for": 43,
+                        "against": 45
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 9,
+                "team": {
+                    "id": null,
+                    "name": "Everton",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/everton-fc.png?size=50&lossy=1"
+                },
+                "points": 37,
+                "goalsDiff": -2,
+                "form": "",
+                "status": "same",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 10,
+                    "draw": 7,
+                    "lose": 10,
+                    "goals": {
+                        "for": 29,
+                        "against": 31
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 10,
+                "team": {
+                    "id": null,
+                    "name": "Fulham",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/fulham.png?size=50&lossy=1"
+                },
+                "points": 37,
+                "goalsDiff": -3,
+                "form": "",
+                "status": "same",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 11,
+                    "draw": 4,
+                    "lose": 12,
+                    "goals": {
+                        "for": 38,
+                        "against": 41
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 11,
+                "team": {
+                    "id": null,
+                    "name": "Newcastle",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/newcastle-united-fc.png?size=50&lossy=1"
+                },
+                "points": 36,
+                "goalsDiff": -1,
+                "form": "",
+                "status": "same",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 10,
+                    "draw": 6,
+                    "lose": 11,
+                    "goals": {
+                        "for": 38,
+                        "against": 39
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 12,
+                "team": {
+                    "id": null,
+                    "name": "Sunderland",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/sunderland-afc.png?size=50&lossy=1"
+                },
+                "points": 36,
+                "goalsDiff": -5,
+                "form": "",
+                "status": "same",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 9,
+                    "draw": 9,
+                    "lose": 9,
+                    "goals": {
+                        "for": 28,
+                        "against": 33
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 13,
+                "team": {
+                    "id": null,
+                    "name": "Crystal Palace",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/crystal-palace-fc.png?size=50&lossy=1"
+                },
+                "points": 35,
+                "goalsDiff": -3,
+                "form": "",
+                "status": "same",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 9,
+                    "draw": 8,
+                    "lose": 10,
+                    "goals": {
+                        "for": 29,
+                        "against": 32
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 14,
+                "team": {
+                    "id": null,
+                    "name": "Brighton & Hove Albion",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/brighton-amp-hov.png?size=50&lossy=1"
+                },
+                "points": 34,
+                "goalsDiff": 2,
+                "form": "",
+                "status": "same",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 8,
+                    "draw": 10,
+                    "lose": 9,
+                    "goals": {
+                        "for": 36,
+                        "against": 34
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 15,
+                "team": {
+                    "id": null,
+                    "name": "Leeds United",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/leeds-united-afc.png?size=50&lossy=1"
+                },
+                "points": 31,
+                "goalsDiff": -9,
+                "form": "",
+                "status": "same",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 7,
+                    "draw": 10,
+                    "lose": 10,
+                    "goals": {
+                        "for": 37,
+                        "against": 46
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 16,
+                "team": {
+                    "id": null,
+                    "name": "Tottenham Hotspur",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/tottenham-hotspur-fc.png?size=50&lossy=1"
+                },
+                "points": 29,
+                "goalsDiff": -4,
+                "form": "",
+                "status": "down",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 7,
+                    "draw": 8,
+                    "lose": 12,
+                    "goals": {
+                        "for": 37,
+                        "against": 41
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 17,
+                "team": {
+                    "id": null,
+                    "name": "Nottingham Forest",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/nottingham-forest-fc.png?size=50&lossy=1"
+                },
+                "points": 27,
+                "goalsDiff": -14,
+                "form": "",
+                "status": "down",
+                "description": null,
+                "all": {
+                    "played": 27,
+                    "win": 7,
+                    "draw": 6,
+                    "lose": 14,
+                    "goals": {
+                        "for": 25,
+                        "against": 39
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 18,
+                "team": {
+                    "id": null,
+                    "name": "West Ham",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/west-ham-united.png?size=50&lossy=1"
+                },
+                "points": 25,
+                "goalsDiff": -17,
+                "form": "",
+                "status": "down",
+                "description": "Relegation - Championship",
+                "all": {
+                    "played": 27,
+                    "win": 6,
+                    "draw": 7,
+                    "lose": 14,
+                    "goals": {
+                        "for": 32,
+                        "against": 49
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 19,
+                "team": {
+                    "id": null,
+                    "name": "Burnley",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/burnley-fc.png?size=50&lossy=1"
+                },
+                "points": 19,
+                "goalsDiff": -23,
+                "form": "",
+                "status": "down",
+                "description": "Relegation - Championship",
+                "all": {
+                    "played": 27,
+                    "win": 4,
+                    "draw": 7,
+                    "lose": 16,
+                    "goals": {
+                        "for": 29,
+                        "against": 52
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            },
+            {
+                "rank": 20,
+                "team": {
+                    "id": null,
+                    "name": "Wolves",
+                    "logo": "https://cdn.resfu.com/img_data/escudos/wolverhampton.png?size=50&lossy=1"
+                },
+                "points": 10,
+                "goalsDiff": -33,
+                "form": "",
+                "status": "down",
+                "description": "Relegation - Championship",
+                "all": {
+                    "played": 28,
+                    "win": 1,
+                    "draw": 7,
+                    "lose": 20,
+                    "goals": {
+                        "for": 18,
+                        "against": 51
+                    }
+                },
+                "home": {},
+                "away": {},
+                "update": "2026-02-24T00:00:00+00:00"
+            }
+        ]
+    ],
+    "topScorers": {
+        "response": []
+    },
+    "topAssists": {
+        "response": []
+    },
+    "topYellow": {
+        "response": []
+    },
+    "topRed": {
+        "response": []
+    },
+    "topMinutesGoal": {
+        "response": []
+    },
+    "topPenaltyGoals": {
+        "response": []
+    },
+    "topMissedPenalty": {
+        "response": []
+    },
+    "topGoalkeeper": {
+        "response": []
+    },
+    "topSavedPenalty": {
+        "response": []
+    },
+    "topPlayed": {
+        "response": []
+    },
+    "teams": []
+}

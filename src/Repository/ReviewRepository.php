@@ -41,4 +41,26 @@ class ReviewRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+
+    public function getTotalReviews(): int
+    {
+        try {
+            return (int) $this->createQueryBuilder('r')
+                ->select('COUNT(r.id)')
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (\Exception $e) {
+            return 0;
+        }
+    }
+
+    public function getAverageRatingByCategory(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r.type, AVG(r.stars) as avg_rating')
+            ->groupBy('r.type')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -1,0 +1,7016 @@
+{
+  "response": {
+    "league": {
+      "id": 135,
+      "name": "serie_a",
+      "season": 2025,
+      "standings": [
+        [
+          {
+            "rank": 1,
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1381.png?size=60x&lossy=1"
+            },
+            "points": 64,
+            "goalsDiff": 41,
+            "group": "La Liga",
+            "form": "WWWWW",
+            "status": "up",
+            "description": "Promotion - Champions League (Group Stage)",
+            "all": {
+              "played": 26,
+              "win": 21,
+              "draw": 1,
+              "lose": 4,
+              "goals": {
+                "for": 62,
+                "against": 21
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 2,
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1692.png?size=60x&lossy=1"
+            },
+            "points": 54,
+            "goalsDiff": 21,
+            "group": "La Liga",
+            "form": "DWWDL",
+            "status": "up",
+            "description": "Promotion - Champions League (Group Stage)",
+            "all": {
+              "played": 26,
+              "win": 15,
+              "draw": 9,
+              "lose": 2,
+              "goals": {
+                "for": 41,
+                "against": 20
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 3,
+            "team": {
+              "id": null,
+              "name": "Napoli",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1777.png?size=60x&lossy=1"
+            },
+            "points": 50,
+            "goalsDiff": 12,
+            "group": "La Liga",
+            "form": "LWWDL",
+            "status": "up",
+            "description": "Promotion - Champions League (Group Stage)",
+            "all": {
+              "played": 26,
+              "win": 15,
+              "draw": 5,
+              "lose": 6,
+              "goals": {
+                "for": 39,
+                "against": 27
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 4,
+            "team": {
+              "id": null,
+              "name": "Roma",
+              "logo": "https://cdn.resfu.com/img_data/equipos/2176.png?size=60x&lossy=1"
+            },
+            "points": 50,
+            "goalsDiff": 18,
+            "group": "La Liga",
+            "form": "DLWDW",
+            "status": "up",
+            "description": "Promotion - Champions League (Group Stage)",
+            "all": {
+              "played": 26,
+              "win": 16,
+              "draw": 2,
+              "lose": 8,
+              "goals": {
+                "for": 34,
+                "against": 16
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 5,
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1430.png?size=60x&lossy=1"
+            },
+            "points": 46,
+            "goalsDiff": 18,
+            "group": "La Liga",
+            "form": "WWDLL",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 13,
+              "draw": 7,
+              "lose": 6,
+              "goals": {
+                "for": 43,
+                "against": 25
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 6,
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/equipos/822.png?size=60x&lossy=1"
+            },
+            "points": 45,
+            "goalsDiff": 22,
+            "group": "La Liga",
+            "form": "WDLDW",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 12,
+              "draw": 9,
+              "lose": 5,
+              "goals": {
+                "for": 41,
+                "against": 19
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 7,
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/equipos/339.png?size=60x&lossy=1"
+            },
+            "points": 45,
+            "goalsDiff": 14,
+            "group": "La Liga",
+            "form": "WDWWW",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 12,
+              "draw": 9,
+              "lose": 5,
+              "goals": {
+                "for": 36,
+                "against": 22
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 8,
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/equipos/522.png?size=60x&lossy=1"
+            },
+            "points": 36,
+            "goalsDiff": 3,
+            "group": "La Liga",
+            "form": "LLLWW",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 10,
+              "draw": 6,
+              "lose": 10,
+              "goals": {
+                "for": 35,
+                "against": 32
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 9,
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/equipos/2634.png?size=60x&lossy=1"
+            },
+            "points": 35,
+            "goalsDiff": -3,
+            "group": "La Liga",
+            "form": "WWLWW",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 10,
+              "draw": 5,
+              "lose": 11,
+              "goals": {
+                "for": 32,
+                "against": 35
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 10,
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1526.png?size=60x&lossy=1"
+            },
+            "points": 34,
+            "goalsDiff": 1,
+            "group": "La Liga",
+            "form": "DWDLD",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 8,
+              "draw": 10,
+              "lose": 8,
+              "goals": {
+                "for": 26,
+                "against": 25
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 11,
+            "team": {
+              "id": null,
+              "name": "Udinese",
+              "logo": "https://cdn.resfu.com/img_data/equipos/2573.png?size=60x&lossy=1"
+            },
+            "points": 32,
+            "goalsDiff": -11,
+            "group": "La Liga",
+            "form": "WWLLL",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 9,
+              "draw": 5,
+              "lose": 12,
+              "goals": {
+                "for": 28,
+                "against": 39
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 12,
+            "team": {
+              "id": null,
+              "name": "Parma",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1927.png?size=60x&lossy=1"
+            },
+            "points": 32,
+            "goalsDiff": -12,
+            "group": "La Liga",
+            "form": "LLWWW",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 8,
+              "draw": 8,
+              "lose": 10,
+              "goals": {
+                "for": 19,
+                "against": 31
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 13,
+            "team": {
+              "id": null,
+              "name": "Cagliari",
+              "logo": "https://cdn.resfu.com/img_data/equipos/609.png?size=60x&lossy=1"
+            },
+            "points": 29,
+            "goalsDiff": -7,
+            "group": "La Liga",
+            "form": "WWLLD",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 7,
+              "draw": 8,
+              "lose": 11,
+              "goals": {
+                "for": 28,
+                "against": 35
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 14,
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/equipos/4101.png?size=60x&lossy=1"
+            },
+            "points": 27,
+            "goalsDiff": -5,
+            "group": "La Liga",
+            "form": "WLLDW",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 6,
+              "draw": 9,
+              "lose": 11,
+              "goals": {
+                "for": 32,
+                "against": 37
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 15,
+            "team": {
+              "id": null,
+              "name": "Torino",
+              "logo": "https://cdn.resfu.com/img_data/equipos/2508.png?size=60x&lossy=1"
+            },
+            "points": 27,
+            "goalsDiff": -22,
+            "group": "La Liga",
+            "form": "LWDLL",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 7,
+              "draw": 6,
+              "lose": 13,
+              "goals": {
+                "for": 25,
+                "against": 47
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 16,
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1142.png?size=60x&lossy=1"
+            },
+            "points": 24,
+            "goalsDiff": -9,
+            "group": "La Liga",
+            "form": "LLDWW",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 5,
+              "draw": 9,
+              "lose": 12,
+              "goals": {
+                "for": 30,
+                "against": 39
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 17,
+            "team": {
+              "id": null,
+              "name": "Cremonese",
+              "logo": "https://cdn.resfu.com/img_data/equipos/2625.png?size=60x&lossy=1"
+            },
+            "points": 24,
+            "goalsDiff": -15,
+            "group": "La Liga",
+            "form": "LLLDL",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 5,
+              "draw": 9,
+              "lose": 12,
+              "goals": {
+                "for": 21,
+                "against": 36
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 18,
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1531.png?size=60x&lossy=1"
+            },
+            "points": 24,
+            "goalsDiff": -16,
+            "group": "La Liga",
+            "form": "DLWWL",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 6,
+              "draw": 6,
+              "lose": 14,
+              "goals": {
+                "for": 17,
+                "against": 33
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 19,
+            "team": {
+              "id": null,
+              "name": "Pisa SC",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1973.png?size=60x&lossy=1"
+            },
+            "points": 15,
+            "goalsDiff": -23,
+            "group": "La Liga",
+            "form": "LLDLL",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 1,
+              "draw": 12,
+              "lose": 13,
+              "goals": {
+                "for": 20,
+                "against": 43
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          },
+          {
+            "rank": 20,
+            "team": {
+              "id": null,
+              "name": "Hellas Verona",
+              "logo": "https://cdn.resfu.com/img_data/equipos/1305.png?size=60x&lossy=1"
+            },
+            "points": 15,
+            "goalsDiff": -27,
+            "group": "La Liga",
+            "form": "LLDLL",
+            "status": "up",
+            "description": null,
+            "all": {
+              "played": 26,
+              "win": 2,
+              "draw": 9,
+              "lose": 15,
+              "goals": {
+                "for": 19,
+                "against": 46
+              }
+            },
+            "home": {},
+            "away": {},
+            "update": "2026-02-23T23:45:15+00:00"
+          }
+        ]
+      ]
+    }
+  },
+  "standings": [
+    [
+      {
+        "rank": 1,
+        "team": {
+          "id": null,
+          "name": "Inter",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1381.png?size=60x&lossy=1"
+        },
+        "points": 64,
+        "goalsDiff": 41,
+        "group": "La Liga",
+        "form": "WWWWW",
+        "status": "up",
+        "description": "Promotion - Champions League (Group Stage)",
+        "all": {
+          "played": 26,
+          "win": 21,
+          "draw": 1,
+          "lose": 4,
+          "goals": {
+            "for": 62,
+            "against": 21
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 2,
+        "team": {
+          "id": null,
+          "name": "Milan",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1692.png?size=60x&lossy=1"
+        },
+        "points": 54,
+        "goalsDiff": 21,
+        "group": "La Liga",
+        "form": "DWWDL",
+        "status": "up",
+        "description": "Promotion - Champions League (Group Stage)",
+        "all": {
+          "played": 26,
+          "win": 15,
+          "draw": 9,
+          "lose": 2,
+          "goals": {
+            "for": 41,
+            "against": 20
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 3,
+        "team": {
+          "id": null,
+          "name": "Napoli",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1777.png?size=60x&lossy=1"
+        },
+        "points": 50,
+        "goalsDiff": 12,
+        "group": "La Liga",
+        "form": "LWWDL",
+        "status": "up",
+        "description": "Promotion - Champions League (Group Stage)",
+        "all": {
+          "played": 26,
+          "win": 15,
+          "draw": 5,
+          "lose": 6,
+          "goals": {
+            "for": 39,
+            "against": 27
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 4,
+        "team": {
+          "id": null,
+          "name": "Roma",
+          "logo": "https://cdn.resfu.com/img_data/equipos/2176.png?size=60x&lossy=1"
+        },
+        "points": 50,
+        "goalsDiff": 18,
+        "group": "La Liga",
+        "form": "DLWDW",
+        "status": "up",
+        "description": "Promotion - Champions League (Group Stage)",
+        "all": {
+          "played": 26,
+          "win": 16,
+          "draw": 2,
+          "lose": 8,
+          "goals": {
+            "for": 34,
+            "against": 16
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 5,
+        "team": {
+          "id": null,
+          "name": "Juventus",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1430.png?size=60x&lossy=1"
+        },
+        "points": 46,
+        "goalsDiff": 18,
+        "group": "La Liga",
+        "form": "WWDLL",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 13,
+          "draw": 7,
+          "lose": 6,
+          "goals": {
+            "for": 43,
+            "against": 25
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 6,
+        "team": {
+          "id": null,
+          "name": "Como",
+          "logo": "https://cdn.resfu.com/img_data/equipos/822.png?size=60x&lossy=1"
+        },
+        "points": 45,
+        "goalsDiff": 22,
+        "group": "La Liga",
+        "form": "WDLDW",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 12,
+          "draw": 9,
+          "lose": 5,
+          "goals": {
+            "for": 41,
+            "against": 19
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 7,
+        "team": {
+          "id": null,
+          "name": "Atalanta",
+          "logo": "https://cdn.resfu.com/img_data/equipos/339.png?size=60x&lossy=1"
+        },
+        "points": 45,
+        "goalsDiff": 14,
+        "group": "La Liga",
+        "form": "WDWWW",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 12,
+          "draw": 9,
+          "lose": 5,
+          "goals": {
+            "for": 36,
+            "against": 22
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 8,
+        "team": {
+          "id": null,
+          "name": "Bologna",
+          "logo": "https://cdn.resfu.com/img_data/equipos/522.png?size=60x&lossy=1"
+        },
+        "points": 36,
+        "goalsDiff": 3,
+        "group": "La Liga",
+        "form": "LLLWW",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 10,
+          "draw": 6,
+          "lose": 10,
+          "goals": {
+            "for": 35,
+            "against": 32
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 9,
+        "team": {
+          "id": null,
+          "name": "Sassuolo",
+          "logo": "https://cdn.resfu.com/img_data/equipos/2634.png?size=60x&lossy=1"
+        },
+        "points": 35,
+        "goalsDiff": -3,
+        "group": "La Liga",
+        "form": "WWLWW",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 10,
+          "draw": 5,
+          "lose": 11,
+          "goals": {
+            "for": 32,
+            "against": 35
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 10,
+        "team": {
+          "id": null,
+          "name": "Lazio",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1526.png?size=60x&lossy=1"
+        },
+        "points": 34,
+        "goalsDiff": 1,
+        "group": "La Liga",
+        "form": "DWDLD",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 8,
+          "draw": 10,
+          "lose": 8,
+          "goals": {
+            "for": 26,
+            "against": 25
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 11,
+        "team": {
+          "id": null,
+          "name": "Udinese",
+          "logo": "https://cdn.resfu.com/img_data/equipos/2573.png?size=60x&lossy=1"
+        },
+        "points": 32,
+        "goalsDiff": -11,
+        "group": "La Liga",
+        "form": "WWLLL",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 9,
+          "draw": 5,
+          "lose": 12,
+          "goals": {
+            "for": 28,
+            "against": 39
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 12,
+        "team": {
+          "id": null,
+          "name": "Parma",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1927.png?size=60x&lossy=1"
+        },
+        "points": 32,
+        "goalsDiff": -12,
+        "group": "La Liga",
+        "form": "LLWWW",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 8,
+          "draw": 8,
+          "lose": 10,
+          "goals": {
+            "for": 19,
+            "against": 31
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 13,
+        "team": {
+          "id": null,
+          "name": "Cagliari",
+          "logo": "https://cdn.resfu.com/img_data/equipos/609.png?size=60x&lossy=1"
+        },
+        "points": 29,
+        "goalsDiff": -7,
+        "group": "La Liga",
+        "form": "WWLLD",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 7,
+          "draw": 8,
+          "lose": 11,
+          "goals": {
+            "for": 28,
+            "against": 35
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 14,
+        "team": {
+          "id": null,
+          "name": "Genoa",
+          "logo": "https://cdn.resfu.com/img_data/equipos/4101.png?size=60x&lossy=1"
+        },
+        "points": 27,
+        "goalsDiff": -5,
+        "group": "La Liga",
+        "form": "WLLDW",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 6,
+          "draw": 9,
+          "lose": 11,
+          "goals": {
+            "for": 32,
+            "against": 37
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 15,
+        "team": {
+          "id": null,
+          "name": "Torino",
+          "logo": "https://cdn.resfu.com/img_data/equipos/2508.png?size=60x&lossy=1"
+        },
+        "points": 27,
+        "goalsDiff": -22,
+        "group": "La Liga",
+        "form": "LWDLL",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 7,
+          "draw": 6,
+          "lose": 13,
+          "goals": {
+            "for": 25,
+            "against": 47
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 16,
+        "team": {
+          "id": null,
+          "name": "Fiorentina",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1142.png?size=60x&lossy=1"
+        },
+        "points": 24,
+        "goalsDiff": -9,
+        "group": "La Liga",
+        "form": "LLDWW",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 5,
+          "draw": 9,
+          "lose": 12,
+          "goals": {
+            "for": 30,
+            "against": 39
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 17,
+        "team": {
+          "id": null,
+          "name": "Cremonese",
+          "logo": "https://cdn.resfu.com/img_data/equipos/2625.png?size=60x&lossy=1"
+        },
+        "points": 24,
+        "goalsDiff": -15,
+        "group": "La Liga",
+        "form": "LLLDL",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 5,
+          "draw": 9,
+          "lose": 12,
+          "goals": {
+            "for": 21,
+            "against": 36
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 18,
+        "team": {
+          "id": null,
+          "name": "Lecce",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1531.png?size=60x&lossy=1"
+        },
+        "points": 24,
+        "goalsDiff": -16,
+        "group": "La Liga",
+        "form": "DLWWL",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 6,
+          "draw": 6,
+          "lose": 14,
+          "goals": {
+            "for": 17,
+            "against": 33
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 19,
+        "team": {
+          "id": null,
+          "name": "Pisa SC",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1973.png?size=60x&lossy=1"
+        },
+        "points": 15,
+        "goalsDiff": -23,
+        "group": "La Liga",
+        "form": "LLDLL",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 1,
+          "draw": 12,
+          "lose": 13,
+          "goals": {
+            "for": 20,
+            "against": 43
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      },
+      {
+        "rank": 20,
+        "team": {
+          "id": null,
+          "name": "Hellas Verona",
+          "logo": "https://cdn.resfu.com/img_data/equipos/1305.png?size=60x&lossy=1"
+        },
+        "points": 15,
+        "goalsDiff": -27,
+        "group": "La Liga",
+        "form": "LLDLL",
+        "status": "up",
+        "description": null,
+        "all": {
+          "played": 26,
+          "win": 2,
+          "draw": 9,
+          "lose": 15,
+          "goals": {
+            "for": 19,
+            "against": 46
+          }
+        },
+        "home": {},
+        "away": {},
+        "update": "2026-02-23T23:45:15+00:00"
+      }
+    ]
+  ],
+  "topScorers": {
+    "response": [
+      {
+        "player": {
+          "id": null,
+          "name": "Lautaro Martínez",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/312138.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 14,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 14
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Nico Paz",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/922301.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 9,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 9
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Rafael Leão",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/325795.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 8,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "C. Pulišić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/289088.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 8,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "R. Højlund",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/834769.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Napoli",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1777.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 8,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Moise Kean",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/307752.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1142.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 8,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Kenan Yildiz",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3190476.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1430.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 8,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Tasos Douvikas",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/396751.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 8,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "D. Berardi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/156355.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 7,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "H. Çalhanoğlu",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/130285.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 7,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Marcus Thuram",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/240003.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 7,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "N. Krstović",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/346733.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 7,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Gift Orban",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3240010.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Hellas Verona",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1305.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 7,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "K. Davis",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/314545.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Udinese",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2573.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 7,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "S. Castro",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3172052.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 7,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "R. Orsolini",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/317672.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 7,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Pellegrino",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/927990.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Parma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1927.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 7,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "G. Scamacca",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/310775.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 6,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "S. McTominay",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/289788.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Napoli",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1777.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 6,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "R. Mandragora",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/234555.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1142.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": 6,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      }
+    ]
+  },
+  "topAssists": {
+    "response": []
+  },
+  "topYellow": {
+    "response": [
+      {
+        "player": {
+          "id": null,
+          "name": "G. Mancini",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/282098.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Roma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2176.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 9,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 9
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "R. Malinovskyi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/191693.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/4101.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 8,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Pongračić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/367542.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1142.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 8,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Juan Jesus",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/137906.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Napoli",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1777.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 8,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Y. Ramadani",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/330656.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 7,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Adam Obert",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/810984.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Cagliari",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/609.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 7,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Perrone",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/885954.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 7,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "G. Pezzella",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/282741.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Cremonese",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2625.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 7,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "I. Smolčić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/854297.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 7,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 7
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "N. Vlašić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/228677.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Torino",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2508.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "A. Caracciolo",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/87226.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Pisa SC",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1973.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Danilo Veiga",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/895571.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Jacobo Ramón",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3202377.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Luca Ranieri",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/582337.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1142.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "J. Miranda",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/342270.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Marten De Roon",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/85177.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "K. Gaspar",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/1003875.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "K. Thorstvedt",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/629229.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Marin",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/352421.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Pisa SC",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1973.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Luca Pellegrini",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/319393.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1526.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": 6,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 6
+          }
+        ]
+      }
+    ]
+  },
+  "topRed": {
+    "response": [
+      {
+        "player": {
+          "id": null,
+          "name": "Mariano Troilo",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3378865.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Parma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1927.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 2
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Amin Sarr",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/699432.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Hellas Verona",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1305.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Pierre Kalulu",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/666259.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1430.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "A. Cambiaso",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/682142.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1430.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Mario Gila",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/776266.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1526.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "A. Marušić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/210034.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1526.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "B. Norton-Cuffy",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/902942.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/4101.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "I. Touré",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/318992.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Pisa SC",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1973.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "N. Matić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/35266.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Ismaël Koné",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3175166.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Zeki Çelik",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/395934.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Roma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2176.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Jacobo Ramón",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3202377.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "J. Rodríguez",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3197021.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Marten De Roon",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/85177.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Gift Orban",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3240010.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Hellas Verona",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1305.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "K. Gaspar",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/1003875.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "N. Cambiaghi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/698095.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "T. Heggem",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/341265.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Lameck Banda",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/487397.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Zaccagni",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/218354.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1526.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": 1
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      }
+    ]
+  },
+  "topMinutesGoal": {
+    "response": [
+      {
+        "player": {
+          "id": null,
+          "name": "Lautaro Martínez",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/312138.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 14056
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 14056
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Nico Paz",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/922301.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 9036
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 9036
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "C. Pulišić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/289088.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 8042
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8042
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Ange-Yoan Bonny",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/975208.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 1175
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1175
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "C. Pulišić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/289088.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 1208
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1208
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Lautaro Martínez",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/312138.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 13614
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 13614
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "H. Çalhanoğlu",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/130285.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 375
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 375
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "R. Orsolini",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/317672.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 375
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 375
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "A. Gudmundsson",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/285600.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1142.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 3100
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 3100
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Nico Paz",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/922301.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 2100
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2100
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Jonathan David",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/684738.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1430.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 1100
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1100
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Paulo Dybala",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/115525.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Roma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2176.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 1100
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1100
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Mile Svilar",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/274687.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Roma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2176.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 16062
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 16062
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "J. Butez",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/219228.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 19073
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 19073
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Yann Sommer",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/110862.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 20083
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 20083
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Carnesecchi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/347699.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 2008
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2008
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "W. Falcone",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/162352.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 2008
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2008
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Maignan",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/186319.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 2008
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2008
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "G. Mancini",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/282098.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Roma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2176.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 9036
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 9036
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "R. Malinovskyi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/191693.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/4101.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": 8033
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 8033
+          }
+        ]
+      }
+    ]
+  },
+  "topPenaltyGoals": {
+    "response": [
+      {
+        "player": {
+          "id": null,
+          "name": "R. Orsolini",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/317672.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 3,
+              "missed": null
+            },
+            "extra_stat": 3
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "H. Çalhanoğlu",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/130285.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 3,
+              "missed": null
+            },
+            "extra_stat": 3
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "C. Nkunku",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/280417.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 3,
+              "missed": null
+            },
+            "extra_stat": 3
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "R. Malinovskyi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/191693.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/4101.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 3,
+              "missed": null
+            },
+            "extra_stat": 3
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "A. Gudmundsson",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/285600.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1142.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 3,
+              "missed": null
+            },
+            "extra_stat": 3
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "K. De Bruyne",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/69174.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Napoli",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1777.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 3,
+              "missed": null
+            },
+            "extra_stat": 3
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "K. Davis",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/314545.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Udinese",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2573.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 3,
+              "missed": null
+            },
+            "extra_stat": 3
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "N. Vlašić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/228677.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Torino",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2508.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 3,
+              "missed": null
+            },
+            "extra_stat": 3
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M'Bala Nzola",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/295945.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "D. Berardi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/156355.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Pedro",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/29477.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1526.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "L. Pellegrini",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/217134.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Roma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2176.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "L. Da Cunha",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/468500.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "G. Scamacca",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/310775.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Rafael Leão",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/325795.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Gift Orban",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3240010.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Hellas Verona",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1305.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Moise Kean",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/307752.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1142.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "D. Cataldi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/201270.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1526.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 2,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Kenan Yildiz",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3190476.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1430.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 1,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "F. Bernardeschi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/201263.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": 1,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      }
+    ]
+  },
+  "topMissedPenalty": {
+    "response": [
+      {
+        "player": {
+          "id": null,
+          "name": "Nico Paz",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/922301.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 2
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Maxwel Cornet",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/235765.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/4101.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "D. Zapata",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/66028.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Torino",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2508.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "N. Stanciu",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/144140.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/4101.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "L. Colombo",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/650843.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/4101.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "N. Füllkrug",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/122602.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Paulo Dybala",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/115525.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Roma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2176.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Á. Morata",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/40603.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "C. Pulišić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/289088.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "F. Camarda",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3323136.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Kristjan Asllani",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/692980.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Torino",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2508.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "A. Pinamonti",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/319388.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Jonathan David",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/684738.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1430.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Kenan Yildiz",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3190476.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1430.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "D. Berardi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/156355.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M'Bala Nzola",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/295945.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "H. Çalhanoğlu",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/130285.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "R. Orsolini",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/317672.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": 1
+            },
+            "extra_stat": 1
+          }
+        ]
+      }
+    ]
+  },
+  "topGoalkeeper": {
+    "response": [
+      {
+        "player": {
+          "id": null,
+          "name": "Mile Svilar",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/274687.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Roma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2176.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 16,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 16
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "J. Butez",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/219228.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 19,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 19
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Yann Sommer",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/110862.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 20,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 20
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Maignan",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/186319.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 20,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 20
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Carnesecchi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/347699.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 22,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 22
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "V. Milinković-Savić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/231184.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Napoli",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1777.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 17,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 17
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Di Gregorio",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/333115.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1430.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 22,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 22
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "I. Provedel",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/218014.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1526.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 25,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 25
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Edoardo Corvi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/692933.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Parma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1927.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 17,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 17
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "W. Falcone",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/162352.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 33,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 33
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "N. Leali",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/117131.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/4101.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 25,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 25
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Emil Audero",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/194436.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Cremonese",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2625.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 29,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 29
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "A. Muric",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/362894.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 33,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 33
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Elia Caprile",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/693181.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Cagliari",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/609.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 35,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 35
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Okoye",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/579171.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Udinese",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2573.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 23,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 23
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "A. Semper",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/290023.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Pisa SC",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1973.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 25,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 25
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "D. De Gea",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/33648.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1142.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 39,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 39
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "L. Montipò",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/201488.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Hellas Verona",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1305.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 39,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 39
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "A. Paleari",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/207381.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Torino",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2508.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": 29,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 29
+          }
+        ]
+      }
+    ]
+  },
+  "topSavedPenalty": {
+    "response": [
+      {
+        "player": {
+          "id": null,
+          "name": "M. Carnesecchi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/347699.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 2
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "W. Falcone",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/162352.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 2
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Maignan",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/186319.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 2
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "L. Montipò",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/201488.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Hellas Verona",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1305.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 2
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "V. Milinković-Savić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/231184.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Napoli",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1777.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 2
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 2
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "D. De Gea",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/33648.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Fiorentina",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1142.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 1
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "J. Butez",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/219228.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 1
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "I. Provedel",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/218014.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1526.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 1
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Emil Audero",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/194436.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Cremonese",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2625.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 1
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Okoye",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/579171.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Udinese",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2573.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 1
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Zion Suzuki",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/448576.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Parma",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1927.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": 1
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": null,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 1
+          }
+        ]
+      }
+    ]
+  },
+  "topPlayed": {
+    "response": [
+      {
+        "player": {
+          "id": null,
+          "name": "Ange-Yoan Bonny",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/975208.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 117,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 117
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "C. Pulišić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/289088.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 120,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 120
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Lautaro Martínez",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/312138.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 136,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 136
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "N. Krstović",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/346733.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 148,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 148
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Filip Kostić",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/139116.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Juventus",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1430.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 150,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 150
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Rafael Leão",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/325795.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 158,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 158
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "G. Scamacca",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/310775.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Atalanta",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/339.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 160,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 160
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Ignace N’Dri",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/848725.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lecce",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1531.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 163,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 163
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Tasos Douvikas",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/396751.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 178,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 178
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "D. Berardi",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/156355.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Sassuolo",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2634.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 178,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 178
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Marcus Thuram",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/240003.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 180,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 180
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "H. Çalhanoğlu",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/130285.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Inter",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1381.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 187,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 187
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "C. Nkunku",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/280417.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Milan",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1692.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 190,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 190
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "M. Baturina",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/893679.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Como",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/822.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 200,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 200
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Pedro",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/29477.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Lazio",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/1526.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 201,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 201
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "S. Kılıçsoy",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3259055.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Cagliari",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/609.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 201,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 201
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "R. Orsolini",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/317672.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 207,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 207
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "S. Castro",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/3172052.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Bologna",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/522.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 214,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 214
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "K. Davis",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/314545.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Udinese",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/2573.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 215,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 215
+          }
+        ]
+      },
+      {
+        "player": {
+          "id": null,
+          "name": "Caleb Ekuban",
+          "photo": "https://cdn.resfu.com/img_data/players/medium/207520.jpg?size=120x&lossy=1"
+        },
+        "statistics": [
+          {
+            "team": {
+              "id": null,
+              "name": "Genoa",
+              "logo": "https://cdn.resfu.com/img_data/escudos/medium/4101.jpg?size=60x&lossy=1"
+            },
+            "goals": {
+              "total": null,
+              "assists": null,
+              "conceded": null,
+              "saves": null
+            },
+            "cards": {
+              "yellow": null,
+              "red": null
+            },
+            "games": {
+              "appearences": 217,
+              "minutes": null
+            },
+            "penalty": {
+              "scored": null,
+              "missed": null
+            },
+            "extra_stat": 217
+          }
+        ]
+      }
+    ]
+  }
+}

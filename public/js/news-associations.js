@@ -195,7 +195,7 @@ if (typeof NewsAssociationSearch === 'undefined') {
             const list = document.getElementById('modalResultsList');
             if (list) list.innerHTML = '<div class="text-center py-4"><div class="spinner-border" role="status"></div><p class="mt-2">Buscando...</p></div>';
 
-            let url = `/admin/api/search/${this.currentType}?q=${encodeURIComponent(query)}`;
+            let url = `/api/search/${this.currentType}?q=${encodeURIComponent(query)}`;
 
             if (this.currentType === 'players' && this.filterId) {
                 if (this.filterType === 'league') {
@@ -306,7 +306,7 @@ if (typeof NewsAssociationSearch === 'undefined') {
             const resDiv = document.getElementById('leagueFilterResults');
             if (resDiv) resDiv.innerHTML = '<small class="text-muted">Buscando...</small>';
 
-            fetch(`/admin/api/search/leagues?q=${encodeURIComponent(query)}`)
+            fetch(`/api/search/leagues?q=${encodeURIComponent(query)}`)
                 .then(r => r.json())
                 .then(data => {
                     let html = '';
@@ -326,7 +326,7 @@ if (typeof NewsAssociationSearch === 'undefined') {
             const resDiv = document.getElementById('teamFilterResults');
             if (resDiv) resDiv.innerHTML = '<small class="text-muted">Buscando...</small>';
 
-            fetch(`/admin/api/search/teams?q=${encodeURIComponent(query)}`)
+            fetch(`/api/search/teams?q=${encodeURIComponent(query)}`)
                 .then(r => r.json())
                 .then(data => {
                     let html = '';

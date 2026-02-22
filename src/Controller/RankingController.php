@@ -83,20 +83,21 @@ class RankingController extends AbstractController
 
 
 
-                        if (($stat['league']['type'] ?? '') === 'League') {
-                             $minutes = $stat['games']['minutes'] ?? 0;
-                             if ($minutes > $maxMinutes) {
-                                 $maxMinutes = $minutes;
-                                 $clubTeam = $stat['team']['name'] ?? 'Sin equipo';
-                             }
+                        $minutes = $stat['games']['minutes'] ?? 0;
+                        if ($minutes > $maxMinutes) {
+                            $maxMinutes = $minutes;
+                            $clubTeam = $stat['team']['name'] ?? 'Sin equipo';
                         }
                     }
 
-                    if ($clubTeam === 'Sin equipo' && !empty($result['statistics'][0]['team']['name'])) {
+                    $playerId = $result['player']['id'] ?? 0;
+                    if ($playerId > 0) {
+                        $clubTeam = $apiService->getPlayerCurrentTeamName($playerId, $result['statistics'] ?? []);
+                    } elseif ($clubTeam === 'Sin equipo' && !empty($result['statistics'][0]['team']['name'])) {
                         $clubTeam = $result['statistics'][0]['team']['name'];
                     }
                     $items[] = [
-                        'id' => $result['player']['id'] ?? null,
+                        'id' => $playerId,
                         'name' => $result['player']['name'] ?? 'Sin nombre',
                         'photo' => $result['player']['photo'] ?? null,
                         'extra' => $clubTeam,
@@ -195,7 +196,16 @@ class RankingController extends AbstractController
                             'id' => $result['player']['id'],
                             'name' => $result['player']['name'],
                             'photo' => $result['player']['photo'] ?? null,
-                            'extra' => $result['statistics'][0]['team']['name'] ?? '',
+                            'extra' => (function($stats) {
+                                $team = 'Sin equipo';
+                                $maxM = -1;
+                                foreach ($stats ?? [] as $s) {
+                                    $m = $s['games']['minutes'] ?? 0;
+                                    if ($m > $maxM) { $maxM = $m; $team = $s['team']['name'] ?? 'Sin equipo'; }
+                                }
+                                if ($team === 'Sin equipo' && !empty($stats[0]['team']['name'])) $team = $stats[0]['team']['name'];
+                                return $team;
+                            })($result['statistics']),
                         ];
                     }
                     break;
@@ -339,7 +349,16 @@ class RankingController extends AbstractController
                             'position' => $rankingItem->getPosition(),
                             'name' => $result['player']['name'],
                             'photo' => $result['player']['photo'] ?? null,
-                            'extra' => $result['statistics'][0]['team']['name'] ?? '',
+                            'extra' => (function($stats) {
+                                $team = 'Sin equipo';
+                                $maxM = -1;
+                                foreach ($stats ?? [] as $s) {
+                                    $m = $s['games']['minutes'] ?? 0;
+                                    if ($m > $maxM) { $maxM = $m; $team = $s['team']['name'] ?? 'Sin equipo'; }
+                                }
+                                if ($team === 'Sin equipo' && !empty($stats[0]['team']['name'])) $team = $stats[0]['team']['name'];
+                                return $team;
+                            })($result['statistics']),
                         ];
                     }
                     break;

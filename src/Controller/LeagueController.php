@@ -109,10 +109,10 @@ class LeagueController extends AbstractController
         }
         $requestedSeason = $request->query->get('season');
         $isLive = ($requestedSeason === 'live' || $requestedSeason === null || $requestedSeason === '');
-        $season = 2024;
+        $season = 2025;
         if (!$isLive) {
             $season = (int)$requestedSeason;
-            if ($season < 2022) $season = 2024;
+            if ($season < 2022) $season = 2025;
         }
         $fixtureDate = $request->query->get('fixture_date', date('Y-m-d'));
         if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $fixtureDate)) {
@@ -128,8 +128,15 @@ class LeagueController extends AbstractController
         }
         $topScorers = $api->getTopScorers($id, $season);
         $topAssists = $api->getTopAssists($id, $season);
-        $topYellow = $api->getTopYellowCards($id, $season);
-        $topRed = $api->getTopRedCards($id, $season);
+        $topYellow        = $api->getTopYellowCards($id, $season);
+        $topRed           = $api->getTopRedCards($id, $season);
+
+        $topMinutesGoal   = $api->getBeSoccerRanking($id, $season, 'topMinutesGoal');
+        $topPenaltyGoals  = $api->getBeSoccerRanking($id, $season, 'topPenaltyGoals');
+        $topMissedPenalty = $api->getBeSoccerRanking($id, $season, 'topMissedPenalty');
+        $topGoalkeeper    = $api->getBeSoccerRanking($id, $season, 'topGoalkeeper');
+        $topSavedPenalty  = $api->getBeSoccerRanking($id, $season, 'topSavedPenalty');
+        $topPlayed        = $api->getBeSoccerRanking($id, $season, 'topPlayed');
         if ($isLive) {
             $allDateFixtures = $api->getFixturesByDate($fixtureDate);
             $fixtures = array_values(array_filter(
@@ -152,25 +159,95 @@ class LeagueController extends AbstractController
         $review = new \App\Entity\Review();
         $reviewForm = $this->createForm(\App\Form\ReviewType::class, $review);
         $averageRating = $reviewRepo->getAverageRating('league', (string)$id);
+
+        $allTransfers = $api->getTransfersByLeagueAll($id, $season);
+        $transfersPerPage = 10;
+        $transfersPage = max(1, $request->query->getInt('transfers_page', 1));
+        $transfersTotalPages = (int)ceil(count($allTransfers) / $transfersPerPage);
+        $transfers = array_slice($allTransfers, ($transfersPage - 1) * $transfersPerPage, $transfersPerPage);
+
+        $today = date('Y-m-d');
+        $tomorrow = date('Y-m-d', strtotime('+1 day'));
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+        
+        $datesToFetch = [$tomorrow, $today, $yesterday];
+        $allLeagueInjuries = [];
+        foreach ($datesToFetch as $d) {
+            $resp = $api->getCumulativeInjuries(['league' => $id, 'date' => $d]);
+            $allLeagueInjuries = array_merge($allLeagueInjuries, $resp['response'] ?? []);
+        }
+        
+        $seenPlayers = [];
+        $injuries = [];
+        foreach ($allLeagueInjuries as $inj) {
+            $pid = $inj['player']['id'] ?? 0;
+            if (!isset($seenPlayers[$pid])) {
+                $seenPlayers[$pid] = true;
+                $injuries[] = $inj;
+            }
+        }
+        usort($injuries, fn($a, $b) => strtotime($b['fixture']['date'] ?? '0') - strtotime($a['fixture']['date'] ?? '0'));
+        $injuriesByTeam = [];
+        foreach ($injuries as $inj) {
+            $teamName = $inj['team']['name'] ?? 'Unknown';
+            $injuriesByTeam[$teamName][] = $inj;
+        }
+
+        $enrichedScorers = $topScorers['response'] ?? [];
+        foreach ($enrichedScorers as &$scorer) {
+            $sId = $scorer['player']['id'] ?? 0;
+            if ($sId > 0) {
+                $scorer['currentTeam'] = $api->getPlayerCurrentTeamName($sId, $scorer['statistics'] ?? []);
+            }
+        }
+        unset($scorer);
+        
+        $enrichedAssists = $topAssists['response'] ?? [];
+        foreach ($enrichedAssists as &$assister) {
+            $aId = $assister['player']['id'] ?? 0;
+            if ($aId > 0) {
+                $assister['currentTeam'] = $api->getPlayerCurrentTeamName($aId, $assister['statistics'] ?? []);
+            }
+        }
+        unset($assister);
+
+        $enrichedYellow = $topYellow['response'] ?? [];
+        $enrichedRed    = $topRed['response'] ?? [];
+
+
+
         return $this->render('league/show.html.twig', [
-            'league' => $leagueInfo,
-            'country' => $countryInfo,
-            'seasons' => $seasonsAvailable,
-            'currentSeason' => $season,
-            'isLive' => $isLive,
-            'fixtureDate' => $fixtureDate,
-            'prevDate' => $prevDate,
-            'nextDate' => $nextDate,
-            'standings' => $standings,
-            'topScorers' => $topScorers['response'] ?? [],
-            'topAssists' => $topAssists['response'] ?? [],
-            'topYellow' => $topYellow['response'] ?? [],
-            'topRed' => $topRed['response'] ?? [],
-            'fixtures' => $fixtures,
-            'news' => $leagueNews,
-            'reviews' => $reviews,
-            'averageRating' => $averageRating,
-            'reviewForm' => $reviewForm->createView(),
+
+            'league'           => $leagueInfo,
+            'country'          => $countryInfo,
+            'seasons'          => $seasonsAvailable,
+            'currentSeason'    => $season,
+            'isLive'           => $isLive,
+            'fixtureDate'      => $fixtureDate,
+            'prevDate'         => $prevDate,
+            'nextDate'         => $nextDate,
+            'standings'        => $standings,
+            'topScorers'       => $enrichedScorers,
+            'topAssists'       => $enrichedAssists,
+            'topYellow'        => $enrichedYellow,
+            'topRed'           => $enrichedRed,
+            'topMinutesGoal'   => $topMinutesGoal['response'] ?? [],
+            'topPenaltyGoals'  => $topPenaltyGoals['response'] ?? [],
+            'topMissedPenalty' => $topMissedPenalty['response'] ?? [],
+            'topGoalkeeper'    => $topGoalkeeper['response'] ?? [],
+            'topSavedPenalty'  => $topSavedPenalty['response'] ?? [],
+            'topPlayed'        => $topPlayed['response'] ?? [],
+            'fixtures'         => $fixtures,
+            'transfers'        => $transfers,
+            'transfersPage'    => $transfersPage,
+            'transfersTotalPages' => $transfersTotalPages,
+            'injuriesByTeam'   => $injuriesByTeam,
+            'news'             => $leagueNews,
+            'reviews'          => $reviews,
+            'averageRating'    => $averageRating,
+            'reviewForm'       => $reviewForm->createView(),
         ]);
     }
 }
+
+

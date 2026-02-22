@@ -42,6 +42,15 @@ class CoachController extends AbstractController
 
         }
 
+            if (empty($coaches) && empty($topRated)) {
+                $mockIds = [4, 40, 11, 28, 20, 25, 2, 3, 10, 15];
+                foreach ($mockIds as $mid) {
+                    $cData = $api->getCoachById($mid);
+                    if (!empty($cData['response'])) {
+                        $item = $cData['response'][0]; $item['average_rating'] = 0; $topRated[] = $item;
+                    }
+                }
+            }
         return $this->render('coach/index.html.twig', [
             'coaches' => $coaches,
             'topRated' => $topRated,

@@ -66,6 +66,9 @@
                                         {% if fichaje.transfer.type %}
                                             <span class="badge bg-info ms-1">{{ fichaje.transfer.type }}</span>
                                         {% endif %}
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <a href="{{ path('admin_news_from_transfer', {player_name: fichaje.player.name, from: fichaje.transfer.teams.out.name ?? '', to: fichaje.transfer.teams.in.name ?? '', type: fichaje.transfer.type ?? '', date: fichaje.date}) }}" class="badge bg-warning text-dark text-decoration-none d-block mt-1">📝 Noticia</a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -89,6 +92,9 @@
                                         </div>
                                         <div class="text-end">
                                             <span class="badge bg-danger">{{ lesion.player.reason ?? 'Lesión' }}</span>
+                                            {% if is_granted('ROLE_ADMIN') %}
+                                                <a href="{{ path('admin_news_from_injury', {player_name: lesion.player.name, team: lesion.team.name ?? '', reason: lesion.player.reason ?? '', type: lesion.player.type ?? ''}) }}" class="badge bg-warning text-dark text-decoration-none d-block mt-1">📝 Noticia</a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

@@ -47,6 +47,15 @@ class VenueController extends AbstractController
 
         }
 
+            if (empty($venues) && empty($topRated)) {
+                $mockIds = [541, 556, 489, 555, 496, 550, 116, 21, 35, 585];
+                foreach ($mockIds as $mid) {
+                    $vData = $api->getVenueById($mid);
+                    if (!empty($vData['response'])) {
+                        $item = $vData['response'][0]; $item['average_rating'] = 0; $topRated[] = $item;
+                    }
+                }
+            }
         return $this->render('venue/index.html.twig', [
             'venues' => $venues,
             'topRated' => $topRated,

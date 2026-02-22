@@ -43,7 +43,8 @@ class AdminController extends AbstractController
             $name = $request->request->get('name');
             $type = $request->request->get('type');
             $description = $request->request->get('description');
-            $selectedItems = $request->request->all('items'); 
+            $itemsRaw = $request->request->get('items', '');
+            $selectedItems = $itemsRaw ? explode(',', $itemsRaw) : []; 
 
             if (empty($name) || empty($type)) {
                 $this->addFlash('error', 'El nombre y el tipo son obligatorios.');
@@ -79,11 +80,12 @@ class AdminController extends AbstractController
 
         if (!empty($topScorers['response'])) {
             foreach ($topScorers['response'] as $item) {
+                $pId = $item['player']['id'];
                 $availableItems[] = [
-                    'id' => $item['player']['id'],
+                    'id' => $pId,
                     'name' => $item['player']['name'],
                     'photo' => $item['player']['photo'] ?? null,
-                    'team' => $item['statistics'][0]['team']['name'] ?? '',
+                    'team' => $apiService->getPlayerCurrentTeamName($pId, $item['statistics'] ?? []),
                     'goals' => $item['statistics'][0]['goals']['total'] ?? 0,
                 ];
             }
@@ -106,7 +108,8 @@ class AdminController extends AbstractController
         if ($request->isMethod('POST')) {
             $name = $request->request->get('name');
             $description = $request->request->get('description');
-            $selectedItems = $request->request->all('items');
+            $itemsRaw = $request->request->get('items', '');
+            $selectedItems = $itemsRaw ? explode(',', $itemsRaw) : [];
 
             $category->setName($name);
             $category->setDescription($description);
@@ -131,8 +134,61 @@ class AdminController extends AbstractController
         }
 
         $currentItems = [];
+        $currentItemsObjects = [];
         foreach ($category->getCategoryItems() as $item) {
-            $currentItems[] = $item->getExternalId();
+            $extId = $item->getExternalId();
+            $currentItems[] = $extId;
+
+            $itemName = 'ID #' . $extId;
+            $itemPhoto = null;
+            $type = $category->getType();
+            
+            try {
+                if ($type === 'player') {
+                    $pData = $apiService->getCachedData('players', ['id' => $extId, 'season' => 2024], 86400);
+                    if (!empty($pData['response'][0]['player'])) {
+                        $p = $pData['response'][0]['player'];
+                        $itemName = $p['name'] ?? $itemName;
+                        $itemPhoto = $p['photo'] ?? null;
+                    }
+                } elseif ($type === 'team') {
+                    $tData = $apiService->getCachedData('teams', ['id' => $extId], 86400);
+                    if (!empty($tData['response'][0]['team'])) {
+                        $t = $tData['response'][0]['team'];
+                        $itemName = $t['name'] ?? $itemName;
+                        $itemPhoto = $t['logo'] ?? null;
+                    }
+                } elseif ($type === 'league') {
+                    $lData = $apiService->getCachedData('leagues', ['id' => $extId], 86400);
+                    if (!empty($lData['response'][0]['league'])) {
+                        $l = $lData['response'][0]['league'];
+                        $itemName = $l['name'] ?? $itemName;
+                        $itemPhoto = $l['logo'] ?? null;
+                    }
+                } elseif ($type === 'coach') {
+                    $cData = $apiService->getCachedData('coachs', ['id' => $extId], 86400);
+                    if (!empty($cData['response'][0])) {
+                        $c = $cData['response'][0];
+                        $itemName = $c['name'] ?? $itemName;
+                        $itemPhoto = $c['photo'] ?? null;
+                    }
+                } elseif ($type === 'stadium') {
+                    $vData = $apiService->getCachedData('venues', ['id' => $extId], 86400);
+                    if (!empty($vData['response'][0])) {
+                        $v = $vData['response'][0];
+                        $itemName = $v['name'] ?? $itemName;
+                        $itemPhoto = $v['image'] ?? null;
+                    }
+                }
+            } catch (\Exception $e) {
+
+            }
+            
+            $currentItemsObjects[] = [
+                'id' => $extId,
+                'name' => $itemName,
+                'photo' => $itemPhoto
+            ];
         }
 
         $availableItems = [];
@@ -141,11 +197,12 @@ class AdminController extends AbstractController
             $topScorers = $apiService->getTopScorers(140, 2024);
             if (!empty($topScorers['response'])) {
                 foreach ($topScorers['response'] as $item) {
+                    $pId = $item['player']['id'];
                     $availableItems[] = [
-                        'id' => $item['player']['id'],
+                        'id' => $pId,
                         'name' => $item['player']['name'],
                         'photo' => $item['player']['photo'] ?? null,
-                        'team' => $item['statistics'][0]['team']['name'] ?? '',
+                        'team' => $apiService->getPlayerCurrentTeamName($pId, $item['statistics'] ?? []),
                     ];
                 }
             }
@@ -155,6 +212,7 @@ class AdminController extends AbstractController
             'category' => $category,
             'availableItems' => $availableItems,
             'currentItems' => $currentItems,
+            'currentItemsObjects' => $currentItemsObjects,
         ]);
     }
 
@@ -184,6 +242,21 @@ class AdminController extends AbstractController
     public function newsNew(Request $request, EntityManagerInterface $em): Response
     {
         $news = new News();
+
+        $prefill = $request->getSession()->get('prefill_news');
+        if ($prefill) {
+            $request->getSession()->remove('prefill_news');
+            $news->setTitle($prefill['title'] ?? '');
+            $news->setContent($prefill['content'] ?? '');
+            $news->setCategory($prefill['category'] ?? null);
+            if (!empty($prefill['sourceType'])) {
+                $news->setSourceType($prefill['sourceType']);
+            }
+            if (!empty($prefill['sourceData'])) {
+                $news->setSourceData($prefill['sourceData']);
+            }
+        }
+
         $form = $this->createForm(NewsType::class, $news);
         $form->handleRequest($request);
 
@@ -296,188 +369,53 @@ class AdminController extends AbstractController
 
 
 
-    #[Route('/api/search/players', name: 'admin_api_search_players')]
-    public function searchPlayers(Request $request, FootballApiService $apiService): Response
+    #[Route('/news/from-transfer', name: 'admin_news_from_transfer')]
+    public function newsFromTransfer(Request $request): Response
     {
-        $query = $request->query->get('q', '');
-        $league = $request->query->getInt('league', 140);
-        $team = $request->query->getInt('team', 0);
-        
-        if (strlen($query) < 2) {
-            return $this->json(['results' => [], 'hasMore' => false]);
-        }
+        $playerName = $request->query->get('player_name', '');
+        $from       = $request->query->get('from', '');
+        $to         = $request->query->get('to', '');
+        $type       = $request->query->get('type', 'Transfer');
+        $date       = $request->query->get('date', date('Y-m-d'));
 
-        $params = ['search' => $query, 'season' => 2024];
-        if ($team > 0) {
-            $params['team'] = $team;
-        } else {
-            $params['league'] = $league;
-        }
-        
-        $data = $apiService->getCachedData('players', $params, 3600);
-
-        $results = [];
-        foreach ($data['response'] ?? [] as $item) {
-            $results[] = [
-                'id' => $item['player']['id'],
-                'name' => $item['player']['name'],
-                'photo' => $item['player']['photo'] ?? null,
-                'extra' => $item['statistics'][0]['team']['name'] ?? '',
-            ];
-        }
-
-        return $this->json([
-            'results' => $results,
-            'hasMore' => count($results) >= 20,
+        $request->getSession()->set('prefill_news', [
+            'title'      => "Fichaje: {$playerName} ({$from} -> {$to})",
+            'content'    => "El jugador {$playerName} ha sido traspasado desde {$from} a {$to} ({$type}) el {$date}.",
+            'category'   => 'fichaje',
+            'sourceType' => 'transfer',
+            'sourceData' => [
+                'player_name' => $playerName,
+                'from' => $from,
+                'to' => $to,
+                'type' => $type,
+                'date' => $date,
+            ],
         ]);
+
+        return $this->redirectToRoute('admin_news_new');
     }
 
-    #[Route('/api/search/teams-by-league', name: 'admin_api_teams_by_league')]
-    public function getTeamsByLeague(Request $request, FootballApiService $apiService): Response
+    #[Route('/news/from-injury', name: 'admin_news_from_injury')]
+    public function newsFromInjury(Request $request): Response
     {
-        $league = $request->query->getInt('league', 140);
-        
-        $data = $apiService->getTeamsByLeague($league, 2024);
+        $playerName = $request->query->get('player_name', '');
+        $team       = $request->query->get('team', '');
+        $reason     = $request->query->get('reason', '');
+        $type       = $request->query->get('type', 'Missing Fixture');
 
-        $results = [];
-        foreach ($data['response'] ?? [] as $item) {
-            $results[] = [
-                'id' => $item['team']['id'],
-                'name' => $item['team']['name'],
-            ];
-        }
+        $request->getSession()->set('prefill_news', [
+            'title'      => "Lesion: {$playerName} ({$team})",
+            'content'    => "{$playerName} ({$team}) se encuentra lesionado. Motivo: {$reason}. Estado: {$type}.",
+            'category'   => 'lesion',
+            'sourceType' => 'injury',
+            'sourceData' => [
+                'player_name' => $playerName,
+                'team' => $team,
+                'reason' => $reason,
+                'type' => $type,
+            ],
+        ]);
 
-        usort($results, fn($a, $b) => strcmp($a['name'], $b['name']));
-
-        return $this->json(['results' => $results]);
-    }
-
-    #[Route('/api/search/teams', name: 'admin_api_search_teams')]
-    public function searchTeams(Request $request, FootballApiService $apiService): Response
-    {
-        $query = $request->query->get('q', '');
-        
-        if (strlen($query) < 2) {
-            return $this->json(['results' => [], 'hasMore' => false]);
-        }
-
-        $data = $apiService->getCachedData('teams', [
-            'search' => $query,
-        ], 3600);
-
-        $results = [];
-        foreach ($data['response'] ?? [] as $item) {
-            $results[] = [
-                'id' => $item['team']['id'],
-                'name' => $item['team']['name'],
-                'photo' => $item['team']['logo'] ?? null,
-                'extra' => $item['team']['country'] ?? '',
-            ];
-        }
-
-        return $this->json(['results' => $results, 'hasMore' => false]);
-    }
-
-    #[Route('/api/search/leagues', name: 'admin_api_search_leagues')]
-    public function searchLeagues(Request $request, FootballApiService $apiService): Response
-    {
-        $query = $request->query->get('q', '');
-        
-        if (strlen($query) < 2) {
-            return $this->json(['results' => [], 'hasMore' => false]);
-        }
-
-        $queryNoSpaces = str_replace(' ', '', $query);
-        $queryWithSpaces = preg_replace('/([a-z])([A-Z])/', '$1 $2', $query);
-
-        $data = $apiService->getCachedData('leagues', ['search' => $query], 3600);
-        $results = [];
-        
-        foreach ($data['response'] ?? [] as $item) {
-            $results[$item['league']['id']] = [
-                'id' => $item['league']['id'],
-                'name' => $item['league']['name'],
-                'photo' => $item['league']['logo'] ?? null,
-                'extra' => $item['country']['name'] ?? '',
-            ];
-        }
-
-        if (empty($results) && $queryNoSpaces !== $query) {
-            $data2 = $apiService->getCachedData('leagues', ['search' => $queryNoSpaces], 3600);
-            foreach ($data2['response'] ?? [] as $item) {
-                $results[$item['league']['id']] = [
-                    'id' => $item['league']['id'],
-                    'name' => $item['league']['name'],
-                    'photo' => $item['league']['logo'] ?? null,
-                    'extra' => $item['country']['name'] ?? '',
-                ];
-            }
-        }
-
-        if (empty($results) && $queryWithSpaces !== $query) {
-            $data3 = $apiService->getCachedData('leagues', ['search' => $queryWithSpaces], 3600);
-            foreach ($data3['response'] ?? [] as $item) {
-                $results[$item['league']['id']] = [
-                    'id' => $item['league']['id'],
-                    'name' => $item['league']['name'],
-                    'photo' => $item['league']['logo'] ?? null,
-                    'extra' => $item['country']['name'] ?? '',
-                ];
-            }
-        }
-
-        return $this->json(['results' => array_values($results), 'hasMore' => false]);
-    }
-
-    #[Route('/api/search/coaches', name: 'admin_api_search_coaches')]
-    public function searchCoaches(Request $request, FootballApiService $apiService): Response
-    {
-        $query = $request->query->get('q', '');
-        
-        if (strlen($query) < 2) {
-            return $this->json(['results' => [], 'hasMore' => false]);
-        }
-
-        $data = $apiService->getCachedData('coachs', [
-            'search' => $query,
-        ], 3600);
-
-        $results = [];
-        foreach ($data['response'] ?? [] as $item) {
-            $results[] = [
-                'id' => $item['id'],
-                'name' => $item['name'],
-                'photo' => $item['photo'] ?? null,
-                'extra' => $item['team']['name'] ?? '',
-            ];
-        }
-
-        return $this->json(['results' => $results, 'hasMore' => false]);
-    }
-
-    #[Route('/api/search/venues', name: 'admin_api_search_venues')]
-    public function searchVenues(Request $request, FootballApiService $apiService): Response
-    {
-        $query = $request->query->get('q', '');
-        
-        if (strlen($query) < 2) {
-            return $this->json(['results' => [], 'hasMore' => false]);
-        }
-
-        $data = $apiService->getCachedData('venues', [
-            'search' => $query,
-        ], 3600);
-
-        $results = [];
-        foreach ($data['response'] ?? [] as $item) {
-            $results[] = [
-                'id' => $item['id'],
-                'name' => $item['name'],
-                'photo' => $item['image'] ?? null,
-                'extra' => $item['city'] ?? '',
-            ];
-        }
-
-        return $this->json(['results' => $results, 'hasMore' => false]);
+        return $this->redirectToRoute('admin_news_new');
     }
 }

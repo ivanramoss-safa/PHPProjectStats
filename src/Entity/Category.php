@@ -30,11 +30,11 @@ class Category
     private ?\DateTimeImmutable $createdAt = null;
 
     
-    #[ORM\OneToMany(targetEntity: CategoryItem::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: CategoryItem::class, mappedBy: 'category', cascade: ['remove'], orphanRemoval: true)]
     private Collection $categoryItems;
 
     
-    #[ORM\OneToMany(targetEntity: Ranking::class, mappedBy: 'category')]
+    #[ORM\OneToMany(targetEntity: Ranking::class, mappedBy: 'category', cascade: ['remove'], orphanRemoval: true)]
     private Collection $rankings;
 
     public function __construct()

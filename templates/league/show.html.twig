@@ -10,6 +10,18 @@
         <div>
             <h1 class="mb-0">{{ league.name }}</h1>
             <p class="text-muted mb-0">{{ country.name }}</p>
+            {% if averageRating is defined and averageRating > 0 %}
+                <div class="d-flex align-items-center mt-1">
+                    <span class="text-warning me-1">
+                        {% for i in 1..5 %}
+                            {% if i <= averageRating|round(0, 'floor') %}<i class="fas fa-star"></i>
+                            {% elseif i - averageRating < 0.5 %}<i class="fas fa-star-half-alt"></i>
+                            {% else %}<i class="far fa-star"></i>{% endif %}
+                        {% endfor %}
+                    </span>
+                    <span class="fw-bold small">({{ averageRating|number_format(1) }})</span>
+                </div>
+            {% endif %}
         </div>
         <div class="ms-auto">
             <form action="{{ path('league_show', {id: league.id}) }}" method="get" class="d-flex align-items-center">
@@ -17,9 +29,11 @@
                 <select name="season" id="seasonSelect" class="form-select form-select-sm" onchange="this.form.submit()">
                     <option value="live" {{ isLive ? 'selected' : '' }}>⚽ Temporada Actual</option>
                     {% for seasonInfo in seasons|reverse %}
+                        {% if seasonInfo.year != 2025 %}
                         <option value="{{ seasonInfo.year }}" {{ not isLive and seasonInfo.year == currentSeason ? 'selected' : '' }}>
                             {{ seasonInfo.year }}/{{ seasonInfo.year + 1 }}
                         </option>
+                        {% endif %}
                     {% endfor %}
                 </select>
             </form>
@@ -37,6 +51,12 @@
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="rankings-tab" data-bs-toggle="tab" data-bs-target="#rankings" type="button" role="tab">🏆 Rankings</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="transfers-tab" data-bs-toggle="tab" data-bs-target="#transfers" type="button" role="tab">💰 Fichajes</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="injuries-tab" data-bs-toggle="tab" data-bs-target="#injuries" type="button" role="tab">🏥 Lesiones</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news" type="button" role="tab">📰 Noticias</button>
@@ -71,35 +91,50 @@
                     <div class="alert alert-info text-center">No hay partidos de {{ league.name }} para este día.</div>
                 {% else %}
                     {% for match in fixtures %}
-                    <div class="d-flex justify-content-between align-items-center border-bottom p-2 bg-white rounded mb-1">
-                        <div class="text-center" style="width: 15%">
-                            <small class="d-block text-muted">{{ match.fixture.date|date('H:i') }}</small>
-                            <small class="text-muted">{{ match.league.round }}</small>
+                        <div class="card mb-3 border-0 shadow-sm">
+                            <div class="card-header bg-white border-0 pt-2 pb-0 text-center">
+                                <small class="text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">
+                                    {% if match.league.logo %}<img src="{{ match.league.logo }}" width="15" class="me-1">{% endif %}
+                                    {{ match.league.name }} • {{ match.league.round }}
+                                </small>
+                            </div>
+                            <div class="card-body py-2">
+                                <div class="row align-items-center">
+                                    <div class="col-4 text-end">
+                                        <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-block">
+                                            <span class="d-none d-md-inline fw-bold me-2">{{ match.teams.home.name }}</span>
+                                            <img src="{{ match.teams.home.logo }}" width="40">
+                                        </a>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        {% set sc = match.fixture.status.short|upper %}
+                                        <a href="{{ path('match_show', {id: match.fixture.id}) }}" class="text-decoration-none text-dark d-block">
+                                            {% if sc in ['FT','AET','PEN'] %}
+                                                <div class="display-6 fw-bold lh-1">{{ match.goals.home }} - {{ match.goals.away }}</div>
+                                                <small class="badge bg-light text-muted border mt-1">Finalizado</small>
+                                            {% elseif sc in ['NS','TBD'] %}
+                                                <div class="fs-4 fw-bold text-muted lh-1">- vs -</div>
+                                                <div class="text-primary fw-bold mt-1">{{ match.fixture.date|date('H:i', 'Europe/Madrid') }}</div>
+                                            {% elseif sc in ['PST','ABD','WO','SUSP'] %}
+                                                <span class="badge bg-secondary">{{ match.fixture.status.long }}</span>
+                                            {% else %}
+                                                <div class="fs-4 fw-bold text-danger lh-1">{{ match.goals.home ?? 0 }} - {{ match.goals.away ?? 0 }}</div>
+                                                <small class="badge bg-danger mt-1">{{ match.fixture.status.elapsed ? match.fixture.status.elapsed ~ "'" : 'En juego' }}</small>
+                                            {% endif %}
+                                        </a>
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <a href="{{ path('admin_news_new', {fixtureId: match.fixture.id}) }}" class="badge bg-warning text-dark text-decoration-none mt-1">📰 Noticia</a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-4 text-start">
+                                        <a href="{{ path('team_show', {id: match.teams.away.id}) }}" class="text-decoration-none text-dark d-block">
+                                            <img src="{{ match.teams.away.logo }}" width="40">
+                                            <span class="d-none d-md-inline fw-bold ms-2">{{ match.teams.away.name }}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-end" style="width: 35%">
-                            <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-flex align-items-center justify-content-end gap-2">
-                                <span>{{ match.teams.home.name }}</span>
-                                <img src="{{ match.teams.home.logo }}" width="25" height="25">
-                            </a>
-                        </div>
-                        <div class="text-center px-2" style="width: 15%">
-                            <a href="{{ path('match_show', {id: match.fixture.id}) }}" class="btn btn-sm {{ match.fixture.status.short in ['FT','AET','PEN'] ? 'btn-outline-dark' : 'btn-primary' }} fw-bold">
-                                {% if match.fixture.status.short in ['FT','AET','PEN'] %}
-                                    {{ match.goals.home }} - {{ match.goals.away }}
-                                {% elseif match.fixture.status.short in ['1H','2H','HT','ET','P','LIVE'] %}
-                                    <span class="text-danger live-blink">{{ match.goals.home }} - {{ match.goals.away }}</span>
-                                {% else %}
-                                    VS
-                                {% endif %}
-                            </a>
-                        </div>
-                        <div class="text-start" style="width: 35%">
-                            <a href="{{ path('team_show', {id: match.teams.away.id}) }}" class="text-decoration-none text-dark d-flex align-items-center gap-2">
-                                <img src="{{ match.teams.away.logo }}" width="25" height="25">
-                                <span>{{ match.teams.away.name }}</span>
-                            </a>
-                        </div>
-                    </div>
                     {% endfor %}
                 {% endif %}
 
@@ -138,7 +173,7 @@
                             <div class="d-flex justify-content-between align-items-center border-bottom p-2 bg-white">
                                 <div class="text-center" style="width: 15%">
                                     <small class="d-block text-muted">{{ match.fixture.date|date('d/m/Y') }}</small>
-                                    <small class="fw-bold">{{ match.fixture.date|date('H:i') }}</small>
+                                    <small class="fw-bold">{{ match.fixture.date|date('H:i', 'Europe/Madrid') }}</small>
                                 </div>
                                 <div class="text-end" style="width: 30%">
                                     <a href="{{ path('team_show', {id: match.teams.home.id}) }}" class="text-decoration-none text-dark d-flex align-items-center justify-content-end">
@@ -209,10 +244,17 @@
                                     <tr class="{{ team.rank <= 4 ? 'table-success-light' : '' }}">
                                         <td class="text-center fw-bold">{{ team.rank }}</td>
                                         <td>
+                                            {% if team.team.id %}
                                             <a href="{{ path('team_show', {id: team.team.id}) }}" class="text-decoration-none text-dark d-flex align-items-center">
                                                 <img src="{{ team.team.logo }}" width="30" height="30" class="me-2 rounded-circle border p-1 bg-white">
                                                 {{ team.team.name }}
                                             </a>
+                                            {% else %}
+                                            <span class="text-dark d-flex align-items-center">
+                                                <img src="{{ team.team.logo }}" width="30" height="30" class="me-2 rounded-circle border p-1 bg-white">
+                                                {{ team.team.name }}
+                                            </span>
+                                            {% endif %}
                                         </td>
                                         <td class="text-center">{{ team.all.played }}</td>
                                         <td class="text-center">{{ team.all.win }}</td>
@@ -240,6 +282,9 @@
 
         
         <div class="tab-pane fade" id="rankings" role="tabpanel">
+
+            
+            
             <div class="row">
                 
                 <div class="col-md-6 mb-4">
@@ -248,23 +293,27 @@
                             <h5 class="mb-0">⚽ Máximos Goleadores</h5>
                         </div>
                         <ul class="list-group list-group-flush">
-                            {% for player in topScorers|slice(0, 10) %}
+                            {% for player in topScorers|slice(0, 20) %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
                                         <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
-                                        <img src="{{ player.player.photo }}" width="40" height="40" class="rounded-circle me-2">
+                                        <img src="{{ player.player.photo }}" width="40" height="40" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
                                         <div>
-                                            <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark fw-bold d-block">{{ player.player.name }}</a>
+                                            {% if player.player.id %}
+                                                <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark fw-bold d-block">{{ player.player.name }}</a>
+                                            {% else %}
+                                                <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            {% endif %}
                                             <small class="text-muted">
-                                                <img src="{{ player.statistics[0].team.logo }}" width="15" class="me-1">
-                                                {{ player.statistics[0].team.name }}
+                                                <img src="{{ player.statistics[0].team.logo }}" width="15" class="me-1" onerror="this.style.display='none'">
+                                                {{ player.currentTeam ?? player.statistics[0].team.name }}
                                             </small>
                                         </div>
                                     </div>
-                                    <span class="badge bg-primary rounded-pill fs-6">{{ player.statistics[0].goals.total }}</span>
+                                    <span class="badge bg-success rounded-pill fs-6">{{ player.statistics[0].goals.total }}</span>
                                 </li>
                             {% else %}
-                                <li class="list-group-item">Sin datos</li>
+                                <li class="list-group-item text-muted">Sin datos para esta temporada</li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -277,66 +326,360 @@
                             <h5 class="mb-0">🎯 Máximos Asistentes</h5>
                         </div>
                         <ul class="list-group list-group-flush">
-                            {% for player in topAssists|slice(0, 10) %}
+                            {% for player in topAssists|slice(0, 20) %}
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center">
                                         <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
-                                        <img src="{{ player.player.photo }}" width="40" height="40" class="rounded-circle me-2">
+                                        <img src="{{ player.player.photo }}" width="40" height="40" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
                                         <div>
-                                            <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark fw-bold d-block">{{ player.player.name }}</a>
+                                            {% if player.player.id %}
+                                                <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark fw-bold d-block">{{ player.player.name }}</a>
+                                            {% else %}
+                                                <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            {% endif %}
                                             <small class="text-muted">
-                                                <img src="{{ player.statistics[0].team.logo }}" width="15" class="me-1">
-                                                {{ player.statistics[0].team.name }}
+                                                <img src="{{ player.statistics[0].team.logo }}" width="15" class="me-1" onerror="this.style.display='none'">
+                                                {{ player.currentTeam ?? player.statistics[0].team.name }}
                                             </small>
                                         </div>
                                     </div>
                                     <span class="badge bg-info rounded-pill fs-6">{{ player.statistics[0].goals.assists|default(0) }}</span>
                                 </li>
                             {% else %}
-                                <li class="list-group-item">Sin datos</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-                
-                
-                 <div class="col-md-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-header bg-warning text-dark">
-                            <h5 class="mb-0">🟨 Tarjetas Amarillas</h5>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            {% for player in topYellow|slice(0, 5) %}
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ player.player.photo }}" width="30" height="30" class="rounded-circle me-2">
-                                        <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark">{{ player.player.name }}</a>
-                                    </div>
-                                    <span class="badge bg-warning text-dark rounded-pill">{{ player.statistics[0].cards.yellow }}</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-                 <div class="col-md-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-header bg-danger text-white">
-                            <h5 class="mb-0">🟥 Tarjetas Rojas</h5>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            {% for player in topRed|slice(0, 5) %}
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <img src="{{ player.player.photo }}" width="30" height="30" class="rounded-circle me-2">
-                                        <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark">{{ player.player.name }}</a>
-                                    </div>
-                                    <span class="badge bg-danger rounded-pill">{{ player.statistics[0].cards.red }}</span>
-                                </li>
+                                <li class="list-group-item text-muted">Sin datos para esta temporada</li>
                             {% endfor %}
                         </ul>
                     </div>
                 </div>
             </div>
+
+            
+            <div class="row">
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-warning text-dark">
+                            <h5 class="mb-0">🟨 Tarjetas Amarillas</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topYellow|slice(0, 20) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="35" height="35" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
+                                        <div>
+                                            {% if player.player.id %}
+                                                <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark fw-bold d-block">{{ player.player.name }}</a>
+                                            {% else %}
+                                                <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            {% endif %}
+                                            <small class="text-muted">{{ player.statistics[0].team.name }}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-warning text-dark rounded-pill">{{ player.statistics[0].cards.yellow ?? player.statistics[0].extra_stat }}</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item text-muted">Sin datos para esta temporada</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0">🟥 Tarjetas Rojas</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topRed|slice(0, 20) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="35" height="35" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
+                                        <div>
+                                            {% if player.player.id %}
+                                                <a href="{{ path('player_show', {id: player.player.id}) }}" class="text-decoration-none text-dark fw-bold d-block">{{ player.player.name }}</a>
+                                            {% else %}
+                                                <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            {% endif %}
+                                            <small class="text-muted">{{ player.statistics[0].team.name }}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-danger rounded-pill">{{ player.statistics[0].cards.red ?? player.statistics[0].extra_stat }}</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item text-muted">Sin datos para esta temporada</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            
+            {% if topMinutesGoal is not empty or topPenaltyGoals is not empty %}
+            <div class="row">
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-secondary text-white">
+                            <h5 class="mb-0">⏱️ Minutos por Gol</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topMinutesGoal|slice(0, 20) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="35" height="35" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
+                                        <div>
+                                            <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            <small class="text-muted">{{ player.statistics[0].team.name }}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-secondary rounded-pill">{{ player.statistics[0].extra_stat }} min</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item text-muted">Solo disponible para La Liga temporada actual</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header text-white" style="background-color:#7c3aed;">
+                            <h5 class="mb-0">🎯 Goles de Penalti</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topPenaltyGoals|slice(0, 20) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="35" height="35" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
+                                        <div>
+                                            <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            <small class="text-muted">{{ player.statistics[0].team.name }}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge rounded-pill text-white" style="background-color:#7c3aed;">{{ player.statistics[0].extra_stat }}</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item text-muted">Solo disponible para La Liga temporada actual</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            
+            {% if topMissedPenalty is not empty or topGoalkeeper is not empty %}
+            <div class="row">
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-dark text-white">
+                            <h5 class="mb-0">❌ Penaltis Fallados</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topMissedPenalty|slice(0, 20) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="35" height="35" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
+                                        <div>
+                                            <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            <small class="text-muted">{{ player.statistics[0].team.name }}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge bg-dark rounded-pill">{{ player.statistics[0].extra_stat }}</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item text-muted">Solo disponible para La Liga temporada actual</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header text-white" style="background-color:#0f766e;">
+                            <h5 class="mb-0">🧤 Mejor Portero</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topGoalkeeper|slice(0, 20) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="35" height="35" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
+                                        <div>
+                                            <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            <small class="text-muted">{{ player.statistics[0].team.name }}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge rounded-pill text-white" style="background-color:#0f766e;">{{ player.statistics[0].extra_stat }} gc/partido</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item text-muted">Solo disponible para La Liga temporada actual</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            
+            {% if topSavedPenalty is not empty or topPlayed is not empty %}
+            <div class="row">
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header text-white" style="background-color:#b45309;">
+                            <h5 class="mb-0">🧤 Penaltis Parados</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topSavedPenalty|slice(0, 20) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="35" height="35" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
+                                        <div>
+                                            <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            <small class="text-muted">{{ player.statistics[0].team.name }}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge rounded-pill text-white" style="background-color:#b45309;">{{ player.statistics[0].extra_stat }}</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item text-muted">Solo disponible para La Liga temporada actual</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header text-white" style="background-color:#1e3a5f;">
+                            <h5 class="mb-0">📋 Partidos Jugados</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for player in topPlayed|slice(0, 20) %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <span class="fw-bold me-3 text-muted">{{ loop.index }}</span>
+                                        <img src="{{ player.player.photo }}" width="35" height="35" class="rounded-circle me-2" onerror="this.src='/img/default-player.png'">
+                                        <div>
+                                            <span class="text-dark fw-bold d-block">{{ player.player.name }}</span>
+                                            <small class="text-muted">{{ player.statistics[0].team.name }}</small>
+                                        </div>
+                                    </div>
+                                    <span class="badge rounded-pill text-white" style="background-color:#1e3a5f;">{{ player.statistics[0].extra_stat }}</span>
+                                </li>
+                            {% else %}
+                                <li class="list-group-item text-muted">Solo disponible para La Liga temporada actual</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+        
+        <div class="tab-pane fade" id="transfers" role="tabpanel">
+            {% if transfers is empty %}
+                <div class="alert alert-info">No hay fichajes recientes para esta liga.</div>
+            {% else %}
+                {% set currentMonth = '' %}
+                {% for tr in transfers %}
+                    {% set month = tr.date|date('F Y') %}
+                    {% if month != currentMonth %}
+                        {% if currentMonth != '' %}</div>{% endif %}
+                        {% set currentMonth = month %}
+                        <h6 class="fw-bold text-muted border-bottom pb-1 mt-3 mb-2">{{ month|capitalize }}</h6>
+                        <div>
+                    {% endif %}
+                    <div class="d-flex align-items-center justify-content-between border-bottom py-2">
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="{{ tr.player.photo ?? '' }}" width="36" class="rounded-circle" alt="">
+                            <div>
+                                <a href="{{ path('player_show', {id: tr.player.id}) }}" class="fw-bold text-dark text-decoration-none">{{ tr.player.name }}</a>
+                                <small class="d-block text-muted">
+                                    <img src="{{ tr.transfer.teams.out.logo ?? '' }}" width="16"> {{ tr.transfer.teams.out.name ?? '?' }}
+                                    ➡️
+                                    <img src="{{ tr.transfer.teams.in.logo ?? '' }}" width="16"> {{ tr.transfer.teams.in.name ?? '?' }}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <span class="badge {{ tr.transfer.teams.in.id is defined ? 'bg-success' : 'bg-secondary' }}">{{ tr.transfer.type ?? 'Transfer' }}</span>
+                            <small class="d-block text-muted">{{ tr.date }}</small>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('admin_news_from_transfer', {player_name: tr.player.name, from: tr.transfer.teams.out.name ?? '', to: tr.transfer.teams.in.name ?? '', type: tr.transfer.type ?? '', date: tr.date}) }}" class="badge bg-warning text-dark text-decoration-none mt-1">📝 Noticia</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% if currentMonth != '' %}</div>{% endif %}
+
+                
+                {% if transfersTotalPages > 1 %}
+                <nav class="mt-3">
+                    <ul class="pagination pagination-sm justify-content-center">
+                        {% if transfersPage > 1 %}
+                            <li class="page-item"><a class="page-link" href="{{ path('league_show', {id: league.id, season: isLive ? 'live' : currentSeason, transfers_page: transfersPage - 1}) }}#transfers">◀</a></li>
+                        {% endif %}
+                        
+                        {% for p in 1..transfersTotalPages %}
+                            {% if p == 1 or p == transfersTotalPages or (p >= transfersPage - 2 and p <= transfersPage + 2) %}
+                                <li class="page-item {{ p == transfersPage ? 'active' : '' }}"><a class="page-link" href="{{ path('league_show', {id: league.id, season: isLive ? 'live' : currentSeason, transfers_page: p}) }}#transfers">{{ p }}</a></li>
+                            {% elseif p == transfersPage - 3 or p == transfersPage + 3 %}
+                                <li class="page-item disabled"><span class="page-link">…</span></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if transfersPage < transfersTotalPages %}
+                            <li class="page-item"><a class="page-link" href="{{ path('league_show', {id: league.id, season: isLive ? 'live' : currentSeason, transfers_page: transfersPage + 1}) }}#transfers">▶</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        
+        <div class="tab-pane fade" id="injuries" role="tabpanel">
+            {% if injuriesByTeam is empty %}
+                <div class="alert alert-info">No hay lesiones registradas hoy para esta liga.</div>
+            {% else %}
+                {% for teamName, teamInjuries in injuriesByTeam %}
+                    <div class="mb-3">
+                        <h6 class="fw-bold border-bottom pb-1">
+                            <img src="{{ teamInjuries[0].team.logo }}" width="20" class="me-1"> {{ teamName }}
+                        </h6>
+                        {% for inj in teamInjuries %}
+                            <div class="d-flex align-items-center justify-content-between py-1 border-bottom">
+                                <div class="d-flex align-items-center gap-2">
+                                    <img src="{{ inj.player.photo }}" width="36" class="rounded-circle">
+                                    <div>
+                                        <a href="{{ path('player_show', {id: inj.player.id}) }}" class="fw-bold text-dark text-decoration-none">{{ inj.player.name }}</a>
+                                        <small class="d-block text-muted">{{ inj.player.reason }}</small>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <span class="badge {{ inj.player.type == 'Missing Fixture' ? 'bg-danger' : 'bg-warning text-dark' }}">{{ inj.player.type }}</span>
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <a href="{{ path('admin_news_from_injury', {player_name: inj.player.name, team: teamName, reason: inj.player.reason, type: inj.player.type}) }}" class="badge bg-warning text-dark text-decoration-none mt-1">📝 Noticia</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
 
         

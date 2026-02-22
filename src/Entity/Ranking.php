@@ -21,7 +21,7 @@ class Ranking
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'rankings')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Category $category = null;
 
     #[ORM\Column(length: 150)]
@@ -31,7 +31,7 @@ class Ranking
     private ?\DateTimeImmutable $createdAt = null;
 
     
-    #[ORM\OneToMany(targetEntity: RankingItem::class, mappedBy: 'ranking')]
+    #[ORM\OneToMany(targetEntity: RankingItem::class, mappedBy: 'ranking', cascade: ['remove'], orphanRemoval: true)]
     private Collection $rankingItems;
 
     public function __construct()

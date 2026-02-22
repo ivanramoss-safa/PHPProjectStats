@@ -20,6 +20,14 @@ class PlayerController extends AbstractController
 
         if ($search) {
             $dataResponse = $api->searchWithVariations('players', $search);
+
+            foreach ($dataResponse as &$pl) {
+                $plId = $pl['player']['id'] ?? 0;
+                if ($plId > 0) {
+                    $pl['currentTeam'] = $api->getPlayerCurrentTeamName($plId, $pl['statistics'] ?? []);
+                }
+            }
+            unset($pl);
             $players = $dataResponse;
         } else {
 
@@ -32,6 +40,9 @@ class PlayerController extends AbstractController
                 if (!empty($pData['response'])) {
                     $playerItem = $pData['response'][0];
                     $playerItem['average_rating'] = $ref['avg_rating'];
+                    $playerItem['currentTeam'] = $api->getPlayerCurrentTeamName(
+                        (int)$ref['externalId'], $playerItem['statistics'] ?? []
+                    );
                     $topRated[] = $playerItem;
                     $existingIds[] = $playerItem['player']['id'];
                 }
@@ -47,6 +58,9 @@ class PlayerController extends AbstractController
                         if (!empty($pData['response'])) {
                             $item = $pData['response'][0];
                             $item['average_rating'] = 0; 
+                            $item['currentTeam'] = $api->getPlayerCurrentTeamName(
+                                $defId, $item['statistics'] ?? []
+                            );
                             $topRated[] = $item;
                             $existingIds[] = $defId;
                         }
@@ -77,40 +91,39 @@ class PlayerController extends AbstractController
         }
 
         $season = $request->query->getInt('season', 0);
+
+        if (!in_array(2025, $seasons)) {
+            array_unshift($seasons, 2025);
+        }
+
         if (!$season) {
-            $season = $seasons[0] ?? 2024;
+            $season = 2025;
         }
 
 
         $playerInfo = null; 
 
-        if (!empty($seasons)) {
-             $latest = $seasons[0];
-
-             $latestData = $api->getPlayerStatistics($id, $latest);
-
-             $hasStats = false;
-
-             if (!empty($latestData['errors']['plan'])) {
-
-                 $hasStats = false;
-             } elseif (!empty($latestData['response'][0]['statistics'])) {
-                 $hasStats = true;
-
-                 if ($latest == $season) {
-                     $playerInfo = $latestData['response'][0];
-                 }
-             }
-
-             if (!$hasStats) {
-
-                 array_shift($seasons);
-
-                 if ($season == $latest) {
-                     $season = $seasons[0] ?? 2024;
-                     $playerInfo = null; 
-                 }
-             }
+        if (!empty($seasons) && $season != 2025) {
+            $latest = $seasons[0];
+            if ($latest != 2025) {
+                $latestData = $api->getPlayerStatistics($id, $latest);
+                $hasStats = false;
+                if (!empty($latestData['errors']['plan'])) {
+                    $hasStats = false;
+                } elseif (!empty($latestData['response'][0]['statistics'])) {
+                    $hasStats = true;
+                    if ($latest == $season) {
+                        $playerInfo = $latestData['response'][0];
+                    }
+                }
+                if (!$hasStats) {
+                    array_shift($seasons);
+                    if ($season == $latest) {
+                        $season = $seasons[0] ?? 2025;
+                        $playerInfo = null;
+                    }
+                }
+            }
         }
 
         if (!$playerInfo) {
@@ -118,34 +131,43 @@ class PlayerController extends AbstractController
              $playerInfo = $playerData['response'][0] ?? null;
         }
 
-        if (!$playerInfo && !empty($seasons)) {
-            foreach ($seasons as $s) {
-                if ($s == $season) continue; 
-                
-                $fallbackData = $api->getPlayerStatistics($id, $s);
+        $isMissingMetadata = function($info) {
+             return empty($info['player']) || 
+                    empty($info['player']['age']) || 
+                    empty($info['player']['height']) || 
+                    empty($info['player']['weight']);
+        };
 
-                if (!empty($fallbackData['errors']['plan'])) {
-                    continue; 
-                }
+        if (!$playerInfo || $isMissingMetadata($playerInfo)) {
+             $fallbackSeasonsToTry = array_unique(array_merge($seasons, [2024, 2023, 2022, 2021]));
 
-                if (!empty($fallbackData['response'])) {
-                    $playerInfo = $fallbackData['response'][0];
-                    $playerInfo['statistics'] = []; 
-                    break; 
-                }
-            }
-        }
-
-        if (!$playerInfo) {
-             $lastDitchSeasons = [2024, 2023, 2022, 2021];
-             foreach ($lastDitchSeasons as $year) {
-                 if (in_array($year, $seasons)) continue; 
+             $originalStats = $playerInfo['statistics'] ?? [];
+             
+             foreach ($fallbackSeasonsToTry as $s) {
+                 if ($s == $season && !$playerInfo) continue; 
+                 if ($s == $season && $playerInfo) continue; 
                  
-                 $lastDitch = $api->getPlayerStatistics($id, $year);
-                 if (!empty($lastDitch['response'])) {
-                     $playerInfo = $lastDitch['response'][0];
-                     $playerInfo['statistics'] = [];
-                     break;
+                 $fallbackData = $api->getPlayerStatistics($id, $s);
+                 
+                 if (!empty($fallbackData['errors']['plan'])) continue;
+
+                 if (!empty($fallbackData['response'][0]) && !$isMissingMetadata($fallbackData['response'][0])) {
+
+                     $validProfile = $fallbackData['response'][0];
+
+                     if ($playerInfo) {
+
+                         foreach ($validProfile['player'] as $key => $val) {
+                             if (empty($playerInfo['player'][$key])) {
+                                 $playerInfo['player'][$key] = $val;
+                             }
+                         }
+                     } else {
+
+                         $playerInfo = $validProfile;
+                         $playerInfo['statistics'] = $originalStats; 
+                     }
+                     break; 
                  }
              }
         }
@@ -167,31 +189,22 @@ class PlayerController extends AbstractController
 
 
 
-        $normalize = fn(string $name) => strtolower(preg_replace('/[\s\-]+/', '', $name));
-        
         $dedupedTransfers = [];
         foreach ($transfers as $transfer) {
-            $inName = $normalize($transfer['teams']['in']['name'] ?? '');
-            $outName = $normalize($transfer['teams']['out']['name'] ?? '');
             $type = $transfer['type'] ?? '';
             $date = strtotime($transfer['date'] ?? '1970-01-01');
             
             $isDuplicate = false;
             foreach ($dedupedTransfers as &$existing) {
-                $eInName = $normalize($existing['teams']['in']['name'] ?? '');
-                $eOutName = $normalize($existing['teams']['out']['name'] ?? '');
                 $eType = $existing['type'] ?? '';
                 $eDate = strtotime($existing['date'] ?? '1970-01-01');
-                
-                if ($inName === $eInName && $outName === $eOutName && $type === $eType) {
-                    if (abs($date - $eDate) <= 4 * 86400) {
-                        $isDuplicate = true;
 
-                        if ($date < $eDate) {
-                            $existing['date'] = $transfer['date'];
-                        }
-                        break;
+                if (abs($date - $eDate) <= 30 * 86400) {
+                    $isDuplicate = true;
+                    if ($date < $eDate) {
+                        $existing['date'] = $transfer['date'];
                     }
+                    break;
                 }
             }
             unset($existing);
@@ -204,26 +217,105 @@ class PlayerController extends AbstractController
 
         usort($transfers, fn($a, $b) => strtotime($b['date']) - strtotime($a['date']));
 
+
         $currentTeam = null;
         if (!empty($transfers)) {
-            $latestTransfer = $transfers[0]; 
-
-            $currentTeam = $latestTransfer['teams']['in'];
+            $latestTransfer = $transfers[0];
+            $teamIn = $latestTransfer['teams']['in'] ?? null;
+            if ($teamIn && !empty($teamIn['id'])) {
+                $currentTeam = $teamIn;
+            }
         }
 
-        if (!$currentTeam && $playerInfo) {
-            $currentTeam = $playerInfo['statistics'][0]['team'];
+        if (!$currentTeam) {
+            $currentTeam = $api->getPrimaryTeamFromStatistics($playerInfo['statistics'] ?? []);
+        }
+
+
+
+        try {
+            $squadData = $api->getCachedData('players/squads', ['player' => $id], 86400);
+            if (!empty($squadData['response'])) {
+
+
+                foreach ($squadData['response'] as $squadEntry) {
+                    $squadTeam = $squadEntry['team'] ?? null;
+                    if ($squadTeam && !empty($squadTeam['id'])) {
+                        $currentTeam = $squadTeam;
+                        break; 
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+
+        }
+
+        if ($currentTeam && !empty($currentTeam['name']) && !empty($transfers)) {
+            $lastTransferInName = $transfers[0]['teams']['in']['name'] ?? '';
+            if ($lastTransferInName && $lastTransferInName !== $currentTeam['name']) {
+                $lastTransferInTeam = $transfers[0]['teams']['in'];
+
+                array_unshift($transfers, [
+                    'date' => '',
+                    'type' => 'N/A',
+                    'teams' => [
+                        'out' => $lastTransferInTeam,
+                        'in' => ['id' => null, 'name' => 'Libre', 'logo' => null],
+                    ]
+                ]);
+
+                array_unshift($transfers, [
+                    'date' => '',
+                    'type' => 'Fichaje Libre',
+                    'teams' => [
+                        'out' => ['id' => null, 'name' => 'Libre', 'logo' => null],
+                        'in' => $currentTeam,
+                    ]
+                ]);
+            }
         }
 
         $reviews = $reviewRepo->findBy(
             ['type' => 'player', 'externalId' => (string)$id],
             ['createdAt' => 'DESC']
         );
+        $averageRating = $reviewRepo->getAverageRating('player', (string)$id);
         
         $review = new \App\Entity\Review();
         $reviewForm = $this->createForm(\App\Form\ReviewType::class, $review);
 
+        file_put_contents('debug_team.txt', print_r($currentTeam, true));
         $relatedNews = $newsRepo->findByRelatedEntity('player', $id);
+
+        $injury = null;
+        if ($currentTeam && !empty($currentTeam['id'])) {
+            $today = date('Y-m-d');
+            $tomorrow = date('Y-m-d', strtotime('+1 day'));
+            $yesterday = date('Y-m-d', strtotime('-1 day'));
+            $datesToFetch = [$tomorrow, $today, $yesterday];
+            
+            foreach ($datesToFetch as $d) {
+
+                $injuryRaw = $api->getCumulativeInjuries(['team' => $currentTeam['id'], 'date' => $d]);
+                if (!empty($injuryRaw['response'])) {
+
+                    foreach ($injuryRaw['response'] as $injItem) {
+                        if (($injItem['player']['id'] ?? 0) == $id) {
+                            $injury = $injItem['player'];
+                            break 2; 
+                        }
+                    }
+                }
+            }
+        }
+
+        $besoccer2025Stats = null;
+        if ($season == 2025) {
+            $playerNameForLookup = $playerInfo['player']['name'] ?? '';
+            if ($playerNameForLookup) {
+                $besoccer2025Stats = $api->getBeSoccerPlayerStats($playerNameForLookup);
+            }
+        }
 
         return $this->render('player/show.html.twig', [
             'player' => $playerInfo,
@@ -233,9 +325,18 @@ class PlayerController extends AbstractController
             'season' => $season,
             'seasons' => $seasons,
             'reviews' => $reviews,
+            'averageRating' => $averageRating,
             'reviewForm' => $reviewForm->createView(),
             'relatedNews' => $relatedNews,
+            'injury' => $injury,
+            'besoccer2025Stats' => $besoccer2025Stats,
         ]);
     }
 }
+
+
+
+
+
+
 

@@ -37,6 +37,18 @@
 
             <hr>
 
+            {% if injury is defined and injury %}
+                <div class="alert alert-danger border-0 p-2 mb-3 text-center">
+                    <span class="fw-bold">🏥 Lesionado</span>
+                    {% if injury.reason is defined and injury.reason %}
+                        <small class="d-block text-muted">{{ injury.reason }}</small>
+                    {% endif %}
+                    {% if injury.type is defined and injury.type %}
+                        <span class="badge bg-danger">{{ injury.type }}</span>
+                    {% endif %}
+                </div>
+            {% endif %}
+
             <ul class="list-group list-group-flush text-start small">
                 
                 <li class="list-group-item d-flex justify-content-between px-0">
@@ -59,12 +71,12 @@
             <label class="form-label fw-bold small text-muted text-uppercase">Temporada</label>
             <div class="dropdown">
                 <button class="btn btn-outline-secondary w-100 dropdown-toggle d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown">
-                    Start {{ season }} - End {{ season + 1 }}
+                    {% if season == 2025 %}⚽ Temporada Actual{% else %}Start {{ season }} - End {{ season + 1 }}{% endif %}
                 </button>
                 <ul class="dropdown-menu w-100" style="max-height: 300px; overflow-y: auto;">
                     {% for s in seasons %}
                         <li><a class="dropdown-item {% if s == season %}active{% endif %}" href="{{ path('player_show', {'id': player.player.id, 'season': s}) }}">
-                            {{ s }} / {{ s + 1 }}
+                            {% if s == 2025 %}⚽ Temporada Actual{% else %}{{ s }} / {{ s + 1 }}{% endif %}
                         </a></li>
                     {% endfor %}
                 </ul>
@@ -79,7 +91,7 @@
                 <ul class="nav nav-tabs border-bottom-0" id="playerTab" role="tablist">
                     <li class="nav-item">
                         <button class="nav-link active fw-bold" data-bs-toggle="tab" data-bs-target="#stats">
-                            📊 Estadísticas {{ season }}
+                            📊 Estadísticas {% if season == 2025 %}Temporada Actual{% else %}{{ season }}{% endif %}
                         </button>
                     </li>
                     <li class="nav-item">
@@ -110,54 +122,154 @@
                     
                     
                     <div class="tab-pane fade show active" id="stats">
-                        
-                        <h5 class="fw-bold mb-3">Rendimiento Temporada {{ season }}</h5>
-                        {% for stat in player.statistics %}
-                            {% if stat.games.appearences|default(0) > 0 %}
-                            <div class="card bg-light border-0 mb-3">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-3 border-bottom pb-2">
-                                        <img src="{{ stat.league.logo }}" width="30" class="me-2">
-                                        <h6 class="mb-0 fw-bold">{{ stat.league.name }}</h6>
-                                        <span class="ms-auto badge bg-dark">{{ stat.team.name }}</span>
+                        <h5 class="fw-bold mb-3">Rendimiento Temporada {% if season == 2025 %}Actual (2025/26){% else %}{{ season }}{% endif %}</h5>
+
+                        {% if season == 2025 %}
+                            
+                            {% if besoccer2025Stats is not null %}
+                                {% set ss = besoccer2025Stats.season_stats %}
+                                
+                                <div class="card border-0 shadow-sm mb-4">
+                                    <div class="card-header bg-dark text-white d-flex align-items-center gap-2">
+                                        <img src="https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=30x&lossy=1" width="28" height="28" alt="LaLiga">
+                                        <strong>Estadísticas 2025/26 · Partidos Oficiales</strong>
+                                        <a href="{{ besoccer2025Stats.besoccer_url }}" target="_blank" class="ms-auto text-white-50 small text-decoration-none">
+                                            Ver en BeSoccer ↗
+                                        </a>
                                     </div>
-                                    
-                                    <div class="row text-center">
-                                        <div class="col-3 col-md-2 mb-2">
-                                            <div class="p-2 border rounded bg-white">
-                                                <div class="h4 mb-0 fw-bold text-primary">{{ stat.games.appearences|default(0) }}</div>
-                                                <small class="text-muted" style="font-size: 0.75rem;">Partidos</small>
+                                    <div class="card-body">
+                                        <div class="row text-center g-3">
+                                            <div class="col-4 col-md-2">
+                                                <div class="p-3 border rounded bg-light">
+                                                    <div class="h3 mb-0 fw-bold text-primary">{{ ss.partidos|default(0) }}</div>
+                                                    <small class="text-muted">Partidos</small>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3 col-md-2 mb-2">
-                                            <div class="p-2 border rounded bg-white">
-                                                <div class="h4 mb-0 fw-bold text-success">{{ stat.goals.total|default(0) }}</div>
-                                                <small class="text-muted" style="font-size: 0.75rem;">Goles</small>
+                                            <div class="col-4 col-md-2">
+                                                <div class="p-3 border rounded bg-light">
+                                                    <div class="h3 mb-0 fw-bold text-secondary">{{ ss.minutos|default(0) }}<small style="font-size:0.5em">'</small></div>
+                                                    <small class="text-muted">Minutos</small>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3 col-md-2 mb-2">
-                                            <div class="p-2 border rounded bg-white">
-                                                <div class="h4 mb-0 fw-bold text-info">{{ stat.goals.assists|default(0) }}</div>
-                                                <small class="text-muted" style="font-size: 0.75rem;">Asistencias</small>
+                                            <div class="col-4 col-md-2">
+                                                <div class="p-3 border rounded bg-light">
+                                                    <div class="h3 mb-0 fw-bold text-success">{{ ss.goles|default(0) }}</div>
+                                                    <small class="text-muted">Goles</small>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3 col-md-2 mb-2">
-                                            <div class="p-2 border rounded bg-white">
-                                                <div class="h4 mb-0 fw-bold text-warning">{{ stat.games.minutes|default(0) }}</div>
-                                                <small class="text-muted" style="font-size: 0.75rem;">Minutos</small>
+                                            <div class="col-4 col-md-2">
+                                                <div class="p-3 border rounded bg-light">
+                                                    <div class="h3 mb-0 fw-bold text-info">{{ ss.asistencias|default(0) }}</div>
+                                                    <small class="text-muted">Asistencias</small>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-3 col-md-2 mb-2">
-                                            <div class="p-2 border rounded bg-white">
-                                                <div class="h4 mb-0 fw-bold text-secondary">{{ stat.games.rating|default('-')|slice(0,4) }}</div>
-                                                <small class="text-muted" style="font-size: 0.75rem;">Rating</small>
+                                            <div class="col-4 col-md-2">
+                                                <div class="p-3 border rounded bg-light">
+                                                    <div class="h3 mb-0 fw-bold">
+                                                        <span class="text-warning">{{ ss.amarillas|default(0) }}</span>
+                                                        <span class="text-muted small">/</span>
+                                                        <span class="text-danger">{{ ss.rojas|default(0) }}</span>
+                                                    </div>
+                                                    <small class="text-muted">🟨/🟥 Tarjetas</small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
+                                
+                                {% if besoccer2025Stats.last_matches is not empty %}
+                                <div class="card border-0 shadow-sm mb-3">
+                                    <div class="card-header bg-white border-bottom d-flex align-items-center">
+                                        <strong>⚡ Rendimiento en los últimos partidos</strong>
+                                    </div>
+                                    <div class="card-body p-2">
+                                        <div class="d-flex gap-2 overflow-auto pb-1">
+                                            {% for match in besoccer2025Stats.last_matches %}
+                                                <a href="{{ match.url }}" target="_blank" class="text-decoration-none flex-shrink-0" style="min-width:90px;">
+                                                    <div class="border rounded text-center p-2
+                                                        {% if match.result == 'win' %}border-success bg-success bg-opacity-10
+                                                        {% elseif match.result == 'draw' %}border-warning bg-warning bg-opacity-10
+                                                        {% else %}border-danger bg-danger bg-opacity-10{% endif %}">
+                                                        {% if match.league_logo %}
+                                                            <img src="{{ match.league_logo }}" height="20" class="mb-1" alt="">
+                                                        {% endif %}
+                                                        <div class="small fw-bold">{{ match.home }} - {{ match.away }}</div>
+                                                        <div class="fw-bold fs-6 my-1
+                                                            {% if match.result == 'win' %}text-success
+                                                            {% elseif match.result == 'draw' %}text-warning
+                                                            {% else %}text-danger{% endif %}">
+                                                            {{ match.score }}
+                                                        </div>
+                                                        <div class="text-muted" style="font-size:0.7rem">{{ match.date }}</div>
+                                                    </div>
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                            {% else %}
+                                
+                                <div class="alert alert-secondary d-flex align-items-center gap-2">
+                                    <span style="font-size:1.5rem">⚽</span>
+                                    <div>
+                                        <strong>Estadísticas 2025/26 no disponibles aún</strong><br>
+                                        <small>Los datos de este jugador para la temporada actual aún no han sido recogidos de BeSoccer.
+                                        Ejecuta <code>python scrape_besoccer_players.py</code> para actualizarlos.</small>
+                                    </div>
+                                </div>
                             {% endif %}
-                        {% endfor %}
+
+                        {% else %}
+                            
+                            {% for stat in player.statistics %}
+                                {% if stat.games.appearences|default(0) > 0 %}
+                                <div class="card bg-light border-0 mb-3">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3 border-bottom pb-2">
+                                            <img src="{{ stat.league.logo }}" width="30" class="me-2">
+                                            <h6 class="mb-0 fw-bold">{{ stat.league.name }}</h6>
+                                            <span class="ms-auto badge bg-dark">{{ stat.team.name }}</span>
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col-3 col-md-2 mb-2">
+                                                <div class="p-2 border rounded bg-white">
+                                                    <div class="h4 mb-0 fw-bold text-primary">{{ stat.games.appearences|default(0) }}</div>
+                                                    <small class="text-muted" style="font-size: 0.75rem;">Partidos</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-md-2 mb-2">
+                                                <div class="p-2 border rounded bg-white">
+                                                    <div class="h4 mb-0 fw-bold text-success">{{ stat.goals.total|default(0) }}</div>
+                                                    <small class="text-muted" style="font-size: 0.75rem;">Goles</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-md-2 mb-2">
+                                                <div class="p-2 border rounded bg-white">
+                                                    <div class="h4 mb-0 fw-bold text-info">{{ stat.goals.assists|default(0) }}</div>
+                                                    <small class="text-muted" style="font-size: 0.75rem;">Asistencias</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-md-2 mb-2">
+                                                <div class="p-2 border rounded bg-white">
+                                                    <div class="h4 mb-0 fw-bold text-warning">{{ stat.games.minutes|default(0) }}</div>
+                                                    <small class="text-muted" style="font-size: 0.75rem;">Minutos</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-md-2 mb-2">
+                                                <div class="p-2 border rounded bg-white">
+                                                    <div class="h4 mb-0 fw-bold text-secondary">{{ stat.games.rating|default('-')|slice(0,4) }}</div>
+                                                    <small class="text-muted" style="font-size: 0.75rem;">Rating</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
 
                     
@@ -190,7 +302,7 @@
                                 {% for transfer in transfers %}
                                     <div class="mb-4 position-relative">
                                         <div class="position-absolute start-0 top-0 translate-middle-x bg-white border border-primary rounded-circle" style="width: 12px; height: 12px; left: -1px;"></div>
-                                        <div class="h6 mb-1 text-primary">{{ transfer.date|date('d M Y') }}</div>
+                                        <div class="h6 mb-1 text-primary">{% if transfer.date is not empty %}{{ transfer.date|date('d M Y') }}{% else %}<span class="text-muted fst-italic">Actualización</span>{% endif %}</div>
                                         <div class="d-flex align-items-center bg-light p-3 rounded">
                                             <div class="d-flex align-items-center text-muted">
                                                 <img src="{{ transfer.teams.out.logo }}" width="30" class="me-2 rounded-circle border">

@@ -52,6 +52,12 @@ class News
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $category = null; 
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $sourceType = null; 
+
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private ?array $sourceData = null; 
+
     #[ORM\Column]
     private bool $featured = false;
 
@@ -206,6 +212,28 @@ class News
     public function setFeatured(bool $featured): static
     {
         $this->featured = $featured;
+        return $this;
+    }
+
+    public function getSourceType(): ?string
+    {
+        return $this->sourceType;
+    }
+
+    public function setSourceType(?string $sourceType): static
+    {
+        $this->sourceType = $sourceType;
+        return $this;
+    }
+
+    public function getSourceData(): ?array
+    {
+        return $this->sourceData;
+    }
+
+    public function setSourceData(?array $sourceData): static
+    {
+        $this->sourceData = $sourceData;
         return $this;
     }
 }

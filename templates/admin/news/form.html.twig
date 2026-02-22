@@ -124,6 +124,29 @@
             </div>
         </div>
 
+        
+        {% if form.vars.value and form.vars.value.sourceType %}
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label class="form-label">📌 Evento Asociado Automáticamente</label>
+                <div class="p-3 border rounded bg-light border-warning">
+                    {% if form.vars.value.sourceType == 'transfer' %}
+                        <span class="badge bg-success me-2">💸 Fichaje</span>
+                        <strong>{{ form.vars.value.sourceData.player_name ?? '' }}</strong> ha sido transferido: 
+                        {{ form.vars.value.sourceData.from ?? 'Desconocido' }} ➡️ {{ form.vars.value.sourceData.to ?? 'Desconocido' }} 
+                        <span class="text-muted ms-2">({{ form.vars.value.sourceData.date ?? '' }})</span>
+                    {% elseif form.vars.value.sourceType == 'injury' %}
+                        <span class="badge bg-danger me-2">🚑 Lesión/Sanción</span>
+                        <strong>{{ form.vars.value.sourceData.player_name ?? '' }}</strong> 
+                        ({{ form.vars.value.sourceData.team ?? 'Equipo Desconocido' }}) - 
+                        Razón: <span class="badge bg-secondary">{{ form.vars.value.sourceData.reason ?? 'Desconocida' }}</span>
+                    {% endif %}
+                    <p class="text-muted small mb-0 mt-2">Este evento se seleccionó automáticamente desde la portada.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
         <hr>
         <button type="submit" class="btn btn-primary btn-lg">💾 Guardar Noticia</button>
         <a href="{{ path('admin_news_index') }}" class="btn btn-secondary btn-lg">Cancelar</a>

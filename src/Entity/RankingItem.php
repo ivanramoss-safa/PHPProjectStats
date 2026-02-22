@@ -14,7 +14,7 @@ class RankingItem
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'rankingItems')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Ranking $ranking = null;
 
     #[ORM\Column]

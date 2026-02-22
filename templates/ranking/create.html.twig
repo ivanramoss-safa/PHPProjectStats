@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <form method="post" action="{{ path('app_ranking_order', {id: category.id}) }}">
+    <form method="post" action="{{ path('app_ranking_order', {id: category.id}) }}" data-turbo="false">
         <div class="card mb-4">
             <div class="card-header">
                 <h5 class="mb-0">Selecciona hasta 10 elementos</h5>
